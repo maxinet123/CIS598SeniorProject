@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>senior_proj_backend</RootNamespace>
+    <UserSecretsId>ee8fc76b-dd60-453b-8814-93b2a55df6a3</UserSecretsId>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Driver" Version="2.13.1" />
+  </ItemGroup>
+</Project>

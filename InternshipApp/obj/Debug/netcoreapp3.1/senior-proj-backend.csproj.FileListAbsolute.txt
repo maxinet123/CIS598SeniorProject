@@ -1,0 +1,10 @@
+C:\Users\Maxine\source\repos\CIS598SeniorProject\senior-proj-backend\bin\Debug\netcoreapp3.1\appsettings.Development.json
+C:\Users\Maxine\source\repos\CIS598SeniorProject\senior-proj-backend\bin\Debug\netcoreapp3.1\appsettings.json
+C:\Users\Maxine\source\repos\CIS598SeniorProject\senior-proj-backend\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+C:\Users\Maxine\source\repos\CIS598SeniorProject\senior-proj-backend\bin\Debug\netcoreapp3.1\senior-proj-backend.exe
+C:\Users\Maxine\source\repos\CIS598SeniorProject\senior-proj-backend\obj\Debug\netcoreapp3.1\senior-proj-backend.csprojAssemblyReference.cache
+C:\Users\Maxine\source\repos\CIS598SeniorProject\senior-proj-backend\obj\Debug\netcoreapp3.1\senior-proj-backend.AssemblyInfoInputs.cache
+C:\Users\Maxine\source\repos\CIS598SeniorProject\senior-proj-backend\obj\Debug\netcoreapp3.1\senior-proj-backend.AssemblyInfo.cs
+C:\Users\Maxine\source\repos\CIS598SeniorProject\senior-proj-backend\obj\Debug\netcoreapp3.1\senior-proj-backend.RazorTargetAssemblyInfo.cache
+C:\Users\Maxine\source\repos\CIS598SeniorProject\senior-proj-backend\obj\Debug\netcoreapp3.1\staticwebassets\senior-proj-backend.StaticWebAssets.Manifest.cache
+C:\Users\Maxine\source\repos\CIS598SeniorProject\senior-proj-backend\obj\Debug\netcoreapp3.1\staticwebassets\senior-proj-backend.StaticWebAssets.xml
