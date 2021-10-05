@@ -1,32 +1,43 @@
 <template>
-  <v-container>
+  <div>
     <v-row>
-
+      <h1>Welcome!</h1>
     </v-row>
     <v-row class="text-center">
-      <v-col cols="12" md="6" sm="12">
+      <v-col cols="12" md="6" sm="6">
         <v-card class="card-style" @click="create">
-          Create Post
-        </v-card>
-      </v-col>
-      <v-col cols="12" md="6" sm="12">
-        <v-card class="card-style" @click="explore">
           <v-row>
             <v-col cols="12" md="12">
               <div class="icon-wrapper">
-                <v-icon class="mdi-48px">mdi-compass</v-icon>
+                <v-icon class="icon">mdi-pencil</v-icon>
               </div>
             </v-col>
           </v-row>
           <v-row>
             <v-col cols="12" md="12">
-              <h2>Expore Posts</h2>
+              <h2>Create Post</h2>
+            </v-col>
+          </v-row>
+        </v-card>
+      </v-col>
+      <v-col cols="12" md="6" sm="6">
+        <v-card class="card-style" @click="explore">
+          <v-row>
+            <v-col cols="12" md="12">
+              <div class="icon-wrapper">
+                <v-icon class="icon">mdi-compass</v-icon>
+              </div>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12" md="12">
+              <h2>Explore Posts</h2>
             </v-col>
           </v-row>
         </v-card>
       </v-col>
     </v-row>
-  </v-container>
+  </div>
 </template>
 
 <script>
@@ -47,13 +58,25 @@ export default {
 </script>
 <style lang="scss" scoped>
 .card-style {
-  min-height: 100px;
+  min-width: 250px;
+  min-height: 300px;
+  padding: 50px;
 }
 .icon-wrapper {
+  display: flex;
+  justify-content: center;
+  text-align: center;
   min-height: 150px;
   max-width: 150px;
-  border: 1px solid blue;
+  border: 1px solid lightgray;
   border-radius: 75px;
-  color: greenyellow;
+  background: #673ab77d;
+  padding: 50px;
+  z-index: 0;
+}
+.icon {
+  z-index: 1;
+  font-size: 48px;
+  color: #673ab7;
 }
 </style>

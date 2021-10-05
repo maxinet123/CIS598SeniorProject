@@ -31,18 +31,27 @@
             <v-list-item-title>Expore Posts</v-list-item-title>
           </v-list-item>
         </v-list-item-group>
+        <theme-button/>
       </v-list>
     </v-navigation-drawer>
     </div>
 </template>
 
 <script>
+import ThemeButton from './ThemeButton.vue'
+
 export default {
 name: "AppBar",
     data: () => ({
         drawer: false,
         group: null,
     }),
+    components: {
+        ThemeButton,
+    },
+    computed: {
+
+    },
     methods: {
         account() {
             console.log('stuff')
@@ -52,5 +61,4 @@ name: "AppBar",
 </script>
 
 <style lang="scss" scoped>
-
 </style>
