@@ -26,9 +26,12 @@ namespace InternshipApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddSingleton<IDbClient, DbClient>();
+
+            /*services.Configure<string>("DbConnectionString*/
             services.Configure<InternshipDbConfig>(Configuration);
-            //services.AddTransient<IIntershipServices, InternshipServices>
+            services.AddScoped<IIntershipRepository, IntershipRepository>();
             services.AddControllers();
         }
 

@@ -38,10 +38,10 @@ export default {
   components: {},
   methods: {
     create() {
-      console.log("create logic");
+      this.$router.push({ name: "Create"})
     },
     explore() {
-      console.log("explore logic");
+      this.$router.push({ name: "Explore"})
     },
   },
 };
@@ -70,10 +70,10 @@ export default {
   display: flex;
   align-content: center;
   justify-content: center;
-  @media all and (max-width: 1263px) {
-    height: 100px;
-    width: 100px;
-  }
+  // @media all and (max-width: 1263px) {
+  //   height: 100px;
+  //   width: 100px;
+  // }
   @media all and (max-width: 959px) {
     height: 150px;
     width: 150px;
