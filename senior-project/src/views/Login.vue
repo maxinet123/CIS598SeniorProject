@@ -12,14 +12,11 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols="12">
-        </v-col>
+        <v-col cols="12"> </v-col>
       </v-row>
       <v-row>
-        <v-col cols="12">
-        </v-col>
-        <v-col cols="12">
-        </v-col>
+        <v-col cols="12"> </v-col>
+        <v-col cols="12"> </v-col>
       </v-row>
     </v-card>
   </v-container>
@@ -27,28 +24,14 @@
 
 <script>
 export default {
-  name: 'Login',
-  data: () => ({
-
-  }),
-  props: {
-
-  },
-  components: {
-
-  },
-  computed: {
-
-  },
-  methods: {
-
-  },
-  watch: {
-
-  },
-}
+  name: "Login",
+  data: () => ({}),
+  props: {},
+  components: {},
+  computed: {},
+  methods: {},
+  watch: {},
+};
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

@@ -3,37 +3,29 @@
     <v-row>
       <h1>Welcome!</h1>
     </v-row>
-    <v-row class="text-center">
+    <v-row>
       <v-col cols="12" md="6" sm="6">
-        <v-card class="card-style" @click="create">
-          <v-row>
-            <v-col cols="12" md="12">
-              <div class="icon-wrapper">
+        <v-card class="text-center card-style" @click="create">
+          <v-card-actions>
+              <div class="circle">
                 <v-icon class="icon">mdi-pencil</v-icon>
               </div>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col cols="12" md="12">
-              <h2>Create Post</h2>
-            </v-col>
-          </v-row>
+          </v-card-actions>
+          <v-card-title>
+            Create Post
+          </v-card-title>
         </v-card>
       </v-col>
       <v-col cols="12" md="6" sm="6">
         <v-card class="card-style" @click="explore">
-          <v-row>
-            <v-col cols="12" md="12">
-              <div class="icon-wrapper">
-                <v-icon class="icon">mdi-compass</v-icon>
-              </div>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col cols="12" md="12">
-              <h2>Explore Posts</h2>
-            </v-col>
-          </v-row>
+          <v-card-actions>
+            <div class="circle">
+              <v-icon class="icon">mdi-compass</v-icon>
+            </div>
+          </v-card-actions>
+          <v-card-title>
+            Explore Posts
+          </v-card-title>
         </v-card>
       </v-col>
     </v-row>
@@ -41,42 +33,55 @@
 </template>
 
 <script>
-
 export default {
   name: "Home",
-  components: {
-  },
+  components: {},
   methods: {
     create() {
-      console.log('create logic')
+      console.log("create logic");
     },
     explore() {
-      console.log('explore logic')
+      console.log("explore logic");
     },
-  }
+  },
 };
 </script>
 <style lang="scss" scoped>
 .card-style {
-  min-width: 250px;
-  min-height: 300px;
-  padding: 50px;
-}
-.icon-wrapper {
   display: flex;
-  justify-content: center;
-  text-align: center;
-  min-height: 150px;
-  max-width: 150px;
-  border: 1px solid lightgray;
-  border-radius: 75px;
-  background: #673ab77d;
+  flex-direction: column;
   padding: 50px;
-  z-index: 0;
+  align-content: center;
+  text-align: center;
+  .v-card__actions {
+    justify-content: center;
+  }
+  .v-card__title {
+    justify-content: center;
+    word-break: normal;
+  }
+}
+.circle {
+  height: 150px;
+  width: 150px;
+  border-radius: 150px;
+  border: 1px solid #673ab7;
+  background: #673ab77d;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  @media all and (max-width: 1263px) {
+    height: 100px;
+    width: 100px;
+  }
+  @media all and (max-width: 959px) {
+    height: 150px;
+    width: 150px;
+  }
 }
 .icon {
   z-index: 1;
-  font-size: 48px;
+  font-size: 64px;
   color: #673ab7;
 }
 </style>

@@ -1,24 +1,24 @@
 <template>
   <div class="theme-wrapper">
     <v-btn-toggle v-model="userTheme">
-        <v-btn @click="toggleTheme">
-            Dark
-            <v-icon>mdi-weather-night</v-icon>
-        </v-btn>
-        <v-btn @click="toggleTheme">
-            Light
-            <v-icon>mdi-weather-sunny</v-icon>
-        </v-btn>
+      <v-btn @click="toggleTheme">
+        Dark
+        <v-icon>mdi-weather-night</v-icon>
+      </v-btn>
+      <v-btn @click="toggleTheme">
+        Light
+        <v-icon>mdi-weather-sunny</v-icon>
+      </v-btn>
     </v-btn-toggle>
   </div>
 </template>
 
 <script>
 export default {
-    name: "ThemeButton",
-    data: () => ({
-        userTheme: "light-theme",
-    }),
+  name: "ThemeButton",
+  data: () => ({
+    userTheme: "light-theme",
+  }),
 
   methods: {
     toggleTheme() {
@@ -47,17 +47,17 @@ export default {
       }
     },
   },
-    mounted() {
-        const initUserTheme = this.getMediaPreference();
-        this.setTheme(initUserTheme);
-    },
+  mounted() {
+    const initUserTheme = this.getMediaPreference();
+    this.setTheme(initUserTheme);
+  },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 .theme-wrapper {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 </style>
