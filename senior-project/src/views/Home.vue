@@ -7,13 +7,11 @@
       <v-col cols="12" md="6" sm="6">
         <v-card class="text-center card-style" @click="create">
           <v-card-actions>
-              <div class="circle">
-                <v-icon class="icon">mdi-pencil</v-icon>
-              </div>
+            <div class="circle">
+              <v-icon class="icon">mdi-pencil</v-icon>
+            </div>
           </v-card-actions>
-          <v-card-title>
-            Create Post
-          </v-card-title>
+          <v-card-title> Create Post </v-card-title>
         </v-card>
       </v-col>
       <v-col cols="12" md="6" sm="6">
@@ -23,9 +21,7 @@
               <v-icon class="icon">mdi-compass</v-icon>
             </div>
           </v-card-actions>
-          <v-card-title>
-            Explore Posts
-          </v-card-title>
+          <v-card-title> Explore Posts </v-card-title>
         </v-card>
       </v-col>
     </v-row>
@@ -33,15 +29,21 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   name: "Home",
   components: {},
+  mounted() {
+    this.fetchInternships();
+  },
   methods: {
+    ...mapActions(['fetchInternships']),
     create() {
-      this.$router.push({ name: "Create"})
+      this.$router.push({ name: "Create" });
     },
     explore() {
-      this.$router.push({ name: "Explore"})
+      this.$router.push({ name: "Explore" });
     },
   },
 };

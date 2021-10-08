@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using InternshipApp;
+using InternshipData.Core;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,10 +29,8 @@ namespace InternshipApp
         {
 
             services.AddSingleton<IDbClient, DbClient>();
-
-            /*services.Configure<string>("DbConnectionString*/
             services.Configure<InternshipDbConfig>(Configuration);
-            services.AddScoped<IIntershipRepository, IntershipRepository>();
+            services.AddTransient<IInternshipServices, InternshipServices>();
             services.AddControllers();
         }
 

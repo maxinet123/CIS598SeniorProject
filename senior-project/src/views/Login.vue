@@ -1,16 +1,12 @@
 <template>
   <v-container class="login">
     <v-card>
-      <v-card-title>
-        Login
-      </v-card-title>
+      <v-card-title> Login </v-card-title>
       <v-card-actions>
-          <v-text-field v-model="email" outlined label="Email"></v-text-field>
+        <v-text-field v-model="email" outlined label="Email"></v-text-field>
       </v-card-actions>
       <v-card-actions>
-        <v-btn block @click="okay" :loading="loading">
-          Okay
-        </v-btn>
+        <v-btn block @click="okay" :loading="loading"> Okay </v-btn>
       </v-card-actions>
     </v-card>
   </v-container>
@@ -31,7 +27,7 @@ export default {
       this.loading = true;
       setTimeout(() => {
         this.loading = false;
-      }, 5000)
+      }, 5000);
     },
   },
   watch: {},
@@ -40,6 +36,6 @@ export default {
 
 <style lang="scss" scoped>
 .v-card {
-  padding: 20px 10px;
+  padding: 20px;
 }
 </style>

@@ -1,4 +1,4 @@
-﻿namespace InternshipApp
+﻿namespace InternshipData.Core
 {
     public class InternshipDbConfig
     {

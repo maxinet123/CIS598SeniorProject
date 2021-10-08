@@ -4,7 +4,12 @@
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
       <v-spacer></v-spacer>
       <v-icon class="sunny-theme">mdi-weather-sunny</v-icon>
-      <v-switch v-model="$vuetify.theme.dark" hide-details inset type="button"/>
+      <v-switch
+        v-model="$vuetify.theme.dark"
+        hide-details
+        inset
+        type="button"
+      />
       <v-icon>mdi-weather-night</v-icon>
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" absolute temporary>
@@ -47,31 +52,29 @@
 </template>
 
 <script>
-
 export default {
   name: "AppBar",
   data: () => ({
     drawer: false,
     group: null,
   }),
-  components: {
-  },
+  components: {},
   computed: {},
   methods: {
     home() {
-      this.$router.push({ name: 'Home'})
+      this.$router.push({ name: "Home" });
     },
     create() {
-      this.$router.push({ name: 'Create'})
+      this.$router.push({ name: "Create" });
     },
     explore() {
-      this.$router.push({ name: 'Explore'})
+      this.$router.push({ name: "Explore" });
     },
     login() {
-      this.$router.push({ name: 'Login'})
+      this.$router.push({ name: "Login" });
     },
     account() {
-      this.$router.push({ name: 'Explore'})
+      this.$router.push({ name: "Explore" });
     },
   },
 };
@@ -79,6 +82,6 @@ export default {
 
 <style lang="scss" scoped>
 .sunny-theme {
-    padding-right: 15px;
+  padding-right: 15px;
 }
 </style>
