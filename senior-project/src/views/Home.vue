@@ -38,7 +38,7 @@ export default {
     this.fetchInternships();
   },
   methods: {
-    ...mapActions(['fetchInternships']),
+    ...mapActions(["fetchInternships"]),
     create() {
       this.$router.push({ name: "Create" });
     },
