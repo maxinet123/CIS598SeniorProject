@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,22 +7,34 @@ using System.Threading.Tasks;
 
 namespace InternshipData.Core
 {
+    [BsonIgnoreExtraElements]
     public class Internship
     {
         [BsonId]
-        [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
-        public int Id { get; set; }
+        public ObjectId Id { get; set; }
+        [BsonElement("name")]
         public string Name { get; set; }
-        //public string Description { get; set; }
-        //public Location Location { get; set; }
-        //public Discipline Discipline { get; set; }
-        //public Company CompanyName { get; set; }
-        //public Rating Rating { get; set; }
-        //public User User { get; set; }
-        //public bool IsRemote { get; set; }
-        //public double Salary { get; set; }
-        //public DateTime StartDate {get; set;}
-        //public DateTime EndDate {get; set; }
-        //public DateTime CreatedDate { get; set; }
+        [BsonElement("description")]
+        public string Description { get; set; }
+        [BsonElement("location")]
+        public string Location { get; set; }
+        [BsonElement("discipline")]
+        public string Discipline { get; set; }
+        [BsonElement("company_name")]
+        public string CompanyName { get; set; }
+        [BsonElement("rating")]
+        public int Rating { get; set; }
+        [BsonElement("user")]
+        public string User { get; set; }
+        [BsonElement("is_remote")]
+        public bool IsRemote { get; set; }
+        [BsonElement("salary")]
+        public double Salary { get; set; }
+        [BsonElement("start_dt")]
+        public DateTime StartDate {get; set; }
+        [BsonElement("end_dt")]
+        public DateTime EndDate {get; set; }
+        [BsonElement("created_dt")]
+        public DateTime CreatedDate { get; set; }
     }
 }

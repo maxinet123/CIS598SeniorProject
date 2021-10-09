@@ -26,8 +26,6 @@ C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipApp\bin\Debug\netcore
 C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipApp\bin\Debug\netcoreapp3.1\InternshipData.Core.dll
 C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipApp\bin\Debug\netcoreapp3.1\InternshipData.Core.pdb
 C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipApp\obj\Debug\netcoreapp3.1\InternshipApp.csprojAssemblyReference.cache
-C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipApp\obj\Debug\netcoreapp3.1\InternshipApp.csproj.CoreCompileInputs.cache
-C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipApp\obj\Debug\netcoreapp3.1\InternshipApp.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipApp\obj\Debug\netcoreapp3.1\InternshipApp.AssemblyInfoInputs.cache
 C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipApp\obj\Debug\netcoreapp3.1\InternshipApp.AssemblyInfo.cs
 C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipApp\obj\Debug\netcoreapp3.1\InternshipApp.RazorTargetAssemblyInfo.cache
@@ -37,3 +35,17 @@ C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipApp\obj\Debug\netcore
 C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipApp\obj\Debug\netcoreapp3.1\InternshipApp.dll
 C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipApp\obj\Debug\netcoreapp3.1\InternshipApp.pdb
 C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipApp\obj\Debug\netcoreapp3.1\InternshipApp.genruntimeconfig.cache
+C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipApp\bin\Debug\netcoreapp3.1\System.Net.Http.Formatting.dll
+C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipApp\bin\Debug\netcoreapp3.1\System.Web.Http.dll
+C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipApp\bin\Debug\netcoreapp3.1\System.Web.Http.WebHost.dll
+C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipApp\bin\Debug\netcoreapp3.1\Microsoft.Web.Infrastructure.dll
+C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipApp\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipApp\bin\Debug\netcoreapp3.1\Swashbuckle.Core.dll
+C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipApp\bin\Debug\netcoreapp3.1\WebActivatorEx.dll
+C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipApp\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipApp\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipApp\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipApp\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipApp\obj\Debug\netcoreapp3.1\InternshipApp.csproj.CoreCompileInputs.cache
+C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipApp\obj\Debug\netcoreapp3.1\InternshipApp.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipApp\obj\Debug\netcoreapp3.1\InternshipApp.MvcApplicationPartsAssemblyInfo.cache

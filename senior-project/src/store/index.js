@@ -19,7 +19,7 @@ export default new Vuex.Store({
   actions: {
     fetchInternships() {
         axios
-          .get("http://localhost:44386/IntershipApp/GetInternships")
+          .get("https://localhost:44386/api/Internship/GetInternships")
           .then((response) => {
             console.log(response.data);
             //resolve();

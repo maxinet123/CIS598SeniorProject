@@ -5,11 +5,12 @@ using System.Threading.Tasks;
 using InternshipData.Core;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MongoDB.Driver;
 
 namespace InternshipApp.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class InternshipController : ControllerBase
     {
         private readonly IInternshipServices _internshipService;
@@ -18,15 +19,17 @@ namespace InternshipApp.Controllers
             _internshipService = internshipService;
         }
 
-        [HttpGet]
+        [HttpGet("GetInternships")]
         public IActionResult GetInternships()
         {
+
             return Ok(_internshipService.GetInternships());
         }
 
-        [HttpPost]
+        [HttpPost("AddInternship")]
         public IActionResult AddInternship(Internship internship)
         {
+            _internshipService.AddInternship(internship);
             return Ok(internship);
         }
     }
