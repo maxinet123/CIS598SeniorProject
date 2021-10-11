@@ -29,16 +29,11 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
 
 export default {
   name: "Home",
   components: {},
-  mounted() {
-    this.fetchInternships();
-  },
   methods: {
-    ...mapActions(["fetchInternships"]),
     create() {
       this.$router.push({ name: "Create" });
     },

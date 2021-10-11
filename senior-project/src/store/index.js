@@ -18,12 +18,11 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    fetchInternships() {
+    fetchInternships: ({commit}) => {
       axios
         .get(`https://localhost:44386/api/Internship/GetInternships`)
         .then((response) => {
-          console.log(response.data);
-          //resolve();
+          commit('setInternships', response.data)
         })
         .catch((error) => {
           console.log(error);

@@ -1,28 +1,30 @@
 <template>
   <v-container class="explore">
-    <div v-for="internship in internships" :key="internship.name">
+    <div v-for="internship in getInternships" :key="internship.id.pid">
       <internship-card :internship="internship" />
     </div>
   </v-container>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import InternshipCard from "../components/InternshipCard.vue";
+
 export default {
   name: "Explore",
   data: () => ({
-    internships: [
-      {
-        name: "Commerce Bank",
-      },
-    ],
   }),
   props: {},
   components: {
     InternshipCard,
   },
-  computed: {},
-  methods: {},
+  mounted() {
+  },
+  computed: {
+    ...mapGetters(["getInternships"]),
+  },
+  methods: {
+  },
   watch: {},
 };
 </script>

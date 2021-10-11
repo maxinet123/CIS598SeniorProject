@@ -8,6 +8,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 import AppBar from "./components/AppBar.vue";
 export default {
   name: "App",
@@ -17,7 +19,12 @@ export default {
   data: (vm) => ({
     initialDark: vm.$vuetify ? vm.$vuetify.theme.dark : false,
   }),
-  methods: {},
+  mounted() {
+    this.fetchInternships();
+  },
+  methods: {
+    ...mapActions(["fetchInternships"]),
+  },
 };
 </script>
 
