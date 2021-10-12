@@ -13,7 +13,7 @@ namespace InternshipData.Core
         public ObjectId Id { get; set; }
         [BsonElement("name")]
         public string Name { get; set; }
-        [BsonElement("description")]
+        [BsonElement("description")] 
         public string Description { get; set; }
         [BsonElement("location")]
         public string Location { get; set; }
