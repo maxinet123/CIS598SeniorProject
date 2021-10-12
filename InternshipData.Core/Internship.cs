@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace InternshipData.Core
 {
-    [BsonIgnoreExtraElements]
     public class Internship
     {
         [BsonId]
@@ -20,21 +19,21 @@ namespace InternshipData.Core
         public string Location { get; set; }
         [BsonElement("discipline")]
         public string Discipline { get; set; }
-        [BsonElement("company_name")]
+        [BsonElement("companyName")]
         public string CompanyName { get; set; }
         [BsonElement("rating")]
         public int Rating { get; set; }
         [BsonElement("user")]
         public string User { get; set; }
-        [BsonElement("is_remote")]
+        [BsonElement("isRemote")]
         public bool IsRemote { get; set; }
         [BsonElement("salary")]
         public double Salary { get; set; }
-        [BsonElement("start_dt")]
+        [BsonElement("startDate")]
         public DateTime StartDate {get; set; }
-        [BsonElement("end_dt")]
+        [BsonElement("endDate")]
         public DateTime EndDate {get; set; }
-        [BsonElement("created_dt")]
+        [BsonElement("createdDate")]
         public DateTime CreatedDate { get; set; }
     }
 }

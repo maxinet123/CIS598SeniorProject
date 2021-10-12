@@ -19,6 +19,7 @@ export default {
     InternshipCard,
   },
   mounted() {
+    console.log(this.getInternships)
   },
   computed: {
     ...mapGetters(["getInternships"]),
