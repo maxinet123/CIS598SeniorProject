@@ -2,7 +2,7 @@
   <div>
     <v-card>
       <v-row>
-        <v-col cols="12" md="10">
+        <v-col cols="12" sm="10">
           <v-card>
         <v-card-title>
           {{ internship.name }}
@@ -10,14 +10,16 @@
         <v-card-subtitle>
         </v-card-subtitle>
         <v-card-actions>
+          <v-textarea v-model="internship.description" readonly outlined rows="5" auto-grow>
+          </v-textarea>
         </v-card-actions>
           </v-card>
         </v-col>
-        <v-col cols="12" md="2">
-          <v-row>
+        <v-col cols="12" sm="2">
+          <v-row class="vote">
             <v-col cols="12" md="12">
               <v-btn icon>
-                <v-icon>arrow-up-bold-circle-outline</v-icon>
+                <v-icon>mdi-arrow-up-bold-circle-outline</v-icon>
               </v-btn>
             </v-col>
           </v-row>
@@ -29,7 +31,7 @@
           <v-row>
             <v-col cols="12" md="12">
               <v-btn icon>
-                <v-icon>arrow-down-bold-circle-outline</v-icon>
+                <v-icon>mdi-arrow-down-bold-circle-outline</v-icon>
                 </v-btn>
             </v-col>
           </v-row>
@@ -54,7 +56,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.v-card {
-  padding: 20px;
+.vote {
+  display: flex;
+  vertical-align: middle;
+  align-content: center;
 }
+
 </style>

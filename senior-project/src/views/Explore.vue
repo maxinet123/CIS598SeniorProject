@@ -1,7 +1,7 @@
 <template>
   <v-container class="explore">
-    <div v-for="internship in getInternships" :key="internship.id.pid">
-      <internship-card :internship="internship" />
+    <div v-for="internship in internships" :key="internship.id">
+      <internship-card class="icard" :internship="internship" />
     </div>
   </v-container>
 </template>
@@ -13,13 +13,27 @@ import InternshipCard from "../components/InternshipCard.vue";
 export default {
   name: "Explore",
   data: () => ({
+    internships: [
+      {
+        id: 1,
+        name: 'IT Intern',
+        company: 'Commerce Bank',
+        description: 'It was fun!!',
+      },
+      {
+        id: 2,
+        name: 'IT Intern',
+        company: 'Commerce Bank',
+        description: 'It was fun!!',
+      }
+    ]
   }),
   props: {},
   components: {
     InternshipCard,
   },
   mounted() {
-    console.log(this.getInternships)
+    //console.log(this.getInternships)
   },
   computed: {
     ...mapGetters(["getInternships"]),
@@ -31,7 +45,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.v-card {
+.icard {
   padding: 20px;
+  margin: 10px;
 }
 </style>
