@@ -16,17 +16,17 @@ export default {
     internships: [
       {
         id: 1,
-        name: 'IT Intern',
-        company: 'Commerce Bank',
-        description: 'It was fun!!',
+        name: "IT Intern",
+        company: "Commerce Bank",
+        description: "It was fun!!",
       },
       {
         id: 2,
-        name: 'IT Intern',
-        company: 'Commerce Bank',
-        description: 'It was fun!!',
-      }
-    ]
+        name: "IT Intern",
+        company: "Commerce Bank",
+        description: "It was fun!!",
+      },
+    ],
   }),
   props: {},
   components: {
@@ -38,8 +38,7 @@ export default {
   computed: {
     ...mapGetters(["getInternships"]),
   },
-  methods: {
-  },
+  methods: {},
   watch: {},
 };
 </script>

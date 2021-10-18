@@ -4,15 +4,20 @@
       <v-row>
         <v-col cols="12" sm="10">
           <v-card>
-        <v-card-title>
-          {{ internship.name }}
-        </v-card-title>
-        <v-card-subtitle>
-        </v-card-subtitle>
-        <v-card-actions>
-          <v-textarea v-model="internship.description" readonly outlined rows="5" auto-grow>
-          </v-textarea>
-        </v-card-actions>
+            <v-card-title>
+              {{ internship.name }}
+            </v-card-title>
+            <v-card-subtitle> </v-card-subtitle>
+            <v-card-actions>
+              <v-textarea
+                v-model="internship.description"
+                readonly
+                outlined
+                rows="5"
+                auto-grow
+              >
+              </v-textarea>
+            </v-card-actions>
           </v-card>
         </v-col>
         <v-col cols="12" sm="2">
@@ -24,15 +29,13 @@
             </v-col>
           </v-row>
           <v-row>
-            <v-col cols="12" md="12">
-              Upvote
-            </v-col>
+            <v-col cols="12" md="12"> Upvote </v-col>
           </v-row>
           <v-row>
             <v-col cols="12" md="12">
               <v-btn icon>
                 <v-icon>mdi-arrow-down-bold-circle-outline</v-icon>
-                </v-btn>
+              </v-btn>
             </v-col>
           </v-row>
         </v-col>
@@ -61,5 +64,4 @@ export default {
   vertical-align: middle;
   align-content: center;
 }
-
 </style>

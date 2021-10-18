@@ -13,8 +13,8 @@ export default new Vuetify({
     dark: true,
     themes: {
       light: {
-        primary: "#FFFFFF",
-        secondary: "#FFFFFF",
+        primary: "#000000",
+        secondary: colors.blue,
         grey: colors.grey,
         loadingText: colors.black,
       },
