@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using InternshipData.Core;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using InternshipData.Core.Models;
 using MongoDB.Driver;
 
 namespace InternshipApp.Controllers
@@ -27,7 +28,7 @@ namespace InternshipApp.Controllers
         }
 
         [HttpPost("AddInternship")]
-        public IActionResult AddInternship(Internship internship)
+        public IActionResult AddInternship([FromBody] Internship internship)
         {
             _internshipService.AddInternship(internship);
             return Ok(internship);

@@ -23,6 +23,22 @@ export default new Vuex.Store({
         .get(`https://localhost:44386/api/Internship/GetInternships`)
         .then((response) => {
           commit("setInternships", response.data);
+          //resolve();
+        })
+        .catch((error) => {
+          console.log(error);
+          //reject();
+        });
+    },
+    AddInternship: ({ dispatch }, { internship }) => {
+      axios
+        .get(
+          `https://localhost:44386/api/Internship/AddInternship`,
+          internship
+        )
+        .then(() => {
+          dispatch("fetchInternships");
+          //resolve();
         })
         .catch((error) => {
           console.log(error);

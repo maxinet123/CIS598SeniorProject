@@ -4,8 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using InternshipData.Core.Models;
 
-namespace InternshipData.Core
+namespace InternshipData.Core.Models
 {
     public class Internship
     {
@@ -13,18 +14,12 @@ namespace InternshipData.Core
         public ObjectId Id { get; set; }
         [BsonElement("name")]
         public string Name { get; set; }
-        [BsonElement("description")] 
-        public string Description { get; set; }
-        [BsonElement("location")]
-        public string Location { get; set; }
-        [BsonElement("discipline")]
-        public string Discipline { get; set; }
-        [BsonElement("companyName")]
-        public string CompanyName { get; set; }
-        [BsonElement("rating")]
-        public int Rating { get; set; }
-        [BsonElement("user")]
-        public string User { get; set; }
+        public Description Description { get; set; }
+        public Location Location { get; set; }
+        public Discipline Discipline { get; set; }
+        public Company Company { get; set; }
+        public Vote Vote { get; set; }
+        public User User { get; set; }
         [BsonElement("isRemote")]
         public bool IsRemote { get; set; }
         [BsonElement("salary")]

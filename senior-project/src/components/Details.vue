@@ -5,8 +5,8 @@
         <v-text-field
           dense outlined label="Position Name"
           required v-model="details.name"
-          @input="$v.name.$touch()"
-          @blur="$v.name.$touch()"
+          @input="$v.details.name.$touch()"
+          @blur="$v.details.name.$touch()"
           :error-messages="nameErrors"/>
       </v-col>
     </v-row>
@@ -15,7 +15,7 @@
         <v-text-field
           dense outlined label="Discipline"
           required v-model="details.discipline"
-          @input="$v.details.discipline.$touch()"
+          @input="$v.details.details.discipline.$touch()"
           @blur="$v.details.discipline.$touch()"
           :error-messages="disciplineErrors"/>
       </v-col>
@@ -83,7 +83,7 @@
           v-model="details.wage"
           v-mask="'$##.##'" 
           @input="$v.details.wage.$touch()"
-          @blur="formatWage(wage)"/>
+          @blur="formatWage(details.wage)"/>
       </v-col>
     </v-row>
     <v-row>
@@ -99,7 +99,7 @@
 <script>
 import moment from "moment";
 import {required, numeric, maxLength} from 'vuelidate/lib/validators';
-import { validationMixins } from 'vuelidate';
+import { validationMixin } from 'vuelidate';
 import States from "@/assets/states_titlecase.json";
 export default {
   name: "Details",
@@ -116,6 +116,7 @@ export default {
         hasHousing: false,
         isRemote: false,
         description: "",
+        vote: "",
     },
     states: States,
     range: [
@@ -135,7 +136,7 @@ export default {
     menu1: false,
     menu2: false,
   }),
-  mixins: [ validationMixins ],
+  mixins: [ validationMixin ],
   validations: {
       details: {
         name: { required },
@@ -146,7 +147,7 @@ export default {
         zipCode: {
             required,
             numeric,
-            maxLenghth: maxLength(5),
+            maxLength: maxLength(5),
         },
         duration: { required },
         description: { required },
@@ -237,7 +238,7 @@ export default {
   },
   methods: { 
     formatWage(wage) {
-        this.$v.details.wage.touch
+        this.$v.wage.touch
         var modifyVal = wage.replace('$.', '')
         return Number(modifyVal).toFixed(2)
     },

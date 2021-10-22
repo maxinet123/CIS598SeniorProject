@@ -1,8 +1,9 @@
 <template>
   <v-container class="create">
     <div>
-      <h1>Share your experience!</h1>
+      <h1 class="title">Share your experience!</h1>
       <v-card>
+        <v-card-subtitle class="sub-title">***All information with be kept anonymous.***</v-card-subtitle>
         <Details @details="setDetails" @v="setV"/>
       </v-card>
       <v-row class="btn-wrapper">
@@ -17,6 +18,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import Details from "@/components/Details.vue";
 export default {
   name: "Create",
@@ -33,6 +35,7 @@ export default {
       hasHousing: false,
       isRemote: false,
       description: "",
+      vote: "",
     },
     v: {},
   }),
@@ -42,26 +45,19 @@ export default {
   },
   computed: {},
   methods: {
+    ...mapActions(['AddInternship']),
     setV(val) {
       this.v = val;
     },
     setDetails(val) {
-      this.internshipData.name = val.name;
-      this.internshipData.discipline = val.discipline;
-      this.internshipData.company = val.company;
-      this.internshipData.city = val.city;
-      this.internshipData.state = val.state;
-      this.internshipData.zipCode = val.zipCode;
-      this.internshipData.hasHousing = val.hasHousing;
-      this.internshipData.isRemote = val.isRemote;
-      this.internshipData.duration = val.duration;
-      this.internshipData.wage = val.wage,
-      this.internshipData.description = val.description;
+      if (val) {
+        this.internshipData = {...val};
+      }
     },
     submit() {
       this.v.$touch();
       if(this.v.$invalid) {
-        console.log('submit');
+        this.AddInternship({internship: this.internshipData})
       }
     },
   },
@@ -80,5 +76,14 @@ export default {
 .submit-btn {
   float: right;
   margin: 0px -12px;
+}
+.title {
+  font-size: 2rem !important;
+  text-align: center;
+  margin-bottom: 15px;
+}
+.sub-title {
+  text-align: center;
+  margin: -20px -10px 5px;
 }
 </style>

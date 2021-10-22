@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
 using MongoDB.Driver;
+using InternshipData.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

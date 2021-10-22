@@ -1,6 +1,7 @@
 ﻿using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+using InternshipData.Core.Models;
 
 namespace InternshipData.Core
 {
