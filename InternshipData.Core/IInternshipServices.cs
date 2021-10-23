@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using InternshipData.Core.Models;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace InternshipData.Core
 {
     public interface IInternshipServices
     {
-        List<Internship> GetInternships();
-        Internship AddInternship(Internship internship);
+        public async Task<List<Internship>> GetInternships();
+        public async Task AddInternship(Internship internship, Company company, Discipline discipline, Location location);
     }
 }

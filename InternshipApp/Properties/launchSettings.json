@@ -15,7 +15,10 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "DATABASE_NAME": "InternshipDb",
-        "INTERNSHIP_COLLECTION_NAME": "Internship"
+        "INTERNSHIP_COLLECTION_NAME": "Internship",
+        "COMPANY_COLLECTION_NAME": "Company",
+        "DISCPLINE_COLLECTION_NAME": "Discipline",
+        "LOCATION_COLLECTION_NAME": "Location"
       }
     },
     "InternshipApp": {
@@ -25,7 +28,10 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "DATABASE_NAME": "InternshipDb",
-        "INTERNSHIP_COLLECTION_NAME": "Internship"
+        "INTERNSHIP_COLLECTION_NAME": "Internship",
+        "COMPANY_COLLECTION_NAME": "Company",
+        "DISCPLINE_COLLECTION_NAME": "Discipline",
+        "LOCATION_COLLECTION_NAME": "Location"
       }
     }
   }

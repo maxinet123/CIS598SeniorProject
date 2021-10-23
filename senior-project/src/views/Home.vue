@@ -1,7 +1,9 @@
 <template>
   <div>
     <v-row>
-      <h1>Welcome!</h1>
+      <v-col cols="12" sm="12">
+        <h1 class="text-center">Welcome!</h1>
+      </v-col>
     </v-row>
     <v-row>
       <v-col cols="12" md="6" sm="6">
@@ -43,6 +45,9 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.title {
+  text-align: center;
+}
 .card-style {
   display: flex;
   flex-direction: column;

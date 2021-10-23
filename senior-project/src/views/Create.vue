@@ -23,19 +23,26 @@ import Details from "@/components/Details.vue";
 export default {
   name: "Create",
   data: () => ({
-    intershipData: {
-      name: "",
-      discipline: "",
-      company: "",
-      city: "",
-      state: "",
-      zipCode: "",
+    details: {
+      position: "",
       duration: "",
       wage: "",
       hasHousing: false,
       isRemote: false,
       description: "",
       vote: "",
+      rating: "",
+    },
+    company: {
+      name: ""
+    },
+    discipline: {
+      name: ""
+    },
+    location: {
+      city: "",
+      state: "",
+      zipCode: "",
     },
     v: {},
   }),
@@ -51,13 +58,24 @@ export default {
     },
     setDetails(val) {
       if (val) {
-        this.internshipData = {...val};
+        details.position = val.position
+        details.duration = val.duration
+        details.wage = val.wage
+        details.rating = val.rating
+        details.hasHousing = val.hasHousing
+        details.isRemote = val.isRemote
+        details.description = val.description
+        company.name = val.company
+        discipline.name = val.discipline
+        location.city = val.city
+        location.state = val.state
+        location.zipCode = val.zipCode
       }
     },
     submit() {
       this.v.$touch();
       if(this.v.$invalid) {
-        this.AddInternship({internship: this.internshipData})
+        this.AddInternship({internship: this.details, company: this.company, discipline: this.discipline, location: this.location})
       }
     },
   },

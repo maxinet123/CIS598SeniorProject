@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row>
-      <v-col cols="12" sm="12">
+      <v-col cols="12" xs="12">
         <v-text-field
           dense outlined label="Position Name"
           required v-model="details.name"
@@ -89,14 +89,28 @@
     <v-row>
         <v-col cols="12">
             <v-textarea v-model="details.description" outlined label="Description"
-                no-resize counter="500" rows="10" required>
+                no-resize counter="500" rows="10" required hide-details
+                @input="$v.details.description.$touch()" @blur="$v.details.description.$touch()">
             </v-textarea>
         </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="12" xs="12">
+        <div class="star-wrapper">
+          <div @mouseleave="showCurrentRating(0)" class="stars">
+            <star-rating v-model="details.rating" :show-rating="false" @current-rating="showCurrentRating"
+            :inline="true" :star-size="20"
+            @rating-selected="setCurrentSelectedRating"></star-rating>
+          </div>
+          <div class="star-text">{{currentRating}}</div>
+        </div>
+      </v-col>
     </v-row>
   </div>
 </template>
 
 <script>
+import StarRating from 'vue-star-rating';
 import moment from "moment";
 import {required, numeric, maxLength} from 'vuelidate/lib/validators';
 import { validationMixin } from 'vuelidate';
@@ -117,7 +131,9 @@ export default {
         isRemote: false,
         description: "",
         vote: "",
+        rating: "No Rating Selected",
     },
+    currentRating: "No Rating",
     states: States,
     range: [
       "1 week",
@@ -136,6 +152,9 @@ export default {
     menu1: false,
     menu2: false,
   }),
+  components: {
+    StarRating,
+  },
   mixins: [ validationMixin ],
   validations: {
       details: {
@@ -237,6 +256,9 @@ export default {
       },
   },
   methods: { 
+    showCurrentRating(rating) {
+      this.currentRating = (rating === 0) ? this.currentSelectedRating : rating + " stars"
+    },
     formatWage(wage) {
         this.$v.wage.touch
         var modifyVal = wage.replace('$.', '')
@@ -253,6 +275,9 @@ export default {
     formatDate(date) {
       return date ? moment(date).format("MM/DD/YYYY") : "";
     },
+    setCurrentSelectedRating(rating) {
+      this.currentSelectedRating = rating + " stars";
+    }
   },
   watch: {
       details: {
@@ -273,6 +298,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.star-wrapper {
+  display: block;
+  float: right;
+}
+.stars {
+  display: inline-block;
+}
+.star-text {
+  display: inline-block;
+  margin: 10px 0px 0px 10px;
+}
 .v-input--selection-controls {
   margin: 0px;
 }

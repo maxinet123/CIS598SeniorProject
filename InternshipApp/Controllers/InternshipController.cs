@@ -23,15 +23,15 @@ namespace InternshipApp.Controllers
         [HttpGet("GetInternships")]
         public IActionResult GetInternships()
         {
-
-            return Ok(_internshipService.GetInternships());
+            var data = _internshipService.GetInternships();
+            return Ok();
         }
 
         [HttpPost("AddInternship")]
-        public IActionResult AddInternship([FromBody] Internship internship)
+        public IActionResult AddInternship([FromBody] Internship internship, Company company, Discipline discipline, Location location)
         {
-            _internshipService.AddInternship(internship);
-            return Ok(internship);
+            await _internshipService.AddInternship(internship, company, discipline, location);
+            return Ok();
         }
     }
 }

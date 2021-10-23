@@ -10,5 +10,8 @@ namespace InternshipData.Core
     public interface IDbClient
     {
         IMongoCollection<Internship> GetInternshipCollection();
+        IMongoCollection<Company> GetCompanyCollection();
+        IMongoCollection<Discipline> GetDisciplineCollection();
+        IMongoCollection<Location> GetLocationCollection();
     }
 }
