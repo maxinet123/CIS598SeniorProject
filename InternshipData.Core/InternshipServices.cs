@@ -27,11 +27,11 @@ namespace InternshipData.Core
         }
         public async Task AddInternship(Internship internship, Company company, Discipline discipline, Location location)
         {
-            var companyResult = _companies.InsertOneAsync(company);
-            var disciplineResult = _disciplines.InsertOneAsync(discipline);
-            var locationResult = _locations.InsertOneAsync(location);
+            var companyResult = _companies.InsertOneAsync(company).GetAwaiter();
+            var disciplineResult = _disciplines.InsertOneAsync(discipline).GetAwaiter();
+            var locationResult = _locations.InsertOneAsync(location).GetAwaiter();
 
-            internship.CompanyId = companyResult.Id;
+            internship.CompanyId = companyResult.GetResult();
             internship.DisciplineId = disciplineResult.Id;
             internship.LocationId = locationResult.Id;
 

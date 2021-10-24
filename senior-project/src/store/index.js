@@ -32,10 +32,7 @@ export default new Vuex.Store({
     },
     AddInternship: ({ dispatch }, { internship }) => {
       axios
-        .get(
-          `https://localhost:44386/api/Internship/AddInternship`,
-          internship
-        )
+        .get(`https://localhost:44386/api/Internship/AddInternship`, internship)
         .then(() => {
           dispatch("fetchInternships");
           //resolve();

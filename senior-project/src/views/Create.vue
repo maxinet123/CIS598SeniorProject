@@ -3,14 +3,14 @@
     <div>
       <h1 class="title">Share your experience!</h1>
       <v-card>
-        <v-card-subtitle class="sub-title">***All information with be kept anonymous.***</v-card-subtitle>
-        <Details @details="setDetails" @v="setV"/>
+        <v-card-subtitle class="sub-title"
+          >***All information with be kept anonymous.***</v-card-subtitle
+        >
+        <Details @details="setDetails" @v="setV" />
       </v-card>
       <v-row class="btn-wrapper">
         <v-col cols="12" xs="12">
-          <v-btn class="submit-btn" @click="submit">
-            Submit
-          </v-btn>
+          <v-btn class="submit-btn" @click="submit"> Submit </v-btn>
         </v-col>
       </v-row>
     </div>
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions } from "vuex";
 import Details from "@/components/Details.vue";
 export default {
   name: "Create",
@@ -34,10 +34,10 @@ export default {
       rating: "",
     },
     company: {
-      name: ""
+      name: "",
     },
     discipline: {
-      name: ""
+      name: "",
     },
     location: {
       city: "",
@@ -52,30 +52,35 @@ export default {
   },
   computed: {},
   methods: {
-    ...mapActions(['AddInternship']),
+    ...mapActions(["AddInternship"]),
     setV(val) {
       this.v = val;
     },
     setDetails(val) {
       if (val) {
-        details.position = val.position
-        details.duration = val.duration
-        details.wage = val.wage
-        details.rating = val.rating
-        details.hasHousing = val.hasHousing
-        details.isRemote = val.isRemote
-        details.description = val.description
-        company.name = val.company
-        discipline.name = val.discipline
-        location.city = val.city
-        location.state = val.state
-        location.zipCode = val.zipCode
+        this.details.position = val.position;
+        this.details.duration = val.duration;
+        this.details.wage = val.wage;
+        this.details.rating = val.rating;
+        this.details.hasHousing = val.hasHousing;
+        this.details.isRemote = val.isRemote;
+        this.details.description = val.description;
+        this.company.name = val.company;
+        this.discipline.name = val.discipline;
+        this.location.city = val.city;
+        this.location.state = val.state;
+        this.location.zipCode = val.zipCode;
       }
     },
     submit() {
       this.v.$touch();
-      if(this.v.$invalid) {
-        this.AddInternship({internship: this.details, company: this.company, discipline: this.discipline, location: this.location})
+      if (this.v.$invalid) {
+        this.AddInternship({
+          internship: this.details,
+          company: this.company,
+          discipline: this.discipline,
+          location: this.location,
+        });
       }
     },
   },
