@@ -27,15 +27,53 @@ namespace InternshipData.Core
         }
         public async Task AddInternship(Internship internship, Company company, Discipline discipline, Location location)
         {
-            var companyResult = _companies.InsertOneAsync(company).GetAwaiter();
-            var disciplineResult = _disciplines.InsertOneAsync(discipline).GetAwaiter();
-            var locationResult = _locations.InsertOneAsync(location).GetAwaiter();
 
-            internship.CompanyId = companyResult.GetResult();
-            internship.DisciplineId = disciplineResult.Id;
-            internship.LocationId = locationResult.Id;
+            var companyResult = AddCompany(company);
+            var disciplineResult = AddDiscipline(discipline);
+            var locationResult = AddLocation(location);
+
+            internship.CompanyId = companyResult.Result.Id.ToString();
+            internship.DisciplineId = disciplineResult.Result.Id.ToString();
+            internship.LocationId = locationResult.Result.Id.ToString();
 
             await _internships.InsertOneAsync(internship);
+        }
+
+        public async Task<Company> AddCompany(Company company)
+        {
+            bool exists = await _companies.Find(c => c.CompanyName == company.CompanyName).AnyAsync();
+            if (!exists)
+            {
+                await _companies.InsertOneAsync(company);
+            }
+
+            var comp = await _companies.Find(c => c.CompanyName == company.CompanyName).FirstOrDefaultAsync();
+
+            return comp;
+        }
+        public async Task<Discipline> AddDiscipline(Discipline discipline)
+        {
+            bool exists = await _disciplines.Find(d => d.DisciplineName == discipline.DisciplineName).AnyAsync();
+            if (!exists)
+            {
+                await _disciplines.InsertOneAsync(discipline);
+            }
+
+            var disc = await _disciplines.Find(d => d.DisciplineName == discipline.DisciplineName).FirstOrDefaultAsync();
+
+            return disc;
+        }
+        public async Task<Location> AddLocation(Location location)
+        {
+            bool exists = await _locations.Find(l => l.City == location.City && l.State == location.State).AnyAsync();
+            if (!exists)
+            {
+                await _locations.InsertOneAsync(location);
+            }
+
+            var loc = await _locations.Find(l => l.City == location.City && l.State == location.State).FirstOrDefaultAsync();
+
+            return loc;
         }
     }
 }

@@ -29,11 +29,11 @@ namespace InternshipData.Core.Models
         [BsonElement("createdDate")]
         public DateTime CreatedDate { get; set; }
         [BsonElement("locationId")]
-        public int LocationId { get; set; }
+        public string LocationId { get; set; }
         [BsonElement("disciplineId")]
-        public int DisciplineId { get; set; }
+        public string DisciplineId { get; set; }
         [BsonElement("companyId")]
-        public int CompanyId { get; set; }
+        public string CompanyId { get; set; }
         //[BsonElement("userId")]
         //public ObjectId UserId { get; set; }
     }

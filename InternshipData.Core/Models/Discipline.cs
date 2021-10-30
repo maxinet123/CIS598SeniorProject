@@ -10,7 +10,7 @@ namespace InternshipData.Core.Models
     public class Discipline
     {
         [BsonId]
-        public int Id { get; set; }
+        public ObjectId Id { get; set; }
         [BsonElement("disciplineName")]
         public string DisciplineName { get; set; }
     }

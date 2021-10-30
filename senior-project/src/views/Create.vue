@@ -23,26 +23,28 @@ import Details from "@/components/Details.vue";
 export default {
   name: "Create",
   data: () => ({
-    details: {
-      position: "",
-      duration: "",
-      wage: "",
-      hasHousing: false,
-      isRemote: false,
-      description: "",
-      vote: "",
-      rating: "",
-    },
-    company: {
-      name: "",
-    },
-    discipline: {
-      name: "",
-    },
-    location: {
-      city: "",
-      state: "",
-      zipCode: "",
+    data: {
+      internship: {
+        position: "",
+        duration: "",
+        wage: "",
+        hasHousing: false,
+        isRemote: false,
+        description: "",
+        vote: "",
+        rating: "",
+      },
+      company: {
+        companyName: "",
+      },
+      discipline: {
+        disciplineName: "",
+      },
+      location: {
+        city: "",
+        state: "",
+        zipCode: "",
+      },
     },
     v: {},
   }),
@@ -58,29 +60,34 @@ export default {
     },
     setDetails(val) {
       if (val) {
-        this.details.position = val.position;
-        this.details.duration = val.duration;
-        this.details.wage = val.wage;
-        this.details.rating = val.rating;
-        this.details.hasHousing = val.hasHousing;
-        this.details.isRemote = val.isRemote;
-        this.details.description = val.description;
-        this.company.name = val.company;
-        this.discipline.name = val.discipline;
-        this.location.city = val.city;
-        this.location.state = val.state;
-        this.location.zipCode = val.zipCode;
+        this.data = {
+          internship: {
+            position: val.position,
+            duration: val.duration,
+            wage: val.wage,
+            rating: val.rating,
+            hasHousing: val.hasHousing,
+            isRemote: val.isRemote,
+            description: val.description
+          },
+          company: {
+            companyName: val.company
+          },
+          discipline: {
+            disciplineName: val.discipline
+          },
+          location: {
+            city: val.city,
+            state: val.state,
+            zipCode: val.zipCode
+          }
+        }
       }
     },
     submit() {
       this.v.$touch();
       if (this.v.$invalid) {
-        this.AddInternship({
-          internship: this.details,
-          company: this.company,
-          discipline: this.discipline,
-          location: this.location,
-        });
+        this.AddInternship({ data: this.data });
       }
     },
   },

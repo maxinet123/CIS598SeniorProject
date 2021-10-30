@@ -17,7 +17,7 @@
         "DATABASE_NAME": "InternshipDb",
         "INTERNSHIP_COLLECTION_NAME": "Internship",
         "COMPANY_COLLECTION_NAME": "Company",
-        "DISCPLINE_COLLECTION_NAME": "Discipline",
+        "DISCIPLINE_COLLECTION_NAME": "Discipline",
         "LOCATION_COLLECTION_NAME": "Location"
       }
     },
@@ -30,7 +30,7 @@
         "DATABASE_NAME": "InternshipDb",
         "INTERNSHIP_COLLECTION_NAME": "Internship",
         "COMPANY_COLLECTION_NAME": "Company",
-        "DISCPLINE_COLLECTION_NAME": "Discipline",
+        "DISCIPLINE_COLLECTION_NAME": "Discipline",
         "LOCATION_COLLECTION_NAME": "Location"
       }
     }

@@ -28,9 +28,9 @@ namespace InternshipApp.Controllers
         }
 
         [HttpPost("AddInternship")]
-        public IActionResult AddInternship([FromBody] Internship internship, Company company, Discipline discipline, Location location)
+        public IActionResult AddInternship([FromBody] Data data)
         {
-            await _internshipService.AddInternship(internship, company, discipline, location);
+            _internshipService.AddInternship(data.internship, data.company, data.discipline, data.location);
             return Ok();
         }
     }
