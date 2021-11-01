@@ -54,7 +54,7 @@ export default {
   },
   computed: {},
   methods: {
-    ...mapActions(["AddInternship"]),
+    ...mapActions(["addInternship"]),
     setV(val) {
       this.v = val;
     },
@@ -87,7 +87,10 @@ export default {
     submit() {
       this.v.$touch();
       if (this.v.$invalid) {
-        this.AddInternship({ data: this.data });
+        this.addInternship({ data: this.data }).finally(() => {
+          //add modal?
+          this.$router.push({ name: "Explore" });
+        });
       }
     },
   },

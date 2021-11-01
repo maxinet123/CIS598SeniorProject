@@ -39,7 +39,7 @@
             <v-list-item-title>Expore Posts</v-list-item-title>
           </v-list-item>
 
-          <v-list-item @click="login">
+          <v-list-item @click="login" v-show="false">
             <v-list-item-icon>
               <v-icon>mdi-account</v-icon>
             </v-list-item-icon>

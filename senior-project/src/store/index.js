@@ -19,28 +19,88 @@ export default new Vuex.Store({
   },
   actions: {
     fetchInternships: ({ commit }) => {
-      axios
-        .get(`https://localhost:44386/api/Internship/GetInternships`)
-        .then((response) => {
-          commit("setInternships", response.data);
-          //resolve();
-        })
-        .catch((error) => {
-          console.log(error);
-          //reject();
-        });
+      return new Promise((resolve, reject) => {
+        axios
+          .get(`https://localhost:44386/api/Internship/GetInternships`)
+          .then((response) => {
+            commit("setInternships", response.data);
+            resolve();
+          })
+          .catch((error) => {
+            console.log(error);
+            reject();
+          });
+      })
     },
-    AddInternship: ({ dispatch }, { internship }) => {
-      axios
-        .get(`https://localhost:44386/api/Internship/AddInternship`, internship)
-        .then(() => {
-          dispatch("fetchInternships");
-          //resolve();
-        })
-        .catch((error) => {
-          console.log(error);
-          //reject();
-        });
+    fetchCompanies: ({ commit }) => {
+      return new Promise((resolve, reject) => {
+        axios
+          .get(`https://localhost:44386/api/Internship/GetCompanies`)
+          .then((response) => {
+            commit("setCompanies", response.data);
+            resolve();
+          })
+          .catch((error) => {
+            console.log(error);
+            reject();
+          });
+      })
+    },
+    fetchDisciplines: ({ commit }) => {
+      return new Promise((resolve, reject) => {
+        axios
+          .get(`https://localhost:44386/api/Internship/GetDisciplines`)
+          .then((response) => {
+            commit("setDisciplines", response.data);
+            resolve();
+          })
+          .catch((error) => {
+            console.log(error);
+            reject();
+          });
+      })
+    },
+    fetchLocations: ({ commit }) => {
+      return new Promise((resolve, reject) => {
+        axios
+          .get(`https://localhost:44386/api/Internship/GetLocations`)
+          .then((response) => {
+            commit("setLocations", response.data);
+            resolve();
+          })
+          .catch((error) => {
+            console.log(error);
+            reject();
+          });
+      })
+    },
+    fetchMajors: ({ commit }) => {
+      return new Promise((resolve, reject) => {
+        axios
+          .get(`https://localhost:44386/api/Internship/GetMajors`)
+          .then((response) => {
+            commit("setMajors", response.data);
+            resolve();
+          })
+          .catch((error) => {
+            console.log(error);
+            reject();
+          });
+      })
+    },
+    addInternship: ({ dispatch }, { internship }) => {
+      return new Promise((resolve, reject) => {
+        axios
+          .get(`https://localhost:44386/api/Internship/AddInternship`, internship)
+          .then(() => {
+            dispatch("fetchInternships");
+            resolve();
+          })
+          .catch((error) => {
+            console.log(error);
+            reject();
+          });
+      })
     },
   },
   modules: {},

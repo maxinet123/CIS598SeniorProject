@@ -60,6 +60,12 @@ namespace InternshipData.Core
             return list;
         }
 
+        public async Task<List<Major>> GetMajors()
+        {
+            var list = await _majors.Find(major => true).ToListAsync();
+            return list;
+        }
+
 
         public async Task AddInternship(Internship internship, Company company, Discipline discipline, Location location, Rating rating)
         {
@@ -138,7 +144,7 @@ namespace InternshipData.Core
 
         public async Task<Rating> GetRatingId(Rating rating)
         {
-            var rate = await _ratings.Find(r => r.RatingNumber == rating.RatingNumber).FirstOrDefaultAsync();
+            var rate = await _ratings.Find(r => r.Stars == rating.Stars).FirstOrDefaultAsync();
 
             return rate;
         }

@@ -330,7 +330,7 @@ export default {
       return date ? moment(date).format("MM/DD/YYYY") : "";
     },
     setCurrentSelectedRating(rating) {
-      this.currentSelectedRating = rating + " stars";
+      this.currentSelectedRating = rating !== 1 ? rating + " stars" : rating + " star";
     },
   },
   watch: {

@@ -48,6 +48,20 @@ namespace InternshipApp.Controllers
             return Ok();
         }
 
+        [HttpGet("GetRatings")]
+        public IActionResult GetRatings()
+        {
+            var data = _internshipService.GetRatings();
+            return Ok();
+        }
+
+        [HttpGet("GetMajors")]
+        public IActionResult GetMajors()
+        {
+            var data = _internshipService.GetMajors();
+            return Ok();
+        }
+
         [HttpPost("AddInternship")]
         public IActionResult AddInternship([FromBody] Data data)
         {

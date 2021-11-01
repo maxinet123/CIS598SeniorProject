@@ -13,6 +13,7 @@ namespace InternshipData.Core
         Task<List<Discipline>> GetDisciplines();
         Task<List<Location>> GetLocations();
         Task<List<Rating>> GetRatings();
+        Task<List<Major>> GetMajors();
         Task AddInternship(Internship internship, Company company, Discipline discipline, Location location);
         Task UpdateVote(Vote vote);
         Task<Company> AddCompany(Company company);
