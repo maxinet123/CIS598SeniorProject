@@ -144,7 +144,7 @@ namespace InternshipData.Core
 
         public async Task<Rating> GetRatingId(Rating rating)
         {
-            var rate = await _ratings.Find(r => r.Stars == rating.Stars).FirstOrDefaultAsync();
+            var rate = await _ratings.Find(r => r.RatingNumber == rating.RatingNumber).FirstOrDefaultAsync();
 
             return rate;
         }

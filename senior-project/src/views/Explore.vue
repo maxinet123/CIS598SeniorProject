@@ -19,12 +19,17 @@ export default {
         name: "IT Intern",
         company: "Commerce Bank",
         description: "It was fun!!",
+        rating: 5,
+        duration: "11 weeks",
+        vote: 100
       },
       {
         id: 2,
         name: "IT Intern",
         company: "Commerce Bank",
         description: "It was fun!!",
+        rating: 2,
+        duration: "5 weeks"
       },
     ],
   }),

@@ -80,6 +80,10 @@ export default {
             city: val.city,
             state: val.state,
             zipCode: val.zipCode
+          },
+          rating: {
+            stars: val.rating === 1 ? val.rating + " star" : val.rating + " stars",
+            rating: val.rating
           }
         }
       }

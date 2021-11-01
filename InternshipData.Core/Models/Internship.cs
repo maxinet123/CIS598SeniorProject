@@ -22,6 +22,8 @@ namespace InternshipData.Core.Models
         public bool HasHousing { get; set; }
         [BsonElement("wage")]
         public double Wage { get; set; }
+        [BsonElement("duration")]
+        public string Duration { get; set; }
         [BsonElement("rating")]
         public string RatingId { get; set; }
         [BsonElement("vote")]

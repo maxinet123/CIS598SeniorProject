@@ -14,12 +14,11 @@ namespace InternshipData.Core
         Task<List<Location>> GetLocations();
         Task<List<Rating>> GetRatings();
         Task<List<Major>> GetMajors();
-        Task AddInternship(Internship internship, Company company, Discipline discipline, Location location);
+        Task AddInternship(Internship internship, Company company, Discipline discipline, Location location, Rating rating);
         Task UpdateVote(Vote vote);
         Task<Company> AddCompany(Company company);
         Task<Discipline> AddDiscipline(Discipline discipline);
         Task<Location> AddLocation(Location location);
-        Task<Rating> AddRating(Rating rating);
         Task<Major> AddMajor(Major major);
     }
 }
