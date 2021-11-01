@@ -13,7 +13,7 @@ import InternshipCard from "../components/InternshipCard.vue";
 export default {
   name: "Explore",
   data: () => ({
-    internships: [
+    internships: [ //.sort((a,b)=> {})
       {
         id: 1,
         name: "IT Intern",
@@ -21,7 +21,9 @@ export default {
         description: "It was fun!!",
         rating: 5,
         duration: "11 weeks",
-        vote: 100
+        vote: 100,
+        city: 'Shawnee',
+        state: 'KS'
       },
       {
         id: 2,

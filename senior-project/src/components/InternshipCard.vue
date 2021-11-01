@@ -20,19 +20,28 @@
             </v-col>
           </v-row>
           <v-row>
-            <v-col cols="12" sm="6">
+            <v-col cols="12" sm="4">
               {{internship.company}}
             </v-col>
-            <v-col cols="12" sm="6">
+            <v-col cols="12" sm="4">
               {{internship.discipline}}
+            </v-col>
+            <v-col cols="12" sm="4">
+              {{internship.wage}} / hr
             </v-col>
           </v-row>
           <v-row>
-            <v-col cols="12" sm="6">
-              {{internship.location}}
+            <v-col cols="12" sm="4">
+              {{internship.city}}, {{internship.state}}
             </v-col>
-            <v-col cols="12" sm="6">
+            <v-col cols="12" sm="4">
               {{internship.duration}}
+            </v-col>
+            <v-col cols="12" sm="4" v-if="internship.hasHousing">
+              Provide Housing
+            </v-col>
+            <v-col cols="12" sm="4" v-else>
+              Remote Internship
             </v-col>
           </v-row>
           <v-row>
