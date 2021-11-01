@@ -14,6 +14,9 @@ namespace InternshipData.Core
         private readonly IMongoCollection<Company> _companies;
         private readonly IMongoCollection<Discipline> _disciplines;
         private readonly IMongoCollection<Location> _locations;
+        private readonly IMongoCollection<Major> _majors;
+        private readonly IMongoCollection<Rating> _ratings;
+
         public DbClient(IOptions<InternshipDbConfig> internshipDbConfig)
         {
             var client = new MongoClient(internshipDbConfig.Value.Connection_String);
@@ -22,11 +25,15 @@ namespace InternshipData.Core
             _companies = database.GetCollection<Company>(internshipDbConfig.Value.Company_Collection_Name);
             _disciplines = database.GetCollection<Discipline>(internshipDbConfig.Value.Discipline_Collection_Name);
             _locations = database.GetCollection<Location>(internshipDbConfig.Value.Location_Collection_Name);
+            _majors = database.GetCollection<Major>(internshipDbConfig.Value.Major_Collection_Name);
+            _ratings = database.GetCollection<Rating>(internshipDbConfig.Value.Rating_Collection_Name);
         }
 
         public IMongoCollection<Internship> GetInternshipCollection() => _internships;
         public IMongoCollection<Company> GetCompanyCollection() => _companies;
         public IMongoCollection<Discipline> GetDisciplineCollection() => _disciplines;
         public IMongoCollection<Location> GetLocationCollection() => _locations;
+        public IMongoCollection<Major> GetMajorCollection() => _majors;
+        public IMongoCollection<Rating> GetRatingCollection() => _ratings;
     }
 }

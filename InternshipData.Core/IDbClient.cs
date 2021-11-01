@@ -13,5 +13,7 @@ namespace InternshipData.Core
         IMongoCollection<Company> GetCompanyCollection();
         IMongoCollection<Discipline> GetDisciplineCollection();
         IMongoCollection<Location> GetLocationCollection();
+        IMongoCollection<Major> GetMajorCollection();
+        IMongoCollection<Rating> GetRatingCollection();
     }
 }

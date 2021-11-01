@@ -23,7 +23,7 @@ namespace InternshipData.Core.Models
         [BsonElement("wage")]
         public double Wage { get; set; }
         [BsonElement("rating")]
-        public string Rating { get; set; }
+        public string RatingId { get; set; }
         [BsonElement("vote")]
         public int Vote { get; set; }
         [BsonElement("createdDate")]

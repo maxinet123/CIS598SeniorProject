@@ -13,8 +13,8 @@ namespace InternshipData.Core.Models
         [BsonElement("total")]
         public int Total { get; set; }
         [BsonElement("internshipId")]
-        public int InternshipId { get; set; }
+        public ObjectId InternshipId { get; set; }
         [BsonElement("userId")]
-        public int UserId { get; set; }
+        public ObjectId UserId { get; set; }
     }
 }
