@@ -3,6 +3,7 @@
     <v-row>
       <v-col cols="12" xs="12">
         <v-text-field
+          :hide-details="nameErrors.length <= 0"
           dense
           outlined
           label="Position Name"
@@ -17,6 +18,7 @@
     <v-row>
       <v-col cols="12" sm="12" md="6">
         <v-text-field
+          :hide-details="disciplineErrors.length <= 0"
           dense
           outlined
           label="Discipline"
@@ -29,6 +31,7 @@
       </v-col>
       <v-col cols="12" sm="12" md="6">
         <v-text-field
+          :hide-details="companyErrors.length <= 0"
           dense
           outlined
           label="Company"
@@ -43,6 +46,7 @@
     <v-row>
       <v-col cols="12" sm="12" md="5">
         <v-text-field
+          :hide-details="cityErrors.length <= 0"
           dense
           outlined
           label="City"
@@ -55,6 +59,7 @@
       </v-col>
       <v-col cols="12" sm="6" md="5">
         <v-autocomplete
+          :hide-details="stateErrors.length <= 0"
           dense
           outlined
           label="State"
@@ -69,6 +74,7 @@
       </v-col>
       <v-col cols="12" sm="6" md="2">
         <v-text-field
+          :hide-details="zipCodeErrors.length <= 0"
           dense
           outlined
           label="Zip Code"
@@ -83,6 +89,7 @@
     <v-row>
       <v-col cols="12" xs="12" sm="6">
         <v-checkbox
+          hide-details
           dense
           outlined
           label="Provided Housing"
@@ -92,6 +99,7 @@
       </v-col>
       <v-col cols="12" xs="12" sm="6">
         <v-checkbox
+          hide-details
           dense
           outlined
           label="Remote Internship"
@@ -103,6 +111,7 @@
     <v-row>
       <v-col cols="12" xs="12" sm="6">
         <v-select
+          :hide-details="durationErrors.length <= 0"
           dense
           outlined
           label="Duration"
@@ -115,6 +124,7 @@
       </v-col>
       <v-col cols="12" xs="12" sm="6">
         <v-text-field
+          hide-details
           dense
           outlined
           label="Wage / hr"
@@ -145,6 +155,7 @@
     <v-row>
       <v-col cols="12" xs="12">
         <div class="star-wrapper">
+          <div class="star-text">{{ currentRating }}</div>
           <div @mouseleave="showCurrentRating(0)" class="stars">
             <star-rating
               v-model="details.rating"
@@ -155,7 +166,6 @@
               @rating-selected="setCurrentSelectedRating"
             ></star-rating>
           </div>
-          <div class="star-text">{{ currentRating }}</div>
         </div>
       </v-col>
     </v-row>
@@ -243,7 +253,7 @@ export default {
         return errors;
       }
       if (!this.$v.details.discipline.required) {
-        errors.push("Discipline is required. Ex.Information Technology");
+        errors.push("Discipline is required. Ex. Information Technology");
       }
       return errors;
     },
@@ -311,7 +321,7 @@ export default {
   methods: {
     showCurrentRating(rating) {
       this.currentRating =
-        rating === 0 ? this.currentSelectedRating : rating + " stars";
+        rating === 0 ? this.currentSelectedRating : rating !== 1 ? rating + " stars" : rating + " star";
     },
     formatWage(wage) {
       this.$v.wage.touch;
@@ -361,7 +371,7 @@ export default {
 }
 .star-text {
   display: inline-block;
-  margin: 10px 0px 0px 10px;
+  margin: 0px 10px 0px 0px;
 }
 .v-input--selection-controls {
   margin: 0px;

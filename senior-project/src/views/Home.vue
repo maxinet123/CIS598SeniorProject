@@ -2,7 +2,7 @@
   <div>
     <v-row>
       <v-col cols="12" sm="12">
-        <h1 class="text-center">Welcome!</h1>
+        <h1 class="title">Welcome to Internshare!</h1>
       </v-col>
     </v-row>
     <v-row>
@@ -46,7 +46,9 @@ export default {
 </script>
 <style lang="scss" scoped>
 .title {
+  font-size: 2.5rem !important;
   text-align: center;
+  margin: 10px 0px 25px 0px;
 }
 .card-style {
   display: flex;

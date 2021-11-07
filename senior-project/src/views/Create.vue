@@ -115,9 +115,9 @@ export default {
   margin: 0px -12px;
 }
 .title {
-  font-size: 2rem !important;
+  font-size: 2.5rem !important;
   text-align: center;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 }
 .sub-title {
   text-align: center;

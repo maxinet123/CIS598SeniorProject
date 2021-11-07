@@ -30,7 +30,7 @@ export default {
 
 <style lang="scss" scoped>
 .page {
-  margin: 25px;
+  margin: 25px 150px;
 }
 // :root {
 //   --background-color-primary: #ebebeb;

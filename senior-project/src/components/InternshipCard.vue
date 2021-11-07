@@ -8,7 +8,7 @@
               {{ internship.name }}
             </v-col>
             <v-col cols="12" sm="2">
-              <div class="stars">
+              <div class="right-col">
                 <star-rating
                   v-model="internship.rating"
                   :read-only="true"
@@ -23,10 +23,10 @@
             <v-col cols="12" sm="4">
               {{internship.company}}
             </v-col>
-            <v-col cols="12" sm="4">
+            <v-col cols="12" sm="4" class="center-col">
               {{internship.discipline}}
             </v-col>
-            <v-col cols="12" sm="4">
+            <v-col cols="12" sm="4" class="right-col">
               {{internship.wage}} / hr
             </v-col>
           </v-row>
@@ -34,14 +34,14 @@
             <v-col cols="12" sm="4">
               {{internship.city}}, {{internship.state}}
             </v-col>
-            <v-col cols="12" sm="4">
+            <v-col cols="12" sm="4" class="center-col">
               {{internship.duration}}
             </v-col>
-            <v-col cols="12" sm="4" v-if="internship.hasHousing">
+            <v-col cols="12" sm="4" v-if="internship.hasHousing" class="right-col">
               Provide Housing
             </v-col>
-            <v-col cols="12" sm="4" v-else>
-              Remote Internship
+            <v-col cols="12" sm="4" v-else class="right-col">
+              Remote
             </v-col>
           </v-row>
           <v-row>
@@ -59,14 +59,14 @@
         </v-col>
         <v-col cols="12" sm="2" class="vote-wrapper">
           <v-row class="vote">
-            <v-col cols="12" md="12">
+            <v-col cols="12" md="12" class="pic-place">
               <v-btn icon @click="upVote">
                 <v-icon>mdi-arrow-up-bold-circle-outline</v-icon>
               </v-btn>
             </v-col>
           </v-row>
-          <v-row>
-            <v-col cols="12" md="12"> {{ internship.vote }} </v-col>
+          <v-row class="vote-num-wrapper">
+            <v-col cols="12" md="12" class="vote-num"> {{ internship.vote }} </v-col>
           </v-row>
           <v-row>
             <v-col cols="12" md="12">
@@ -106,9 +106,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.stars {
-  float: right
-}
 .icard {
   padding: 20px;
 }
@@ -117,6 +114,23 @@ export default {
   flex-direction: column;
   text-align: center;
   justify-content: center;
+}
+.right-col {
+  text-align: end;
+  float: right;
+}
+.center-col {
+  text-align: center;
+}
+.vote-num-wrapper {
+  position: relative;
+}
+.vote-num {
+  position: absolute;
+}
+.pic-place {
+  position: relative;
+  top: 45px;
 }
 </style>
 

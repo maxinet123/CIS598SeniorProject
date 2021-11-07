@@ -45,6 +45,18 @@
             </v-list-item-icon>
             <v-list-item-title>Login</v-list-item-title>
           </v-list-item>
+          <v-list-item @click="account" v-show="false">
+            <v-list-item-icon>
+              <v-icon>mdi-account</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Account</v-list-item-title>
+          </v-list-item>
+          <v-list-item @click="logout" v-show="false">
+            <v-list-item-icon>
+              <v-icon>mdi-share</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Logout</v-list-item-title>
+          </v-list-item>
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
@@ -62,19 +74,22 @@ export default {
   computed: {},
   methods: {
     home() {
-      this.$router.push({ name: "Home" });
+      this.$router.push({ name: "Home" }).catch(()=>{});;
     },
     create() {
-      this.$router.push({ name: "Create" });
+      this.$router.push({ name: "Create" }).catch(()=>{});;
     },
     explore() {
-      this.$router.push({ name: "Explore" });
+      this.$router.push({ name: "Explore" }).catch(()=>{});;
     },
     login() {
-      this.$router.push({ name: "Login" });
+      this.$router.push({ name: "Login" }).catch(()=>{});;
+    },
+    logout() {
+      this.$router.push({ name: "Logout" }).catch(()=>{});;
     },
     account() {
-      this.$router.push({ name: "Explore" });
+      this.$router.push({ name: "Account" }).catch(()=>{});;
     },
   },
 };
