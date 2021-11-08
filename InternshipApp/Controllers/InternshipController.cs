@@ -65,16 +65,16 @@ namespace InternshipApp.Controllers
         [HttpPost("AddInternship")]
         public IActionResult AddInternship([FromBody] Data data)
         {
-            _internshipService.AddInternship(data.internship, data.company, data.discipline, data.location, data.rating, data.vote);
+            _internshipService.AddInternship(data);
             return Ok();
         }
 
 
-        [HttpPost("UpdateVote")]
-        public IActionResult UpdateVote([FromBody] Vote vote)
-        {
-            _internshipService.UpdateVote(vote);
-            return Ok();
-        }
+        //[HttpPost("UpdateVote")]
+        //public IActionResult UpdateVote([FromBody] Vote vote, string internshipId)
+        //{
+        //    _internshipService.UpdateVote(vote, internshipId);
+        //    return Ok();
+        //}
     }
 }

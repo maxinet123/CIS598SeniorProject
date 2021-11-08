@@ -10,9 +10,9 @@ namespace InternshipData.Core.Models
     {
         [BsonId]
         public ObjectId Id { get; set; }
-        [BsonElement("internshipId")]
-        public ObjectId InternshipId { get; set; }
+        [BsonElement("lkpKey")]
+        public int LkpKey { get; set; }
         [BsonElement("total")]
-        public ObjectId Total { get; set; }
+        public int Total { get; set; }
     }
 }

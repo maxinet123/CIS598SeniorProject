@@ -31,8 +31,6 @@ export default {
         hasHousing: false,
         isRemote: false,
         description: "",
-        vote: "",
-        rating: "",
       },
       company: {
         companyName: "",
@@ -44,6 +42,14 @@ export default {
         city: "",
         state: "",
         zipCode: "",
+      },
+      rating: {
+        stars: "",
+        rating: 0
+      },
+      vote: {
+        total: 0,
+        lkpKey: 0,
       },
     },
     v: {},
@@ -69,7 +75,6 @@ export default {
             hasHousing: val.hasHousing,
             isRemote: val.isRemote,
             description: val.description,
-            lkpKey: + new Date()
           },
           company: {
             companyName: val.company
@@ -85,6 +90,10 @@ export default {
           rating: {
             stars: val.rating === 1 ? val.rating + " star" : val.rating + " stars",
             rating: val.rating
+          },
+          vote: {
+            total: 0,
+            lkpKey: +new Date()
           }
         }
       }

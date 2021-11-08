@@ -31,11 +31,31 @@ namespace InternshipData.Core
             //_users = dbClient.GetUserCollection();
         }
 
-        public async Task<List<Internship>> GetInternships()
+        public async Task<List<Data>> GetInternships()
         {
+            List<Data> data = new List<Data>();
+            
             var list = await _internships.Find(internships => true).ToListAsync();
+            foreach (var item in list)
+            {
+                var comp = await GetCompanyById(item.CompanyId);
+                var disc = await GetDisciplineById(item.DisciplineId);
+                var loc = await GetLocationById(item.LocationId);
+                var rate = await GetRatingById(item.RatingId);
+                var vote = await GetVoteById(item.VoteId);
 
-            return list;
+                data.Add(new Data
+                    {
+                        internship = item,
+                        company = comp,
+                        discipline = disc,
+                        location = loc,
+                        rating = rate,
+                        vote = vote
+                    }
+                );
+            }
+            return data;
         }
 
         public async Task<List<Company>> GetCompanies()
@@ -44,10 +64,22 @@ namespace InternshipData.Core
             return list;
         }
 
+        public async Task<Company> GetCompanyById(string id)
+        {
+            var comp = await _companies.Find(c => c.Id.ToString() == id).FirstAsync();
+            return comp;
+        }
+
         public async Task<List<Discipline>> GetDisciplines()
         {
             var list = await _disciplines.Find(discipline => true).ToListAsync();
             return list;
+        }
+
+        public async Task<Discipline> GetDisciplineById(string id)
+        {
+            var disc = await _disciplines.Find(d => d.Id.ToString() == id).FirstAsync();
+            return disc;
         }
 
         public async Task<List<Location>> GetLocations()
@@ -56,10 +88,22 @@ namespace InternshipData.Core
             return list;
         }
 
+        public async Task<Location> GetLocationById(string id)
+        {
+            var loc = await _locations.Find(l => l.Id.ToString() == id).FirstAsync();
+            return loc;
+        }
+
         public async Task<List<Rating>> GetRatings()
         {
             var list = await _ratings.Find(rating => true).ToListAsync();
             return list;
+        }
+
+        public async Task<Rating> GetRatingById(string id)
+        {
+            var rate = await _ratings.Find(r => r.Id.ToString() == id).FirstAsync();
+            return rate;
         }
 
         public async Task<List<Major>> GetMajors()
@@ -68,23 +112,37 @@ namespace InternshipData.Core
             return list;
         }
 
+        public async Task<Major> GetMajorById(string id)
+        {
+            var maj = await _majors.Find(m => m.Id.ToString() == id).FirstAsync();
+            return maj;
+        }
 
-        public async Task AddInternship(Internship internship, Company company, Discipline discipline, Location location, Rating rating, Vote vote)
+        public async Task<Vote> GetVoteById(string id)
+        {
+            var vote = await _votes.Find(v => v.Id.ToString() == id).FirstAsync();
+            return vote;
+        }
+
+        public async Task AddInternship(Data data)
         {
 
-            var companyResult = AddCompany(company);
-            var disciplineResult = AddDiscipline(discipline);
-            var locationResult = AddLocation(location);
-            var ratingResult = GetRatingId(rating);
+            var companyResult = AddCompany(data.company);
+            var disciplineResult = AddDiscipline(data.discipline);
+            var locationResult = AddLocation(data.location);
+            var ratingResult = GetRatingId(data.rating);
+            var voteResult = AddVote(data.vote);
+            //var userResult = GetUserId(data.user);
 
-            internship.CompanyId = companyResult.Result.Id.ToString();
-            internship.DisciplineId = disciplineResult.Result.Id.ToString();
-            internship.LocationId = locationResult.Result.Id.ToString();
-            internship.RatingId = ratingResult.Result.Id.ToString();
+            data.internship.CompanyId = companyResult.Result.Id.ToString();
+            data.internship.DisciplineId = disciplineResult.Result.Id.ToString();
+            data.internship.LocationId = locationResult.Result.Id.ToString();
+            data.internship.RatingId = ratingResult.Result.Id.ToString();
+            data.internship.VoteId = voteResult.Result.Id.ToString();
+            //data.internship.UserId = userResult.Result.Id.ToString();
 
-            await _internships.InsertOneAsync(internship);
+            await _internships.InsertOneAsync(data.internship);
 
-            await InsertVoteDetails(vote, internship.LkpKey);
         }
 
         public async Task<Company> AddCompany(Company company)
@@ -95,7 +153,7 @@ namespace InternshipData.Core
                 await _companies.InsertOneAsync(company);
             }
 
-            var comp = await _companies.Find(c => c.CompanyName == company.CompanyName).FirstOrDefaultAsync();
+            var comp = await _companies.Find(c => c.CompanyName == company.CompanyName).FirstAsync();
 
             return comp;
         }
@@ -108,7 +166,7 @@ namespace InternshipData.Core
                 await _disciplines.InsertOneAsync(discipline);
             }
 
-            var disc = await _disciplines.Find(d => d.DisciplineName == discipline.DisciplineName).FirstOrDefaultAsync();
+            var disc = await _disciplines.Find(d => d.DisciplineName == discipline.DisciplineName).FirstAsync();
 
             return disc;
         }
@@ -121,9 +179,22 @@ namespace InternshipData.Core
                 await _locations.InsertOneAsync(location);
             }
 
-            var loc = await _locations.Find(l => l.City == location.City && l.State == location.State).FirstOrDefaultAsync();
+            var loc = await _locations.Find(l => l.City == location.City && l.State == location.State).FirstAsync();
 
             return loc;
+        }
+
+        public async Task<Vote> AddVote(Vote vote)
+        {
+            bool exists = await _votes.Find(v => v.LkpKey == vote.LkpKey).AnyAsync();
+            if (!exists)
+            {
+                await _votes.InsertOneAsync(vote);
+            }
+
+            var vo = await _votes.Find(v => v.LkpKey == vote.LkpKey).FirstAsync();
+
+            return vo;
         }
 
         public async Task<Major> AddMajor(Major major)
@@ -134,28 +205,14 @@ namespace InternshipData.Core
                 await _majors.InsertOneAsync(major);
             }
 
-            var maj = await _majors.Find(m => m.MajorName == major.MajorName).FirstOrDefaultAsync();
+            var maj = await _majors.Find(m => m.MajorName == major.MajorName).FirstAsync();
 
             return maj;
         }
 
-        public async Task InsertVoteDetails(Vote vote, string key)
-        {
-            bool exists = await _votes.Find(v => v.InternshipId == vote.InternshipId).AnyAsync();
-            if (!exists)
-            {
-                var internship = await _internships.Find(i => i.LkpKey == key).FirstOrDefaultAsync();
-
-                vote.InternshipId = internship.Id;
-
-                await _votes.InsertOneAsync(vote);
-            }
-
-        }
-
         public async Task<Rating> GetRatingId(Rating rating)
         {
-            var rate = await _ratings.Find(r => r.RatingNumber == rating.RatingNumber).FirstOrDefaultAsync();
+            var rate = await _ratings.Find(r => r.RatingNumber == rating.RatingNumber).FirstAsync();
 
             return rate;
         }

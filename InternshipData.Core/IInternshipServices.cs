@@ -8,18 +8,24 @@ namespace InternshipData.Core
 {
     public interface IInternshipServices
     {
-        Task<List<Internship>> GetInternships();
+        Task<List<Data>> GetInternships();
         Task<List<Company>> GetCompanies();
+        Task<Company> GetCompanyById(string id);
         Task<List<Discipline>> GetDisciplines();
+        Task<Discipline> GetDisciplineById(string id);
         Task<List<Location>> GetLocations();
+        Task<Location> GetLocationById(string id);
         Task<List<Rating>> GetRatings();
+        Task<Rating> GetRatingById(string id);
         Task<List<Major>> GetMajors();
-        Task AddInternship(Internship internship, Company company, Discipline discipline, Location location, Rating rating, Vote vote);
+        Task<Major> GetMajorById(string id);
+        Task<Vote> GetVoteById(string id);
+        Task AddInternship(Data data);
         Task<Company> AddCompany(Company company);
         Task<Discipline> AddDiscipline(Discipline discipline);
         Task<Location> AddLocation(Location location);
+        Task<Vote> AddVote(Vote vote);
         Task<Major> AddMajor(Major major);
-        Task InsertVoteDetails(Vote vote, string key);
         Task<Rating> GetRatingId(Rating rating);
 
     }

@@ -18,7 +18,10 @@
         "INTERNSHIP_COLLECTION_NAME": "Internship",
         "COMPANY_COLLECTION_NAME": "Company",
         "DISCIPLINE_COLLECTION_NAME": "Discipline",
-        "LOCATION_COLLECTION_NAME": "Location"
+        "LOCATION_COLLECTION_NAME": "Location",
+        "MAJOR_COLLECTION_NAME": "Major",
+        "RATING_COLLECTION_NAME": "Rating",
+        "VOTE_COLLECTION_NAME": "Vote"
       }
     },
     "InternshipApp": {
@@ -31,7 +34,10 @@
         "INTERNSHIP_COLLECTION_NAME": "Internship",
         "COMPANY_COLLECTION_NAME": "Company",
         "DISCIPLINE_COLLECTION_NAME": "Discipline",
-        "LOCATION_COLLECTION_NAME": "Location"
+        "LOCATION_COLLECTION_NAME": "Location",
+        "MAJOR_COLLECTION_NAME": "Major",
+        "RATING_COLLECTION_NAME": "Rating",
+        "VOTE_COLLECTION_NAME": "Vote"
       }
     }
   }

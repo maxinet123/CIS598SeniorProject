@@ -14,8 +14,6 @@ namespace InternshipData.Core.Models
         public ObjectId Id { get; set; }
         [BsonElement("position")]
         public string Position { get; set; }
-        [BsonElement("LkpKey")]
-        public string LkpKey { get; set; }
         [BsonElement("description")]
         public string Description { get; set; }
         [BsonElement("isRemote")]
@@ -26,12 +24,12 @@ namespace InternshipData.Core.Models
         public double Wage { get; set; }
         [BsonElement("duration")]
         public string Duration { get; set; }
-        [BsonElement("rating")]
-        public string RatingId { get; set; }
-        [BsonElement("vote")]
-        public int Vote { get; set; }
         [BsonElement("createdDate")]
         public DateTime CreatedDate { get; set; }
+        [BsonElement("voteId")]
+        public string VoteId { get; set; }
+        [BsonElement("ratingId")]
+        public string RatingId { get; set; }
         [BsonElement("locationId")]
         public string LocationId { get; set; }
         [BsonElement("disciplineId")]
