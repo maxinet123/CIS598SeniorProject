@@ -127,18 +127,18 @@ namespace InternshipData.Core
         public async Task AddInternship(Data data)
         {
 
-            var companyResult = AddCompany(data.company);
-            var disciplineResult = AddDiscipline(data.discipline);
-            var locationResult = AddLocation(data.location);
-            var ratingResult = GetRatingId(data.rating);
-            var voteResult = AddVote(data.vote);
+            var companyResult = AddCompany(data.company).GetAwaiter().GetResult();
+            var disciplineResult = AddDiscipline(data.discipline).GetAwaiter().GetResult();
+            var locationResult = AddLocation(data.location).GetAwaiter().GetResult();
+            //var ratingResult = GetRatingId(data.rating).GetAwaiter().GetResult();
+            var voteResult = AddVote(data.vote).GetAwaiter().GetResult();
             //var userResult = GetUserId(data.user);
 
-            data.internship.CompanyId = companyResult.Result.Id.ToString();
-            data.internship.DisciplineId = disciplineResult.Result.Id.ToString();
-            data.internship.LocationId = locationResult.Result.Id.ToString();
-            data.internship.RatingId = ratingResult.Result.Id.ToString();
-            data.internship.VoteId = voteResult.Result.Id.ToString();
+            data.internship.CompanyId = companyResult.Id.ToString();
+            data.internship.DisciplineId = disciplineResult.Id.ToString();
+            data.internship.LocationId = locationResult.Id.ToString();
+            //data.internship.RatingId = ratingResult.Id.ToString();
+            data.internship.VoteId = voteResult.Id.ToString();
             //data.internship.UserId = userResult.Result.Id.ToString();
 
             await _internships.InsertOneAsync(data.internship);
