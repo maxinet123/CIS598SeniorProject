@@ -31,18 +31,8 @@ export default {
 <style lang="scss" scoped>
 .page {
   margin: 25px 150px;
+  @media all and (max-width: 960px) {
+    margin: 10px;
+  }
 }
-// :root {
-//   --background-color-primary: #ebebeb;
-//   --background-color-secondary: #fafafa;
-//   --accent-color: #cacaca;
-//   --text-primary-color: #222;
-//   --element-size: 4rem;
-// }
-// :root.dark-theme {
-//   --background-color-primary: #1e1e1e;
-//   --background-color-secondary: #2d2d30;
-//   --accent-color: #3f3f3f;
-//   --text-primary-color: #ddd;
-// }
 </style>

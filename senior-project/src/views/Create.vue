@@ -90,7 +90,7 @@ export default {
     },
     submit() {
       this.v.$touch();
-      if (this.v.$invalid) {
+      if (!this.v.$invalid) {
         this.addInternship({ data: this.data }).finally(() => {
           //add modal?
           this.$router.push({ name: "Explore" });

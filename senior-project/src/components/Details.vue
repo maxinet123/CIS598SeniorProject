@@ -233,7 +233,6 @@ export default {
       },
       duration: { required },
       description: { required },
-      wage: {},
     },
   },
   computed: {
@@ -324,7 +323,6 @@ export default {
         rating === 0 ? this.currentSelectedRating : rating !== 1 ? rating + " stars" : rating + " star";
     },
     formatWage(wage) {
-      this.$v.wage.touch;
       var modifyVal = wage.replace("$.", "");
       return Number(modifyVal).toFixed(2);
     },

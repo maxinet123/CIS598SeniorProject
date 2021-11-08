@@ -7,19 +7,19 @@
     </v-row>
     <v-row>
       <v-col cols="12" md="6" sm="6">
-        <v-card class="text-center card-style" @click="create">
+        <v-card class="card-style grey" @click="create">
           <v-card-actions>
-            <div class="circle">
-              <v-icon class="icon">mdi-pencil</v-icon>
+            <div class="circle purple">
+              <v-icon class="icon icon_color">mdi-pencil</v-icon>
             </div>
           </v-card-actions>
           <v-card-title> Create Post </v-card-title>
         </v-card>
       </v-col>
       <v-col cols="12" md="6" sm="6">
-        <v-card class="card-style" @click="explore">
+        <v-card class="card-style grey" @click="explore">
           <v-card-actions>
-            <div class="circle">
+            <div class="circle purple">
               <v-icon class="icon">mdi-compass</v-icon>
             </div>
           </v-card-actions>
@@ -65,11 +65,9 @@ export default {
   }
 }
 .circle {
-  height: 150px;
-  width: 150px;
+  min-height: 150px;
+  min-width: 150px;
   border-radius: 150px;
-  border: 1px solid #673ab7;
-  background: #673ab77d;
   display: flex;
   align-content: center;
   justify-content: center;
@@ -78,13 +76,13 @@ export default {
   //   width: 100px;
   // }
   @media all and (max-width: 959px) {
-    height: 150px;
-    width: 150px;
+    min-height: 150px;
+    min-width: 150px;
   }
 }
 .icon {
   z-index: 1;
   font-size: 64px;
-  color: #673ab7;
+  color: white;
 }
 </style>

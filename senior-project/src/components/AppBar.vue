@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-app-bar app color="deep-purple" fixed dense dark elevate-on-scroll>
+    <v-app-bar app class="purple" fixed dense dark elevate-on-scroll>
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
       <v-spacer></v-spacer>
       <v-icon class="sunny-theme">mdi-weather-sunny</v-icon>

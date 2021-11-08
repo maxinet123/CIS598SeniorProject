@@ -35,7 +35,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.v-card {
-  padding: 20px;
-}
+
 </style>
