@@ -16,6 +16,7 @@ namespace InternshipData.Core
         private readonly IMongoCollection<Location> _locations;
         private readonly IMongoCollection<Major> _majors;
         private readonly IMongoCollection<Rating> _ratings;
+        private readonly IMongoCollection<Vote> _votes;
         //private readonly IMongoCollection<User> _users;
 
         public InternshipServices(IDbClient dbClient)
@@ -26,6 +27,7 @@ namespace InternshipData.Core
             _locations = dbClient.GetLocationCollection();
             _majors = dbClient.GetMajorCollection();
             _ratings = dbClient.GetRatingCollection();
+            _votes = dbClient.GetVoteCollection();
             //_users = dbClient.GetUserCollection();
         }
 
@@ -67,7 +69,7 @@ namespace InternshipData.Core
         }
 
 
-        public async Task AddInternship(Internship internship, Company company, Discipline discipline, Location location, Rating rating)
+        public async Task AddInternship(Internship internship, Company company, Discipline discipline, Location location, Rating rating, Vote vote)
         {
 
             var companyResult = AddCompany(company);
@@ -81,13 +83,8 @@ namespace InternshipData.Core
             internship.RatingId = ratingResult.Result.Id.ToString();
 
             await _internships.InsertOneAsync(internship);
-        }
 
-        public async Task UpdateVote(Vote vote)
-        {
-            var filter = Builders<Internship>.Filter.Eq(i => i.Id, vote.InternshipId);
-            var update = Builders<Internship>.Update.Set(i => i.Vote, vote.Total);
-            await _internships.UpdateOneAsync(filter, update);
+            await InsertVoteDetails(vote, internship.LkpKey);
         }
 
         public async Task<Company> AddCompany(Company company)
@@ -142,11 +139,34 @@ namespace InternshipData.Core
             return maj;
         }
 
+        public async Task InsertVoteDetails(Vote vote, string key)
+        {
+            bool exists = await _votes.Find(v => v.InternshipId == vote.InternshipId).AnyAsync();
+            if (!exists)
+            {
+                var internship = await _internships.Find(i => i.LkpKey == key).FirstOrDefaultAsync();
+
+                vote.InternshipId = internship.Id;
+
+                await _votes.InsertOneAsync(vote);
+            }
+
+        }
+
         public async Task<Rating> GetRatingId(Rating rating)
         {
             var rate = await _ratings.Find(r => r.RatingNumber == rating.RatingNumber).FirstOrDefaultAsync();
 
             return rate;
         }
+
+
+        //public async Task UpdateVote(int internshipId, int total)
+        //{
+        //    var filter = Builders<Vote>.Filter.Eq(v => v.InternshipId, internshipId);
+        //    var update = Builders<Vote>.Update.Set(v => v.Total, total);
+        //    await _votes.UpdateOneAsync(filter, update);
+        //}
+
     }
 }

@@ -20,7 +20,8 @@
         "DISCIPLINE_COLLECTION_NAME": "Discipline",
         "LOCATION_COLLECTION_NAME": "Location",
         "MAJOR_COLLECTION_NAME": "Major",
-        "RATING_COLLECTION_NAME": "Rating"
+        "RATING_COLLECTION_NAME": "Rating",
+        "VOTE_COLLECTION_NAME": "Vote"
       }
     },
     "InternshipApp": {
@@ -35,7 +36,8 @@
         "DISCIPLINE_COLLECTION_NAME": "Discipline",
         "LOCATION_COLLECTION_NAME": "Location",
         "MAJOR_COLLECTION_NAME": "Major",
-        "RATING_COLLECTION_NAME": "Rating"
+        "RATING_COLLECTION_NAME": "Rating",
+        "VOTE_COLLECTION_NAME": "Vote"
       }
     }
   }

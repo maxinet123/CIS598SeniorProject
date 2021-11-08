@@ -14,6 +14,8 @@ namespace InternshipData.Core.Models
         public ObjectId Id { get; set; }
         [BsonElement("position")]
         public string Position { get; set; }
+        [BsonElement("LkpKey")]
+        public string LkpKey { get; set; }
         [BsonElement("description")]
         public string Description { get; set; }
         [BsonElement("isRemote")]

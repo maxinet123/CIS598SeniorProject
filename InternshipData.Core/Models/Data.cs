@@ -10,5 +10,7 @@ namespace InternshipData.Core.Models
         public Company company { get; set; }
         public Discipline discipline { get; set; }
         public Location location { get; set; }
+        public Rating rating { get; set; }
+        public Vote vote { get; set; }
     }
 }

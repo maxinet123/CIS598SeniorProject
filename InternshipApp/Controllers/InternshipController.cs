@@ -65,7 +65,7 @@ namespace InternshipApp.Controllers
         [HttpPost("AddInternship")]
         public IActionResult AddInternship([FromBody] Data data)
         {
-            _internshipService.AddInternship(data.internship, data.company, data.discipline, data.location);
+            _internshipService.AddInternship(data.internship, data.company, data.discipline, data.location, data.rating, data.vote);
             return Ok();
         }
 

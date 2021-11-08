@@ -68,7 +68,8 @@ export default {
             rating: val.rating,
             hasHousing: val.hasHousing,
             isRemote: val.isRemote,
-            description: val.description
+            description: val.description,
+            lkpKey: + new Date()
           },
           company: {
             companyName: val.company
