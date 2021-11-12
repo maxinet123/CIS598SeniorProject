@@ -22,12 +22,12 @@ namespace InternshipData.Core.Models
         public bool HasHousing { get; set; }
         [BsonElement("wage")]
         public double Wage { get; set; }
+        [BsonElement("votes")]
+        public int votes { get; set; }
         [BsonElement("duration")]
         public string Duration { get; set; }
         [BsonElement("createdDate")]
         public DateTime CreatedDate { get; set; }
-        [BsonElement("voteId")]
-        public string VoteId { get; set; }
         [BsonElement("ratingId")]
         public string RatingId { get; set; }
         [BsonElement("locationId")]

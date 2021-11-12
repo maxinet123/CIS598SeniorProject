@@ -24,9 +24,9 @@ namespace InternshipData.Core
         Task<Company> AddCompany(Company company);
         Task<Discipline> AddDiscipline(Discipline discipline);
         Task<Location> AddLocation(Location location);
-        Task<Vote> AddVote(Vote vote);
         Task<Major> AddMajor(Major major);
-        Task<Rating> GetRatingId(Rating rating);
+        Task<Rating> AddRating(Rating rating);
+        Task AddVote(string internshipId);
 
     }
 }
