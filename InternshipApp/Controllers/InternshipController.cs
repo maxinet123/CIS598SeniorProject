@@ -24,42 +24,42 @@ namespace InternshipApp.Controllers
         public IActionResult GetInternships()
         {
             var data = _internshipService.GetInternships();
-            return Ok();
+            return Ok(data);
         }
 
         [HttpGet("GetCompanies")]
         public IActionResult GetCompanies()
         {
             var data = _internshipService.GetCompanies();
-            return Ok();
+            return Ok(data);
         }
 
         [HttpGet("GetDisciplines")]
         public IActionResult GetDisciplines()
         {
             var data = _internshipService.GetDisciplines();
-            return Ok();
+            return Ok(data);
         }
 
         [HttpGet("GetLocations")]
         public IActionResult GetLocations()
         {
             var data = _internshipService.GetLocations();
-            return Ok();
+            return Ok(data);
         }
 
         [HttpGet("GetRatings")]
         public IActionResult GetRatings()
         {
             var data = _internshipService.GetRatings();
-            return Ok();
+            return Ok(data);
         }
 
         [HttpGet("GetMajors")]
         public IActionResult GetMajors()
         {
             var data = _internshipService.GetMajors();
-            return Ok();
+            return Ok(data);
         }
 
         [HttpPost("AddInternship")]

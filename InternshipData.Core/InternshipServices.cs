@@ -67,9 +67,9 @@ namespace InternshipData.Core
         /// Retrieves List of Companies from the database
         /// </summary>
         /// <returns>Task containing the list of object</returns>
-        public async Task<List<Company>> GetCompanies()
+        public List<Company> GetCompanies()
         {
-            var list = await _companies.Find(companies => true).ToListAsync();
+            var list = _companies.Find(companies => true).ToList();
             return list;
         }
 
@@ -132,8 +132,8 @@ namespace InternshipData.Core
         /// <returns>Task containing the list of object</returns>
         public async Task<List<Rating>> GetRatings()
         {
-            var list = await _ratings.Find(rating => true).ToListAsync();
-            return list;
+            var rate = await _ratings.Find(r => true).ToListAsync();
+            return rate;
         }
 
         /// <summary>

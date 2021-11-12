@@ -1,9 +1,10 @@
 C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipData.Core\bin\Debug\netstandard2.0\InternshipData.Core.deps.json
 C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipData.Core\bin\Debug\netstandard2.0\InternshipData.Core.dll
-C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipData.Core\obj\Debug\netstandard2.0\InternshipData.Core.csprojAssemblyReference.cache
 C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipData.Core\obj\Debug\netstandard2.0\InternshipData.Core.AssemblyInfoInputs.cache
 C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipData.Core\obj\Debug\netstandard2.0\InternshipData.Core.AssemblyInfo.cs
 C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipData.Core\bin\Debug\netstandard2.0\InternshipData.Core.pdb
 C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipData.Core\obj\Debug\netstandard2.0\InternshipData.Core.dll
 C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipData.Core\obj\Debug\netstandard2.0\InternshipData.Core.pdb
 C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipData.Core\obj\Debug\netstandard2.0\InternshipData.Core.csproj.CoreCompileInputs.cache
+C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipData.Core\obj\Debug\netstandard2.0\InternshipData.Core.csproj.AssemblyReference.cache
+C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipData.Core\obj\Debug\netstandard2.0\InternshipData.Core.GeneratedMSBuildEditorConfig.editorconfig

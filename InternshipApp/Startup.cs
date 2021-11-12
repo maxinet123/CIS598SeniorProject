@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using InternshipApp;
 using InternshipData.Core;
@@ -36,7 +37,8 @@ namespace InternshipApp
             services.AddSingleton<IDbClient, DbClient>();
             services.Configure<InternshipDbConfig>(Configuration);
             services.AddTransient<IInternshipServices, InternshipServices>();
-            services.AddControllers();
+            services.AddControllers().AddJsonOptions(x =>
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
             services.AddSwaggerGen();
         }
 

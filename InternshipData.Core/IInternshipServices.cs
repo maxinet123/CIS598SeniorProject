@@ -9,7 +9,7 @@ namespace InternshipData.Core
     public interface IInternshipServices
     {
         Task<List<Data>> GetInternships();
-        Task<List<Company>> GetCompanies();
+        List<Company> GetCompanies();
         Task<Company> GetCompanyById(string id);
         Task<List<Discipline>> GetDisciplines();
         Task<Discipline> GetDisciplineById(string id);

@@ -8,9 +8,6 @@ C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipApp\bin\Debug\netcore
 C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipApp\bin\Debug\netcoreapp3.1\InternshipApp.dll
 C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipApp\bin\Debug\netcoreapp3.1\InternshipApp.pdb
 C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipApp\bin\Debug\netcoreapp3.1\DnsClient.dll
-C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipApp\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
-C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipApp\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
-C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipApp\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
 C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipApp\bin\Debug\netcoreapp3.1\MongoDB.Bson.dll
 C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipApp\bin\Debug\netcoreapp3.1\MongoDB.Driver.dll
 C:\Users\Maxine\source\repos\CIS598SeniorProject\InternshipApp\bin\Debug\netcoreapp3.1\MongoDB.Driver.Core.dll

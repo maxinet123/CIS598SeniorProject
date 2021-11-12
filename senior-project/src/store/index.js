@@ -57,6 +57,7 @@ export default new Vuex.Store({
         axios
           .get(`https://localhost:44386/api/Internship/GetCompanies`)
           .then((response) => {
+            console.log(response)
             commit("setCompanies", response.data);
             resolve();
           })
