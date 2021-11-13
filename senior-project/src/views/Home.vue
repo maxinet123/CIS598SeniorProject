@@ -31,14 +31,11 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
 export default {
   name: "Home",
   components: {},
-  computed: {
-  },
+  computed: {},
   methods: {
-    ...mapActions(['fetchCompanies']),
     create() {
       this.$router.push({ name: "Create" });
     },
@@ -46,9 +43,7 @@ export default {
       this.$router.push({ name: "Explore" });
     },
   },
-  mounted() {
-    this.fetchCompanies();
-  }
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>

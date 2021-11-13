@@ -70,11 +70,12 @@ namespace InternshipApp.Controllers
         }
 
 
-        //[HttpPost("UpdateVote")]
-        //public IActionResult UpdateVote([FromBody] Vote vote, string internshipId)
-        //{
-        //    _internshipService.UpdateVote(vote, internshipId);
-        //    return Ok();
-        //}
+        [HttpPost("UpdateVote")]
+        public IActionResult UpdateVote([FromBody] Internship internship)
+        {
+             _internshipService.UpdateVote(internship);
+            var data = _internshipService.GetInternshipById(internship.Id);
+            return Ok(data);
+        }
     }
 }

@@ -43,90 +43,92 @@ export default new Vuex.Store({
         axios
           .get(`https://localhost:44386/api/Internship/GetInternships`)
           .then((response) => {
-            commit("setInternships", response.data);
+            commit("setInternships", response.data.$values);
             resolve();
           })
           .catch((error) => {
             console.log(error);
             reject();
           });
-      })
+      });
     },
     fetchCompanies: ({ commit }) => {
       return new Promise((resolve, reject) => {
         axios
           .get(`https://localhost:44386/api/Internship/GetCompanies`)
           .then((response) => {
-            console.log(response)
-            commit("setCompanies", response.data);
+            commit("setCompanies", response.data.$values);
             resolve();
           })
           .catch((error) => {
             console.log(error);
             reject();
           });
-      })
+      });
     },
     fetchDisciplines: ({ commit }) => {
       return new Promise((resolve, reject) => {
         axios
           .get(`https://localhost:44386/api/Internship/GetDisciplines`)
           .then((response) => {
-            commit("setDisciplines", response.data);
+            commit("setDisciplines", response.data.$values);
             resolve();
           })
           .catch((error) => {
             console.log(error);
             reject();
           });
-      })
+      });
     },
     fetchLocations: ({ commit }) => {
       return new Promise((resolve, reject) => {
         axios
           .get(`https://localhost:44386/api/Internship/GetLocations`)
           .then((response) => {
-            commit("setLocations", response.data);
+            commit("setLocations", response.data.$values);
             resolve();
           })
           .catch((error) => {
             console.log(error);
             reject();
           });
-      })
+      });
     },
     fetchRatings: ({ commit }) => {
       return new Promise((resolve, reject) => {
         axios
           .get(`https://localhost:44386/api/Internship/GetRatings`)
           .then((response) => {
-            commit("setRatings", response.data);
+            commit("setRatings", response.data.$values);
             resolve();
           })
           .catch((error) => {
             console.log(error);
             reject();
           });
-      })
+      });
     },
     fetchMajors: ({ commit }) => {
       return new Promise((resolve, reject) => {
         axios
           .get(`https://localhost:44386/api/Internship/GetMajors`)
           .then((response) => {
-            commit("setMajors", response.data);
+            commit("setMajors", response.data.$values);
             resolve();
           })
           .catch((error) => {
             console.log(error);
             reject();
           });
-      })
+      });
     },
     addInternship: ({ dispatch }, { internship }) => {
       return new Promise((resolve, reject) => {
         axios
-          .get(`https://localhost:44386/api/Internship/AddInternship`, internship)
+          .get(
+            `https://localhost:44386/api/Internship/AddInternship`,
+            internship
+          )
           .then(() => {
             dispatch("fetchInternships");
             resolve();
@@ -135,7 +137,27 @@ export default new Vuex.Store({
             console.log(error);
             reject();
           });
-      })
+      });
+    },
+    updateVote: ({ commit, getters }, { internship }) => {
+      return new Promise((resolve, reject) => {
+        axios
+          .post(`https://localhost:44386/api/Internship/UpdateVote`, internship)
+          .then((response) => {
+            console.log(response)
+            var internships = getters.getInternships;
+            // var index = internships.indexOf((x) => x.id === internship.id)
+            // if (index !== -1) {
+            //   internships[index] = response.data
+               commit('setInternships', internships)
+            // }
+            resolve();
+          })
+          .catch((error) => {
+            console.log(error);
+            reject();
+          });
+      });
     },
   },
   modules: {},

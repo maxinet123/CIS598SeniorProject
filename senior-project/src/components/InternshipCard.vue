@@ -3,12 +3,12 @@
     <v-card class="icard">
       <v-row>
         <v-col cols="6" md="10" sm="8" class="text-title">
-          {{ internship.name }}
+          {{ data.internship.position }}
         </v-col>
         <v-col cols="6" md="2" sm="4">
           <div class="right-col">
             <star-rating
-              v-model="internship.rating"
+              v-model="data.rating.ratingNumber"
               :read-only="true"
               :show-rating="false"
               :inline="true"
@@ -19,23 +19,28 @@
       </v-row>
       <v-row>
         <v-col cols="6" sm="4" class="text-info">
-          {{internship.company}}
+          {{ data.company.companyName }}
         </v-col>
         <v-col cols="6" sm="4" class="center-col text-info">
-          {{internship.wage}} / hr
+          {{ formatWage(data.internship.wage) }} / hr
         </v-col>
         <v-col cols="12" sm="4" class="right-col text-info">
-          {{internship.discipline}}
+          {{ data.discipline.disciplineName }}
         </v-col>
       </v-row>
       <v-row class="row-details">
         <v-col cols="6" sm="4" class="text-info">
-          {{internship.city}}, {{internship.state}}
+          {{ data.location.city }}, {{ data.location.state }}
         </v-col>
         <v-col cols="6" sm="4" class="center-col text-info">
-          {{internship.duration}}
+          {{ data.internship.duration }}
         </v-col>
-        <v-col cols="12" sm="4" v-if="internship.hasHousing" class="right-col text-info">
+        <v-col
+          cols="12"
+          sm="4"
+          v-if="data.internship.hasHousing"
+          class="right-col text-info"
+        >
           Provide Housing
         </v-col>
         <v-col cols="12" sm="4" v-else class="right-col text-info">
@@ -45,12 +50,13 @@
       <v-row>
         <v-col cols="12">
           <v-textarea
-            v-model="internship.description"
+            v-model="data.internship.description"
             readonly
             outlined
             hide-details
             rows="5"
-            auto-grow>
+            auto-grow
+          >
           </v-textarea>
         </v-col>
       </v-row>
@@ -64,13 +70,19 @@ export default {
   name: "InternshipCard",
   data: () => ({}),
   props: {
-    internship: Object,
+    data: Object,
   },
   components: {
     StarRating,
   },
   computed: {},
   methods: {
+    formatWage(wage) {
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+      }).format(wage);
+    },
   },
   watch: {},
 };
@@ -82,7 +94,7 @@ export default {
   font-weight: bold;
 }
 .text-info {
-  font-size: .9rem;
+  font-size: 0.9rem;
   padding: 7px 12px !important;
 }
 .icard {
@@ -106,4 +118,3 @@ export default {
   }
 }
 </style>
-

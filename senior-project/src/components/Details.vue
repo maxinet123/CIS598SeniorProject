@@ -320,7 +320,11 @@ export default {
   methods: {
     showCurrentRating(rating) {
       this.currentRating =
-        rating === 0 ? this.currentSelectedRating : rating !== 1 ? rating + " stars" : rating + " star";
+        rating === 0
+          ? this.currentSelectedRating
+          : rating !== 1
+          ? rating + " stars"
+          : rating + " star";
     },
     formatWage(wage) {
       var modifyVal = wage.replace("$.", "");
@@ -338,7 +342,8 @@ export default {
       return date ? moment(date).format("MM/DD/YYYY") : "";
     },
     setCurrentSelectedRating(rating) {
-      this.currentSelectedRating = rating !== 1 ? rating + " stars" : rating + " star";
+      this.currentSelectedRating =
+        rating !== 1 ? rating + " stars" : rating + " star";
     },
   },
   watch: {

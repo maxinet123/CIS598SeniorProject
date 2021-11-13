@@ -11,23 +11,26 @@ namespace InternshipData.Core
     {
         List<Data> GetInternships();
         List<Company> GetCompanies();
-        Company GetCompanyById(string id);
+        Company GetCompanyById(ObjectId id);
         List<Discipline> GetDisciplines();
-        Discipline GetDisciplineById(string id);
+        Discipline GetDisciplineById(ObjectId id);
         List<Location> GetLocations();
-        Location GetLocationById(string id);
+        Location GetLocationById(ObjectId id);
         List<Rating> GetRatings();
-        Rating GetRatingById(string id);
+        Rating GetRatingById(ObjectId id);
         List<Major> GetMajors();
-        Major GetMajorById(string id);
-        Vote GetVoteById(string id);
+        Major GetMajorById(ObjectId id);
+        Vote GetVoteById(ObjectId id);
         void AddInternship(Data data);
         Company AddCompany(Company company);
         Discipline AddDiscipline(Discipline discipline);
         Location AddLocation(Location location);
         Major AddMajor(Major major);
         Rating AddRating(Rating rating);
-        void AddVote(string internshipId);
+        void AddVote(ObjectId internshipId);
+        void UpdateVote(Internship internship);
+        Internship GetInternshipById(ObjectId id);
+
 
     }
 }

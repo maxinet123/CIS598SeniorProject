@@ -20,7 +20,9 @@ export default {
     initialDark: vm.$vuetify ? vm.$vuetify.theme.dark : false,
   }),
   mounted() {
-    //this.fetchInternships();
+    setTimeout(() => {
+      this.fetchInternships();
+    }, 10000);
   },
   methods: {
     ...mapActions(["fetchInternships"]),

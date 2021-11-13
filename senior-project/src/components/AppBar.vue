@@ -74,22 +74,22 @@ export default {
   computed: {},
   methods: {
     home() {
-      this.$router.push({ name: "Home" }).catch(()=>{});;
+      this.$router.push({ name: "Home" }).catch(() => {});
     },
     create() {
-      this.$router.push({ name: "Create" }).catch(()=>{});;
+      this.$router.push({ name: "Create" }).catch(() => {});
     },
     explore() {
-      this.$router.push({ name: "Explore" }).catch(()=>{});;
+      this.$router.push({ name: "Explore" }).catch(() => {});
     },
     login() {
-      this.$router.push({ name: "Login" }).catch(()=>{});;
+      this.$router.push({ name: "Login" }).catch(() => {});
     },
     logout() {
-      this.$router.push({ name: "Logout" }).catch(()=>{});;
+      this.$router.push({ name: "Logout" }).catch(() => {});
     },
     account() {
-      this.$router.push({ name: "Account" }).catch(()=>{});;
+      this.$router.push({ name: "Account" }).catch(() => {});
     },
   },
 };

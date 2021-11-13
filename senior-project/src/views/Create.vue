@@ -45,7 +45,7 @@ export default {
       },
       rating: {
         stars: "",
-        rating: 0
+        rating: 0,
       },
       vote: {
         total: 0,
@@ -77,25 +77,26 @@ export default {
             description: val.description,
           },
           company: {
-            companyName: val.company
+            companyName: val.company,
           },
           discipline: {
-            disciplineName: val.discipline
+            disciplineName: val.discipline,
           },
           location: {
             city: val.city,
             state: val.state,
-            zipCode: val.zipCode
+            zipCode: val.zipCode,
           },
           rating: {
-            stars: val.rating === 1 ? val.rating + " star" : val.rating + " stars",
-            rating: val.rating
+            stars:
+              val.rating === 1 ? val.rating + " star" : val.rating + " stars",
+            rating: val.rating,
           },
           vote: {
             total: 0,
-            lkpKey: +new Date()
-          }
-        }
+            lkpKey: +new Date(),
+          },
+        };
       }
     },
     submit() {

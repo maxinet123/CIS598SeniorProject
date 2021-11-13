@@ -29,13 +29,16 @@ namespace InternshipData.Core.Models
         [BsonElement("createdDate")]
         public DateTime CreatedDate { get; set; }
         [BsonElement("ratingId")]
-        public string RatingId { get; set; }
+        [BsonRepresentation(BsonType.ObjectId)]
+        public ObjectId RatingId { get; set; }
         [BsonElement("locationId")]
-        public string LocationId { get; set; }
+        [BsonRepresentation(BsonType.ObjectId)]
+        public ObjectId LocationId { get; set; }
         [BsonElement("disciplineId")]
-        public string DisciplineId { get; set; }
+        [BsonRepresentation(BsonType.ObjectId)]
+        public ObjectId DisciplineId { get; set; }
         [BsonElement("companyId")]
-        public string CompanyId { get; set; }
+        public ObjectId CompanyId { get; set; }
         //[BsonElement("userId")]
         //public ObjectId UserId { get; set; }
     }
