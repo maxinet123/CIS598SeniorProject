@@ -3,13 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MongoDB.Bson;
 
 namespace InternshipData.Core.Models
 {
     public class Rating
     {
         [BsonId]
-        public int Id { get; set; }
+        public ObjectId Id { get; set; }
         [BsonElement("stars")] 
         public string Stars { get; set; }
         [BsonElement("rating")]
