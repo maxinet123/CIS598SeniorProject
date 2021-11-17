@@ -10,7 +10,7 @@ namespace InternshipData.Core
     public interface IInternshipServices
     {
         List<Data> GetInternships();
-        List<Company> GetCompanies();
+        Task<List<Company>> GetCompanies();
         Company GetCompanyById(ObjectId id);
         List<Discipline> GetDisciplines();
         Discipline GetDisciplineById(ObjectId id);

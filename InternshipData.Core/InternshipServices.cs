@@ -68,9 +68,9 @@ namespace InternshipData.Core
         /// Retrieves List of Companies from the database
         /// </summary>
         /// <returns> containing the list of object</returns>
-        public List<Company> GetCompanies()
+        public async Task<List<Company>> GetCompanies()
         {
-            var list = _companies.Find(companies => true).ToList();
+            var list = await _companies.Find(companies => true).ToListAsync();
             return list;
         }
 
