@@ -1,7 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import Login from "../views/Login.vue";
 import Create from "../views/Create.vue";
 import Explore from "../views/Explore.vue";
 import NotFound from "../views/NotFound.vue";
@@ -13,11 +12,6 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
-  },
-  {
-    path: "/Login",
-    name: "Login",
-    component: Login,
   },
   {
     path: "/Create",
