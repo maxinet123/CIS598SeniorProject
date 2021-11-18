@@ -32,7 +32,11 @@
       </div>
     </div>
     <div v-else>
-      <h2>No internships shared. Be the first!</h2>
+      <v-row>
+        <v-col cols="12" sm="12" class="center">
+          <v-btn text x-large class="add-btn" @click="addPost">No internships shared. Click here to be the first!</v-btn>
+        </v-col>
+      </v-row>
     </div>
   </v-container>
 </template>
@@ -54,6 +58,9 @@ export default {
   },
   methods: {
     ...mapActions(["updateVote"]),
+    addPost() {
+      this.$router.push({ name: "Create" }).catch(() => {});
+    },
     upVote(internship) {
       internship.votes += 1;
       this.updateVote({ internship: internship });
@@ -90,5 +97,13 @@ export default {
   justify-content: center;
   //text-align: center;
   //align-items: center;
+}
+.center {
+  align-content: center;
+  text-align: center;
+  justify-content: center;
+}
+.add-btn::before {
+    display: none
 }
 </style>
