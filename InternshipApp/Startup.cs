@@ -34,7 +34,6 @@ namespace InternshipApp
             {
                 c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             });
-            //services.AddMvc.AddNewtonsoftJson();
             services.AddSingleton<IDbClient, DbClient>();
             services.Configure<InternshipDbConfig>(Configuration);
             services.AddTransient<IInternshipServices, InternshipServices>();
