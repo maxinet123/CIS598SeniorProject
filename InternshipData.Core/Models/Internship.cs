@@ -39,7 +39,9 @@ namespace InternshipData.Core.Models
         public ObjectId DisciplineId { get; set; }
         [BsonElement("companyId")]
         public ObjectId CompanyId { get; set; }
-        //[BsonElement("userId")]
-        //public ObjectId UserId { get; set; }
+        [BsonElement("majorId")]
+        public ObjectId Major { get; set; }
+        [BsonElement("userId")]
+        public ObjectId UserId { get; set; }
     }
 }

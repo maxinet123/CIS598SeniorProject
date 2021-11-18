@@ -34,7 +34,9 @@
     <div v-else>
       <v-row>
         <v-col cols="12" sm="12" class="center">
-          <v-btn text x-large class="add-btn" @click="addPost">No internships shared. Click here to be the first!</v-btn>
+          <v-btn text x-large class="add-btn" @click="addPost"
+            >No internships shared. Click here to be the first!</v-btn
+          >
         </v-col>
       </v-row>
     </div>
@@ -104,6 +106,6 @@ export default {
   justify-content: center;
 }
 .add-btn::before {
-    display: none
+  display: none;
 }
 </style>

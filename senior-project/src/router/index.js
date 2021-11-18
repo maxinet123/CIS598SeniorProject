@@ -3,7 +3,9 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Create from "../views/Create.vue";
 import Explore from "../views/Explore.vue";
+import Profile from "../views/Profile.vue";
 import NotFound from "../views/NotFound.vue";
+import { authGuard } from "../auth";
 
 Vue.use(VueRouter);
 
@@ -14,14 +16,21 @@ const routes = [
     component: Home,
   },
   {
-    path: "/Create",
+    path: "/create",
     name: "Create",
     component: Create,
+    beforeEnter: authGuard,
   },
   {
-    path: "/Explore",
+    path: "/explore",
     name: "Explore",
     component: Explore,
+  },
+  {
+    path: "/profile",
+    name: "Profile",
+    component: Profile,
+    beforeEnter: authGuard,
   },
   {
     path: "*",

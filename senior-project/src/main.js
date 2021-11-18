@@ -6,14 +6,25 @@ import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
 import { VueMaskDirective } from "v-mask";
-//import GoogleAuth from 'vue-google-authenticator'
+import { domain, clientId } from "../auth_config.json";
+import { Auth0Plugin } from "./auth";
 
 Vue.directive("mask", VueMaskDirective);
 Vue.use(VueAxios, axios);
-Vue.config.productionTip = false;
 
-//Vue.use(GoogleAuth, { client_id: 'xxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxxxx.apps.googleusercontent.com' })
-//Vue.googleAuth().load()
+Vue.use(Auth0Plugin, {
+  domain,
+  clientId,
+  onRedirectCallback: (appState) => {
+    router.push(
+      appState && appState.targetUrl
+        ? appState.targetUrl
+        : window.location.pathname
+    );
+  },
+});
+
+Vue.config.productionTip = false;
 
 new Vue({
   router,

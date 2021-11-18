@@ -7,6 +7,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    user: {},
     internships: [],
     companies: [],
     disciplines: [],
@@ -14,6 +15,7 @@ export default new Vuex.Store({
     ratings: [],
   },
   getters: {
+    getUser: (state) => state.user,
     getInternships: (state) => state.internships,
     getCompanies: (state) => state.companies,
     getDisciplines: (state) => state.disciplines,
@@ -21,6 +23,9 @@ export default new Vuex.Store({
     getRatings: (state) => state.ratings,
   },
   mutations: {
+    setUser: (state, data) => {
+      state.user = data;
+    },
     setInternships: (state, data) => {
       state.internships = data;
     },
@@ -144,17 +149,30 @@ export default new Vuex.Store({
         axios
           .post(`https://localhost:44386/api/Internship/UpdateVote`, internship)
           .then((response) => {
-            console.log(response)
             var internships = getters.getInternships;
             // var index = internships.indexOf((x) => x.id === internship.id)
             // if (index !== -1) {
             //   internships[index] = response.data
-               commit('setInternships', internships)
+            commit("setInternships", internships);
             // }
             resolve();
           })
           .catch((error) => {
             console.log(error);
+            reject();
+          });
+      });
+    },
+    addUser: ({ commit }, { user }) => {
+      return new Promise((resolve, reject) => {
+        axios
+          .post(`https://localhost:44386/api/Internship/AddUser`, user)
+          .then((response) => {
+            console.log(response)
+            commit("setUser", result);
+            resolve();
+          })
+          .catch(() => {
             reject();
           });
       });

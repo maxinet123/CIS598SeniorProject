@@ -39,19 +39,28 @@
             <v-list-item-title>Expore Posts</v-list-item-title>
           </v-list-item>
 
-          <v-list-item @click="login" v-show="false">
+          <v-list-item
+            @click="login"
+            v-show="!$auth.loading && !$auth.isAuthenticated"
+          >
             <v-list-item-icon>
               <v-icon>mdi-account</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Login</v-list-item-title>
           </v-list-item>
-          <v-list-item @click="account" v-show="false">
+          <v-list-item
+            @click="profile"
+            v-show="!$auth.loading && $auth.isAuthenticated"
+          >
             <v-list-item-icon>
               <v-icon>mdi-account</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>Account</v-list-item-title>
+            <v-list-item-title>Profile</v-list-item-title>
           </v-list-item>
-          <v-list-item @click="logout" v-show="false">
+          <v-list-item
+            @click="logout"
+            v-show="!$auth.loading && $auth.isAuthenticated"
+          >
             <v-list-item-icon>
               <v-icon>mdi-share</v-icon>
             </v-list-item-icon>
@@ -64,6 +73,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   name: "AppBar",
   data: () => ({
@@ -73,6 +83,7 @@ export default {
   components: {},
   computed: {},
   methods: {
+    ...mapActions(["addUser"]),
     home() {
       this.$router.push({ name: "Home" }).catch(() => {});
     },
@@ -83,13 +94,16 @@ export default {
       this.$router.push({ name: "Explore" }).catch(() => {});
     },
     login() {
-      this.$router.push({ name: "Login" }).catch(() => {});
+      this.$auth.loginWithRedirect().finally(() => {
+        this.addUser({ user: this.$auth.user });
+      });
     },
     logout() {
-      this.$router.push({ name: "Logout" }).catch(() => {});
+      this.$auth.logout();
+      this.$router.push({ path: "/" });
     },
-    account() {
-      this.$router.push({ name: "Account" }).catch(() => {});
+    profile() {
+      this.$router.push({ name: "Profile" }).catch(() => {});
     },
   },
 };
