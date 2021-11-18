@@ -5,6 +5,7 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using InternshipApp;
 using InternshipData.Core;
+using Newtonsoft.Json;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -33,18 +34,12 @@ namespace InternshipApp
             {
                 c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             });
-
+            //services.AddMvc.AddNewtonsoftJson();
             services.AddSingleton<IDbClient, DbClient>();
             services.Configure<InternshipDbConfig>(Configuration);
             services.AddTransient<IInternshipServices, InternshipServices>();
             services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
-            /*services.AddControllers().AddJsonOptions(options =>
-            {
-                options.JsonSerializerOptions.WriteIndented = true;
-                options.JsonSerializerOptions.Converters.Add(new CustomJsonConverterForType());
-                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
-            });*/
             services.AddSwaggerGen();
         }
 

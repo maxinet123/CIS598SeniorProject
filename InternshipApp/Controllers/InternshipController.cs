@@ -21,45 +21,45 @@ namespace InternshipApp.Controllers
         }
 
         [HttpGet("GetInternships")]
-        public IActionResult GetInternships()
+        public Task<List<Data>> GetInternships()
         {
             var data = _internshipService.GetInternships();
-            return Ok(data);
+            return data;
         }
 
         [HttpGet("GetCompanies")]
-        public IActionResult GetCompanies()
+        public Task<List<Company>> GetCompanies()
         {
             var data = _internshipService.GetCompanies();
-            return Ok(data);
+            return data;
         }
 
         [HttpGet("GetDisciplines")]
-        public IActionResult GetDisciplines()
+        public Task<List<Discipline>> GetDisciplines()
         {
             var data = _internshipService.GetDisciplines();
-            return Ok(data);
+            return data;
         }
 
         [HttpGet("GetLocations")]
-        public IActionResult GetLocations()
+        public Task<List<Location>> GetLocations()
         {
             var data = _internshipService.GetLocations();
-            return Ok(data);
+            return data;
         }
 
         [HttpGet("GetRatings")]
-        public IActionResult GetRatings()
+        public Task<List<Rating>> GetRatings()
         {
             var data = _internshipService.GetRatings();
-            return Ok(data);
+            return data;
         }
 
         [HttpGet("GetMajors")]
-        public IActionResult GetMajors()
+        public Task<List<Major>> GetMajors()
         {
             var data = _internshipService.GetMajors();
-            return Ok(data);
+            return data;
         }
 
         [HttpPost("AddInternship")]
