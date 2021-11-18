@@ -35,18 +35,18 @@ namespace InternshipData.Core
         /// Retrieves List of Data corresponding to the internships from the database
         /// </summary>
         /// <returns> containing the list of object</returns>
-        public List<Data> GetInternships()
+        public async Task<List<Data>> GetInternships()
         {
             List<Data> data = new List<Data>();
             
-            var list = _internships.Find(internships => true).ToList();
+            var list = await _internships.Find(internships => true).ToListAsync();
             foreach (var item in list)
             {
-                var comp = GetCompanyById(item.CompanyId);
-                var disc = GetDisciplineById(item.DisciplineId);
-                var loc = GetLocationById(item.LocationId);
-                var rate = GetRatingById(item.RatingId);
-                var vo = GetVoteById(item.Id);
+                var comp = await GetCompanyById(item.CompanyId);
+                var disc = await GetDisciplineById(item.DisciplineId);
+                var loc = await GetLocationById(item.LocationId);
+                var rate = await GetRatingById(item.RatingId);
+                var vo = await GetVoteById(item.Id);
 
                 item.votes = vo.Total;
 
@@ -79,10 +79,10 @@ namespace InternshipData.Core
         /// </summary>
         /// <param name="id">id to lookup</param>
         /// <returns> containing the object</returns>
-        public Company GetCompanyById(ObjectId id)
+        public async Task<Company> GetCompanyById(ObjectId id)
         {
             var filter = Builders<Company>.Filter.Eq("_id", id);
-            var comp = _companies.Find(filter).First();
+            var comp = await _companies.Find(filter).FirstAsync();
             return comp;
         }
 
@@ -90,9 +90,9 @@ namespace InternshipData.Core
         /// Retrieves List of Disciplines from the database
         /// </summary>
         /// <returns> containing the list of object</returns>
-        public List<Discipline> GetDisciplines()
+        public async Task<List<Discipline>> GetDisciplines()
         {
-            var list = _disciplines.Find(discipline => true).ToList();
+            var list = await _disciplines.Find(discipline => true).ToListAsync();
             return list;
         }
 
@@ -101,10 +101,10 @@ namespace InternshipData.Core
         /// </summary>
         /// <param name="id">id to lookup</param>
         /// <returns> containing the object</returns>
-        public Discipline GetDisciplineById(ObjectId id)
+        public async Task<Discipline> GetDisciplineById(ObjectId id)
         {
             var filter = Builders<Discipline>.Filter.Eq("_id", id);
-            var disc = _disciplines.Find(filter).First();
+            var disc = await _disciplines.Find(filter).FirstAsync();
             return disc;
         }
 
@@ -112,9 +112,9 @@ namespace InternshipData.Core
         /// Retrieves List of Locations from the database
         /// </summary>
         /// <returns> containing the list of object</returns>
-        public List<Location> GetLocations()
+        public async Task<List<Location>> GetLocations()
         {
-            var list = _locations.Find(location => true).ToList();
+            var list = await _locations.Find(location => true).ToListAsync();
             return list;
         }
 
@@ -123,10 +123,10 @@ namespace InternshipData.Core
         /// </summary>
         /// <param name="id">id to lookup</param>
         /// <returns> containing the object</returns>
-        public Location GetLocationById(ObjectId id)
+        public async Task<Location> GetLocationById(ObjectId id)
         {
             var filter = Builders<Location>.Filter.Eq("_id", id);
-            var loc = _locations.Find(filter).First();
+            var loc = await _locations.Find(filter).FirstAsync();
             return loc;
         }
 
@@ -134,9 +134,9 @@ namespace InternshipData.Core
         /// Retrieves List of Ratings from the database
         /// </summary>
         /// <returns> containing the list of object</returns>
-        public List<Rating> GetRatings()
+        public async Task<List<Rating>> GetRatings()
         {
-            var rate = _ratings.Find(r => true).ToList();
+            var rate = await _ratings.Find(r => true).ToListAsync();
             return rate;
         }
 
@@ -145,10 +145,10 @@ namespace InternshipData.Core
         /// </summary>
         /// <param name="id">id to lookup</param>
         /// <returns> containing the object</returns>
-        public Rating GetRatingById(ObjectId id)
+        public async Task<Rating> GetRatingById(ObjectId id)
         {
             var filter = Builders<Rating>.Filter.Eq("_id", id);
-            var rate = _ratings.Find(filter).First();
+            var rate = await _ratings.Find(filter).FirstAsync();
             return rate;
         }
 
@@ -156,9 +156,9 @@ namespace InternshipData.Core
         /// Retrieves List of Majors from the database
         /// </summary>
         /// <returns> containing the list of object</returns>
-        public List<Major> GetMajors()
+        public async Task<List<Major>> GetMajors()
         {
-            var list = _majors.Find(major => true).ToList();
+            var list = await _majors.Find(major => true).ToListAsync();
             return list;
         }
 
@@ -167,10 +167,10 @@ namespace InternshipData.Core
         /// </summary>
         /// <param name="id">id to lookup</param>
         /// <returns> containing the object</returns>
-        public Major GetMajorById(ObjectId id)
+        public async Task<Major> GetMajorById(ObjectId id)
         {
             var filter = Builders<Major>.Filter.Eq("_id", id);
-            var maj = _majors.Find(filter).First();
+            var maj = await _majors.Find(filter).FirstAsync();
             return maj;
         }
 
@@ -179,10 +179,10 @@ namespace InternshipData.Core
         /// </summary>
         /// <param name="id">id to lookup</param>
         /// <returns> containing the object</returns>
-        public Vote GetVoteById(ObjectId id)
+        public async Task<Vote> GetVoteById(ObjectId id)
         {
             var filter = Builders<Vote>.Filter.Eq("InternshipId", id);
-            var vote = _votes.Find(filter).First();
+            var vote = await _votes.Find(filter).FirstAsync();
             return vote;
         }
 
@@ -191,14 +191,14 @@ namespace InternshipData.Core
         /// </summary>
         /// <param name="data">Data object containing internship info</param>
         /// <returns> containing the object</returns>
-        public void AddInternship(Data data)
+        public async Task AddInternship(Data data)
         {
 
-            var companyResult = AddCompany(data.company);
-            var disciplineResult = AddDiscipline(data.discipline);
-            var locationResult = AddLocation(data.location);
-            var ratingResult = AddRating(data.rating);
-            //var userResult = GetUserId(data.user);
+            var companyResult = await AddCompany(data.company);
+            var disciplineResult = await AddDiscipline(data.discipline);
+            var locationResult = await AddLocation(data.location);
+            var ratingResult = await AddRating(data.rating);
+            //var userResult = await GetUserId(data.user);
 
             data.internship.CompanyId = companyResult.Id;
             data.internship.DisciplineId = disciplineResult.Id;
@@ -206,12 +206,12 @@ namespace InternshipData.Core
             data.internship.RatingId = ratingResult.Id;
             //data.internship.UserId = userResult.Id.ToString();
 
-            _internships.InsertOne(data.internship);
+            await _internships.InsertOneAsync(data.internship);
 
             var filter = Builders<Internship>.Filter.Eq("CreatedDate", data.internship.CreatedDate);
-            var ship = _internships.Find(filter).First();
+            var ship = await _internships.Find(filter).FirstAsync();
 
-             AddVote(ship.Id);
+             await AddVote(ship.Id);
         }
 
         /// <summary>
@@ -219,16 +219,16 @@ namespace InternshipData.Core
         /// </summary>
         /// <param name="company">Company object</param>
         /// <returns> containing the object</returns>
-        public Company AddCompany(Company company)
+        public async Task<Company> AddCompany(Company company)
         {
             var filter = Builders<Company>.Filter.Eq("CompanyName", company.CompanyName);
-            bool exists = _companies.Find(filter).Any();
+            bool exists = await _companies.Find(filter).AnyAsync();
             if (!exists)
             {
-                 _companies.InsertOne(company);
+                 await _companies.InsertOneAsync(company);
             }
 
-            var comp = _companies.Find(filter).First();
+            var comp = await _companies.Find(filter).FirstAsync();
 
             return comp;
         }
@@ -238,16 +238,16 @@ namespace InternshipData.Core
         /// </summary>
         /// <param name="discipline">Discipline object</param>
         /// <returns> containing the object</returns>
-        public Discipline AddDiscipline(Discipline discipline)
+        public async Task<Discipline> AddDiscipline(Discipline discipline)
         {
             var filter = Builders<Discipline>.Filter.Eq("DisciplineName", discipline.DisciplineName);
-            bool exists = _disciplines.Find(filter).Any();
+            bool exists = await _disciplines.Find(filter).AnyAsync();
             if (!exists)
             {
-                 _disciplines.InsertOne(discipline);
+                 await _disciplines.InsertOneAsync(discipline);
             }
 
-            var disc = _disciplines.Find(filter).First();
+            var disc = await _disciplines.Find(filter).FirstAsync();
 
             return disc;
         }
@@ -257,18 +257,18 @@ namespace InternshipData.Core
         /// </summary>
         /// <param name="location">Location object</param>
         /// <returns> containing the object</returns>
-        public Location AddLocation(Location location)
+        public async Task<Location> AddLocation(Location location)
         {
             var filter = Builders<Location>.Filter.Eq("City", location.City)
                     & Builders<Location>.Filter.Eq("State", location.State)
                     & Builders<Location>.Filter.Eq("ZipCode", location.ZipCode);
-            bool exists = _locations.Find(filter).Any();
+            bool exists = await _locations.Find(filter).AnyAsync();
             if (!exists)
             {
-                 _locations.InsertOne(location);
+                 await _locations.InsertOneAsync(location);
             }
 
-            var loc = _locations.Find(filter).First();
+            var loc = await _locations.Find(filter).FirstAsync();
 
             return loc;
         }
@@ -278,16 +278,16 @@ namespace InternshipData.Core
         /// </summary>
         /// <param name="major">Major object</param>
         /// <returns> containing the object</returns>
-        public Major AddMajor(Major major)
+        public async Task<Major> AddMajor(Major major)
         {
             var filter = Builders<Major>.Filter.Eq("MajorName", major.MajorName);
-            bool exists = _majors.Find(filter).Any();
+            bool exists = await _majors.Find(filter).AnyAsync();
             if (!exists)
             {
-                 _majors.InsertOne(major);
+                 await _majors.InsertOneAsync(major);
             }
 
-            var maj = _majors.Find(filter).First();
+            var maj = await _majors.Find(filter).FirstAsync();
 
             return maj;
         }
@@ -297,16 +297,16 @@ namespace InternshipData.Core
         /// </summary>
         /// <param name="rating">Rating to find if it exists, if not insert it</param>
         /// <returns> containing the object</returns>
-        public Rating AddRating(Rating rating)
+        public async Task<Rating> AddRating(Rating rating)
         {
             var filter = Builders<Rating>.Filter.Eq("RatingNumber", rating.RatingNumber);
-            bool exists = _ratings.Find(filter).Any();
+            bool exists = await _ratings.Find(filter).AnyAsync();
             if (!exists)
             {
-                 _ratings.InsertOne(rating);
+                 await _ratings.InsertOneAsync(rating);
             }
 
-            var rate = _ratings.Find(filter).First();
+            var rate = await _ratings.Find(filter).FirstAsync();
 
             return rate;
         }
@@ -315,10 +315,10 @@ namespace InternshipData.Core
         /// Inserts initial values for the votes create record
         /// </summary>
         /// <param name="internshipId">Id for Internship</param>
-        public void AddVote(ObjectId internshipId)
+        public async Task AddVote(ObjectId internshipId)
         {
             var filter = Builders<Vote>.Filter.Eq("InternshipId", internshipId);
-            bool exists = _votes.Find(filter).Any();
+            bool exists = await _votes.Find(filter).AnyAsync();
             if (!exists)
             {
                 Vote vote = new Vote
@@ -326,7 +326,7 @@ namespace InternshipData.Core
                     InternshipId = internshipId,
                     Total = 0
                 };
-                 _votes.InsertOne(vote);
+                await _votes.InsertOneAsync(vote);
             }
 
         }
@@ -335,15 +335,15 @@ namespace InternshipData.Core
         /// Updates values for the votes to increment or decrement
         /// </summary>
         /// <param name="internship">Id for Internship</param>
-        public void UpdateVote(Internship internship)
+        public async Task UpdateVote(Internship internship)
         {
             var filter = Builders<Vote>.Filter.Eq(v => v.InternshipId, internship.Id);
             var update = Builders<Vote>.Update.Set(v => v.Total, internship.votes);
-            _votes.UpdateOne(filter, update);
+            await _votes.UpdateOneAsync(filter, update);
 
             var ifilter = Builders<Internship>.Filter.Eq(v => v.Id, internship.Id);
             var iupdate = Builders<Internship>.Update.Set(v => v.votes, internship.votes);
-            _internships.UpdateOne(ifilter, iupdate);
+            await _internships.UpdateOneAsync(ifilter, iupdate);
 
         }
 
@@ -352,10 +352,10 @@ namespace InternshipData.Core
         /// </summary>
         /// <param name="id">id to lookup</param>
         /// <returns>Updated internship object</returns>
-        public Internship GetInternshipById(ObjectId id)
+        public async Task<Internship> GetInternshipById(ObjectId id)
         {
             var filter = Builders<Internship>.Filter.Eq("_id", id);
-            var intern = _internships.Find(filter).First();
+            var intern = await _internships.Find(filter).FirstAsync();
 
             return intern;
         }

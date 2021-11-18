@@ -9,27 +9,27 @@ namespace InternshipData.Core
 {
     public interface IInternshipServices
     {
-        List<Data> GetInternships();
+        Task<List<Data>> GetInternships();
         Task<List<Company>> GetCompanies();
-        Company GetCompanyById(ObjectId id);
-        List<Discipline> GetDisciplines();
-        Discipline GetDisciplineById(ObjectId id);
-        List<Location> GetLocations();
-        Location GetLocationById(ObjectId id);
-        List<Rating> GetRatings();
-        Rating GetRatingById(ObjectId id);
-        List<Major> GetMajors();
-        Major GetMajorById(ObjectId id);
-        Vote GetVoteById(ObjectId id);
-        void AddInternship(Data data);
-        Company AddCompany(Company company);
-        Discipline AddDiscipline(Discipline discipline);
-        Location AddLocation(Location location);
-        Major AddMajor(Major major);
-        Rating AddRating(Rating rating);
-        void AddVote(ObjectId internshipId);
-        void UpdateVote(Internship internship);
-        Internship GetInternshipById(ObjectId id);
+        Task<Company> GetCompanyById(ObjectId id);
+        Task<List<Discipline>> GetDisciplines();
+        Task<Discipline> GetDisciplineById(ObjectId id);
+        Task<List<Location>> GetLocations();
+        Task<Location> GetLocationById(ObjectId id);
+        Task<List<Rating>> GetRatings();
+        Task<Rating> GetRatingById(ObjectId id);
+        Task<List<Major>> GetMajors();
+        Task<Major> GetMajorById(ObjectId id);
+        Task<Vote> GetVoteById(ObjectId id);
+        Task AddInternship(Data data);
+        Task<Company> AddCompany(Company company);
+        Task<Discipline> AddDiscipline(Discipline discipline);
+        Task<Location> AddLocation(Location location);
+        Task<Major> AddMajor(Major major);
+        Task<Rating> AddRating(Rating rating);
+        Task AddVote(ObjectId internshipId);
+        Task UpdateVote(Internship internship);
+        Task<Internship> GetInternshipById(ObjectId id);
 
 
     }

@@ -39,6 +39,12 @@ namespace InternshipApp
             services.AddTransient<IInternshipServices, InternshipServices>();
             services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
+            /*services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.WriteIndented = true;
+                options.JsonSerializerOptions.Converters.Add(new CustomJsonConverterForType());
+                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+            });*/
             services.AddSwaggerGen();
         }
 
