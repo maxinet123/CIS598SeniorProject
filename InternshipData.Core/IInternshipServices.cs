@@ -21,13 +21,15 @@ namespace InternshipData.Core
         Task<List<Major>> GetMajors();
         Task<Major> GetMajorById(ObjectId id);
         Task<Vote> GetVoteById(ObjectId id);
-        Task AddInternship(Data data);
+        Task<User> GetUserById(ObjectId id);
+        Task AddInternship(Internship internship, Company company, Location location, Major major, Discipline discipline, Rating rating, User user);
         Task<Company> AddCompany(Company company);
         Task<Discipline> AddDiscipline(Discipline discipline);
         Task<Location> AddLocation(Location location);
         Task<Major> AddMajor(Major major);
         Task<Rating> AddRating(Rating rating);
         Task AddVote(ObjectId internshipId);
+        Task<User> AddUser(User user);
         Task UpdateVote(Internship internship);
         Task<Internship> GetInternshipById(ObjectId id);
 

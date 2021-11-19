@@ -10,7 +10,7 @@
         public string Major_Collection_Name { get; set; }
         public string Rating_Collection_Name { get; set; }
         public string Vote_Collection_Name { get; set; }
-        //public string User_Collection_Name { get; set; }
+        public string User_Collection_Name { get; set; }
         public string Connection_String { get; set; }
     }
 }

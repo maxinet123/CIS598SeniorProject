@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row>
-      <v-col cols="12" xs="12">
+      <v-col cols="12" sm="6">
         <v-text-field
           :hide-details="nameErrors.length <= 0"
           dense
@@ -14,9 +14,24 @@
           :error-messages="nameErrors"
         />
       </v-col>
+      <v-col cols="12" sm="6">
+        <v-autocomplete
+          :hide-details="majorErrors.length <= 0"
+          dense
+          outlined
+          label="Major"
+          :filter="customFilter"
+          :items="getmajors"
+          item-text="major"
+          v-model="details.major"
+          @input="$v.details.major.$touch()"
+          @blur="$v.details.major.$touch()"
+          :error-messages="majorErrors"
+        />
+      </v-col>
     </v-row>
     <v-row>
-      <v-col cols="12" sm="12" md="6">
+      <v-col cols="12" sm="6">
         <v-text-field
           :hide-details="disciplineErrors.length <= 0"
           dense
@@ -29,7 +44,7 @@
           :error-messages="disciplineErrors"
         />
       </v-col>
-      <v-col cols="12" sm="12" md="6">
+      <v-col cols="12" sm="6">
         <v-text-field
           :hide-details="companyErrors.length <= 0"
           dense
@@ -40,11 +55,11 @@
           @input="$v.details.company.$touch()"
           @blur="$v.details.company.$touch()"
           :error-messages="companyErrors"
-        />
+        /> 
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="12" sm="12" md="5">
+      <v-col cols="12" sm="5">
         <v-text-field
           :hide-details="cityErrors.length <= 0"
           dense
@@ -57,7 +72,7 @@
           :error-messages="cityErrors"
         />
       </v-col>
-      <v-col cols="12" sm="6" md="5">
+      <v-col cols="12" sm="3">
         <v-autocomplete
           :hide-details="stateErrors.length <= 0"
           dense
@@ -72,7 +87,7 @@
           :error-messages="stateErrors"
         />
       </v-col>
-      <v-col cols="12" sm="6" md="2">
+      <v-col cols="12" sm="4">
         <v-text-field
           :hide-details="zipCodeErrors.length <= 0"
           dense
@@ -185,6 +200,7 @@ export default {
       name: "",
       discipline: "",
       company: "",
+      major: "",
       city: "",
       state: "",
       zipCode: "",
@@ -196,6 +212,7 @@ export default {
       vote: "",
       rating: 0,
     },
+    getMajors: ['COMPUTER SCIENCE'],
     currentRating: "No Rating",
     states: States,
     range: [
@@ -223,6 +240,7 @@ export default {
     details: {
       name: { required },
       discipline: { required },
+      major: { required },
       company: { required },
       city: { required },
       state: { required },
@@ -313,6 +331,16 @@ export default {
       }
       if (!this.$v.details.description.required) {
         errors.push("Description is required.");
+      }
+      return errors;
+    },
+    majorErrors() {
+      const errors = [];
+      if (!this.$v.details.major.$dirty) {
+        return errors;
+      }
+      if (!this.$v.details.major.required) {
+        errors.push("Major is required.");
       }
       return errors;
     },

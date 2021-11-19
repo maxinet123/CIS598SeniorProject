@@ -17,7 +17,7 @@ namespace InternshipData.Core
         private readonly IMongoCollection<Major> _majors;
         private readonly IMongoCollection<Rating> _ratings;
         private readonly IMongoCollection<Vote> _votes;
-        //private readonly IMongoCollection<User> _users;
+        private readonly IMongoCollection<User> _users;
 
         public InternshipServices(IDbClient dbClient)
         {
@@ -28,7 +28,7 @@ namespace InternshipData.Core
             _majors = dbClient.GetMajorCollection();
             _ratings = dbClient.GetRatingCollection();
             _votes = dbClient.GetVoteCollection();
-            //_users = dbClient.GetUserCollection();
+            _users = dbClient.GetUserCollection();
         }
 
         /// <summary>
@@ -46,19 +46,34 @@ namespace InternshipData.Core
                 var disc = await GetDisciplineById(item.DisciplineId);
                 var loc = await GetLocationById(item.LocationId);
                 var rate = await GetRatingById(item.RatingId);
+                var maj = await GetMajorById(item.MajorId);
+                var user = await GetUserById(item.UserId);
                 var vo = await GetVoteById(item.Id);
 
-                item.votes = vo.Total;
+                item.Votes = vo.Total;
 
                 data.Add(new Data
                     {
-                        internship = item,
-                        company = comp,
-                        discipline = disc,
-                        location = loc,
-                        rating = rate,
-                        vote = vo
-                    }
+                        InternshipId = item.Id,
+                        Position = item.Position,
+                        Description = item.Description,
+                        IsRemote = item.IsRemote,
+                        HasHousing = item.HasHousing,
+                        Wage = item.Wage,
+                        Votes = vo.Total,
+                        Duration = item.Duration,
+                        CreatedDate = item.CreatedDate,
+                        Stars = rate.Stars,
+                        Rating = rate.RatingNumber,
+                        City = loc.City,
+                        State = loc.State,
+                        ZipCode = loc.ZipCode,
+                        Discipline = disc.DisciplineName,
+                        Company = comp.CompanyName,
+                        Major = maj.MajorName,
+                        Username = user.Username,
+                        Email = user.Email,
+                }
                 );
             }
             return data;
@@ -175,6 +190,18 @@ namespace InternshipData.Core
         }
 
         /// <summary>
+        /// Retrieves User Object by Id from database
+        /// </summary>
+        /// <param name="id">id to lookup</param>
+        /// <returns> containing the object</returns>
+        public async Task<User> GetUserById(ObjectId id)
+        {
+            var filter = Builders<User>.Filter.Eq("_id", id);
+            var user = await _users.Find(filter).FirstAsync();
+            return user;
+        }
+
+        /// <summary>
         /// Retrieves Vote Object by Id from database
         /// </summary>
         /// <param name="id">id to lookup</param>
@@ -191,24 +218,26 @@ namespace InternshipData.Core
         /// </summary>
         /// <param name="data">Data object containing internship info</param>
         /// <returns> containing the object</returns>
-        public async Task AddInternship(Data data)
+        public async Task AddInternship(Internship internship, Company company, Location location, Major major, Discipline discipline, Rating rating, User user)
         {
 
-            var companyResult = await AddCompany(data.company);
-            var disciplineResult = await AddDiscipline(data.discipline);
-            var locationResult = await AddLocation(data.location);
-            var ratingResult = await AddRating(data.rating);
-            //var userResult = await GetUserId(data.user);
+            var companyResult = await AddCompany(company);
+            var disciplineResult = await AddDiscipline(discipline);
+            var locationResult = await AddLocation(location);
+            var ratingResult = await AddRating(rating);
+            var majorResult = await AddMajor(major);
+            var userResult = await AddUser(user);
 
-            data.internship.CompanyId = companyResult.Id;
-            data.internship.DisciplineId = disciplineResult.Id;
-            data.internship.LocationId = locationResult.Id;
-            data.internship.RatingId = ratingResult.Id;
-            //data.internship.UserId = userResult.Id.ToString();
+            internship.CompanyId = companyResult.Id;
+            internship.DisciplineId = disciplineResult.Id;
+            internship.LocationId = locationResult.Id;
+            internship.RatingId = ratingResult.Id;
+            internship.MajorId = majorResult.Id;
+            internship.UserId = userResult.Id;
 
-            await _internships.InsertOneAsync(data.internship);
+            await _internships.InsertOneAsync(internship);
 
-            var filter = Builders<Internship>.Filter.Eq("CreatedDate", data.internship.CreatedDate);
+            var filter = Builders<Internship>.Filter.Eq("CreatedDate", internship.CreatedDate);
             var ship = await _internships.Find(filter).FirstAsync();
 
              await AddVote(ship.Id);
@@ -332,17 +361,36 @@ namespace InternshipData.Core
         }
 
         /// <summary>
+        /// Retrieves User from database, if it doesn't exist it is inserted
+        /// </summary>
+        /// <param name="user">User object</param>
+        /// <returns> containing the object</returns>
+        public async Task<User> AddUser(User user)
+        {
+            var filter = Builders<User>.Filter.Eq("Email", user.Email);
+            bool exists = await _users.Find(filter).AnyAsync();
+            if (!exists)
+            {
+                await _users.InsertOneAsync(user);
+            }
+
+            var u = await _users.Find(filter).FirstAsync();
+
+            return u;
+        }
+
+        /// <summary>
         /// Updates values for the votes to increment or decrement
         /// </summary>
         /// <param name="internship">Id for Internship</param>
         public async Task UpdateVote(Internship internship)
         {
             var filter = Builders<Vote>.Filter.Eq(v => v.InternshipId, internship.Id);
-            var update = Builders<Vote>.Update.Set(v => v.Total, internship.votes);
+            var update = Builders<Vote>.Update.Set(v => v.Total, internship.Votes);
             await _votes.UpdateOneAsync(filter, update);
 
             var ifilter = Builders<Internship>.Filter.Eq(v => v.Id, internship.Id);
-            var iupdate = Builders<Internship>.Update.Set(v => v.votes, internship.votes);
+            var iupdate = Builders<Internship>.Update.Set(v => v.Votes, internship.Votes);
             await _internships.UpdateOneAsync(ifilter, iupdate);
 
         }

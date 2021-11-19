@@ -16,6 +16,6 @@ namespace InternshipData.Core
         IMongoCollection<Major> GetMajorCollection();
         IMongoCollection<Rating> GetRatingCollection();
         IMongoCollection<Vote> GetVoteCollection();
-        //IMongoCollection<User> GetUserCollection();
+        IMongoCollection<User> GetUserCollection();
     }
 }

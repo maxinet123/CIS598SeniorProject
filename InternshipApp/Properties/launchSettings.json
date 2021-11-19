@@ -21,7 +21,8 @@
         "LOCATION_COLLECTION_NAME": "Location",
         "MAJOR_COLLECTION_NAME": "Major",
         "RATING_COLLECTION_NAME": "Rating",
-        "VOTE_COLLECTION_NAME": "Vote"
+        "VOTE_COLLECTION_NAME": "Vote",
+        "USER_COLLECTION_NAME": "User"
       }
     },
     "InternshipApp": {
@@ -37,7 +38,8 @@
         "LOCATION_COLLECTION_NAME": "Location",
         "MAJOR_COLLECTION_NAME": "Major",
         "RATING_COLLECTION_NAME": "Rating",
-        "VOTE_COLLECTION_NAME": "Vote"
+        "VOTE_COLLECTION_NAME": "Vote",
+        "USER_COLLECTION_NAME": "User"
       }
     }
   }

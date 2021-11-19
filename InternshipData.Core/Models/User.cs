@@ -11,7 +11,7 @@ namespace InternshipData.Core.Models
     {
         [BsonId]
         public ObjectId Id { get; set; }
-        [BsonElement("username")]
+        [BsonElement("name")]
         public string Username { get; set; }
         [BsonElement("email")]
         public string Email { get; set; }

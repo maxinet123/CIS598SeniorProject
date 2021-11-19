@@ -63,9 +63,9 @@ namespace InternshipApp.Controllers
         }
 
         [HttpPost("AddInternship")]
-        public IActionResult AddInternship([FromBody] Data data)
+        public IActionResult AddInternship([FromHeader] InternshipHeaders internshipHeaders)
         {
-            _internshipService.AddInternship(data);
+            _internshipService.AddInternship(internshipHeaders.Internship, internshipHeaders.Company, internshipHeaders.Location, internshipHeaders.Major, internshipHeaders.Discipline, internshipHeaders.Rating, internshipHeaders.User);
             return Ok();
         }
 
@@ -76,6 +76,13 @@ namespace InternshipApp.Controllers
              _internshipService.UpdateVote(internship);
             var data = _internshipService.GetInternshipById(internship.Id);
             return Ok(data);
+        }
+
+        [HttpPost("AddInternship")]
+        public IActionResult AddInternship( [FromBody] User user)
+        {
+            _internshipService.AddUser(user);
+            return Ok();
         }
     }
 }

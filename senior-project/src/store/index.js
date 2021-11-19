@@ -148,7 +148,7 @@ export default new Vuex.Store({
       return new Promise((resolve, reject) => {
         axios
           .post(`https://localhost:44386/api/Internship/UpdateVote`, internship)
-          .then((response) => {
+          .then(() => {
             var internships = getters.getInternships;
             // var index = internships.indexOf((x) => x.id === internship.id)
             // if (index !== -1) {
@@ -169,7 +169,7 @@ export default new Vuex.Store({
           .post(`https://localhost:44386/api/Internship/AddUser`, user)
           .then((response) => {
             console.log(response)
-            commit("setUser", result);
+            commit("setUser", response);
             resolve();
           })
           .catch(() => {

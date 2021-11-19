@@ -23,24 +23,21 @@ namespace InternshipData.Core.Models
         [BsonElement("wage")]
         public double Wage { get; set; }
         [BsonElement("votes")]
-        public int votes { get; set; }
+        public int Votes { get; set; }
         [BsonElement("duration")]
         public string Duration { get; set; }
         [BsonElement("createdDate")]
         public DateTime CreatedDate { get; set; }
         [BsonElement("ratingId")]
-        [BsonRepresentation(BsonType.ObjectId)]
         public ObjectId RatingId { get; set; }
         [BsonElement("locationId")]
-        [BsonRepresentation(BsonType.ObjectId)]
         public ObjectId LocationId { get; set; }
         [BsonElement("disciplineId")]
-        [BsonRepresentation(BsonType.ObjectId)]
         public ObjectId DisciplineId { get; set; }
         [BsonElement("companyId")]
         public ObjectId CompanyId { get; set; }
         [BsonElement("majorId")]
-        public ObjectId Major { get; set; }
+        public ObjectId MajorId { get; set; }
         [BsonElement("userId")]
         public ObjectId UserId { get; set; }
     }
