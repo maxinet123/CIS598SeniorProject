@@ -94,13 +94,11 @@ export default {
       this.$router.push({ name: "Explore" }).catch(() => {});
     },
     login() {
-      this.$auth.loginWithRedirect().finally(() => {
-        this.addUser({ user: this.$auth.user });
-      });
+      this.$auth.loginWithRedirect()
     },
     logout() {
       this.$auth.logout();
-      this.$router.push({ path: "/" });
+      this.$router.push({ path: "/" }).catch(() => {});
     },
     profile() {
       this.$router.push({ name: "Profile" }).catch(() => {});

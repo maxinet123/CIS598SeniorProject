@@ -71,7 +71,7 @@ namespace InternshipData.Core
                         Discipline = disc.DisciplineName,
                         Company = comp.CompanyName,
                         Major = maj.MajorName,
-                        Username = user.Username,
+                        Username = user.Nickname,
                         Email = user.Email,
                 }
                 );

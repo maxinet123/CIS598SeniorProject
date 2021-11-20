@@ -25,7 +25,7 @@ export default {
     }, 10000);
   },
   methods: {
-    ...mapActions(["fetchInternships"]),
+    ...mapActions(["fetchInternships", "addUser"]),
   },
 };
 </script>

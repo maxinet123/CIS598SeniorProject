@@ -78,11 +78,11 @@ namespace InternshipApp.Controllers
             return Ok(data);
         }
 
-        [HttpPost("AddInternship")]
-        public IActionResult AddInternship( [FromBody] User user)
+        [HttpPost("AddUser")]
+        public Task<User> AddUser( [FromBody] User user)
         {
-            _internshipService.AddUser(user);
-            return Ok();
+            var data = _internshipService.AddUser(user);
+            return data;
         }
     }
 }
