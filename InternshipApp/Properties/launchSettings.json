@@ -14,7 +14,7 @@
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "DATABASE_NAME": "InternshipDb",
+        "DATABASE_NAME": "InternshareDb",
         "INTERNSHIP_COLLECTION_NAME": "Internship",
         "COMPANY_COLLECTION_NAME": "Company",
         "DISCIPLINE_COLLECTION_NAME": "Discipline",
@@ -31,7 +31,7 @@
       "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "DATABASE_NAME": "InternshipDb",
+        "DATABASE_NAME": "InternshareDb",
         "INTERNSHIP_COLLECTION_NAME": "Internship",
         "COMPANY_COLLECTION_NAME": "Company",
         "DISCIPLINE_COLLECTION_NAME": "Discipline",

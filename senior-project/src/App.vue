@@ -22,10 +22,17 @@ export default {
   mounted() {
     setTimeout(() => {
       this.fetchInternships();
-    }, 10000);
+    }, 5000);
   },
   methods: {
-    ...mapActions(["fetchInternships", "addUser"]),
+    ...mapActions(["fetchInternships"]),
+    logout() {
+      this.$auth.logout();
+      this.$router.push({ path: "/" }).catch(() => {});
+    }
+  },
+  created() {
+    window.addEventListener('beforeunload', this.logout)
   },
 };
 </script>

@@ -1,6 +1,5 @@
 import Vue from "vue";
 import createAuth0Client from "@auth0/auth0-spa-js";
-import Store from "../store"
 
 const DEFAULT_REDIRECT_CALLBACK = () => {
   return window.history.replaceState(
@@ -101,16 +100,6 @@ export const useAuth0 = ({
         this.loading = false;
       }
     },
-    // watch: {
-    //   user: {
-    //     deep: true,
-    //     handler(val) {
-    //       if (val) {
-    //         Store.dispatch("addUser", this.user)
-    //       }
-    //     }
-    //   }
-    // }
   });
 
   return instance;
