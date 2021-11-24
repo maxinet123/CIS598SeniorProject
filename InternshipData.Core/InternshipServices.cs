@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using InternshipData.Core.Models;
 using System.Threading.Tasks;
 using MongoDB.Bson;
+using System.Globalization;
 
 namespace InternshipData.Core
 {
@@ -73,7 +74,7 @@ namespace InternshipData.Core
                         Major = maj.MajorName,
                         Username = user.Nickname,
                         Email = user.Email,
-                }
+                    }
                 );
             }
             return data;
@@ -173,8 +174,7 @@ namespace InternshipData.Core
         /// <returns> containing the list of object</returns>
         public async Task<List<Major>> GetMajors()
         {
-            var list = await _majors.Find(major => true).ToListAsync();
-            return list;
+            return await _majors.Find(major => true).ToListAsync();
         }
 
         /// <summary>
@@ -218,7 +218,7 @@ namespace InternshipData.Core
         /// </summary>
         /// <param name="data">Data object containing internship info</param>
         /// <returns> containing the object</returns>
-        public async Task AddInternship(Internship internship, Company company, Location location, Major major, Discipline discipline, Rating rating, User user)
+        public async Task AddInternship(Internship internship, Company company, Location location, Major major, Discipline discipline, Rating rating)
         {
 
             var companyResult = await AddCompany(company);
@@ -226,14 +226,12 @@ namespace InternshipData.Core
             var locationResult = await AddLocation(location);
             var ratingResult = await AddRating(rating);
             var majorResult = await AddMajor(major);
-            var userResult = await AddUser(user);
 
             internship.CompanyId = companyResult.Id;
             internship.DisciplineId = disciplineResult.Id;
             internship.LocationId = locationResult.Id;
             internship.RatingId = ratingResult.Id;
             internship.MajorId = majorResult.Id;
-            internship.UserId = userResult.Id;
 
             await _internships.InsertOneAsync(internship);
 

@@ -13,5 +13,7 @@ namespace InternshipData.Core.Models
         public ObjectId Id { get; set; }
         [BsonElement("Major")]
         public string MajorName { get; set; }
+        [BsonElement("Major_Category")]
+        public string MajorCategory { get; set; }
     }
 }

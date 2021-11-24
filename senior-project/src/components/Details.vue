@@ -20,9 +20,9 @@
           dense
           outlined
           label="Major"
-          :filter="customFilter"
-          :items="getmajors"
-          item-text="major"
+          :filter="customMajorFilter"
+          :items="getMajors"
+          item-text="majorName"
           v-model="details.major"
           @input="$v.details.major.$touch()"
           @blur="$v.details.major.$touch()"
@@ -39,7 +39,7 @@
           label="Discipline"
           required
           v-model="details.discipline"
-          @input="$v.details.details.discipline.$touch()"
+          @input="$v.details.discipline.$touch()"
           @blur="$v.details.discipline.$touch()"
           :error-messages="disciplineErrors"
         />
@@ -78,7 +78,7 @@
           dense
           outlined
           label="State"
-          :filter="customFilter"
+          :filter="customStateFilter"
           :items="states"
           item-text="name"
           v-model="details.state"
@@ -145,7 +145,6 @@
           label="Wage / hr"
           v-model="details.wage"
           v-mask="'$##.##'"
-          @input="$v.details.wage.$touch()"
           @blur="formatWage(details.wage)"
         />
       </v-col>
@@ -189,10 +188,10 @@
 
 <script>
 import StarRating from "vue-star-rating";
-import moment from "moment";
 import { required, numeric, maxLength } from "vuelidate/lib/validators";
 import { validationMixin } from "vuelidate";
 import States from "@/assets/states_titlecase.json";
+import { mapGetters } from "vuex";
 export default {
   name: "Details",
   data: () => ({
@@ -212,7 +211,6 @@ export default {
       vote: "",
       rating: 0,
     },
-    getMajors: ['COMPUTER SCIENCE'],
     currentRating: "No Rating",
     states: States,
     range: [
@@ -254,6 +252,7 @@ export default {
     },
   },
   computed: {
+    ...mapGetters(["getMajors"]),
     nameErrors() {
       const errors = [];
       if (!this.$v.details.name.$dirty) {
@@ -355,10 +354,9 @@ export default {
           : rating + " star";
     },
     formatWage(wage) {
-      var modifyVal = wage.replace("$.", "");
-      return Number(modifyVal).toFixed(2);
+      return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', currencyDisplay: 'narrowSymbol' }).format(wage);
     },
-    customFilter(item, queryText) {
+    customStateFilter(item, queryText) {
       const textOne = item.name.toLowerCase();
       const textTwo = item.abbreviation.toLowerCase();
       const searchText = queryText.toLowerCase();
@@ -366,8 +364,12 @@ export default {
         textOne.indexOf(searchText) > -1 || textTwo.indexOf(searchText) > -1
       );
     },
-    formatDate(date) {
-      return date ? moment(date).format("MM/DD/YYYY") : "";
+    customMajorFilter(item, queryText) {
+      const textOne = item.majorName.toLowerCase();
+      const searchText = queryText.toLowerCase();
+      return (
+        textOne.indexOf(searchText) > -1
+      );
     },
     setCurrentSelectedRating(rating) {
       this.currentSelectedRating =

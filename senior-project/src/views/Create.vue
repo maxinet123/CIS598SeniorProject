@@ -10,7 +10,7 @@
       </v-card>
       <v-row class="btn-wrapper">
         <v-col cols="12" xs="12">
-          <v-btn class="submit-btn" @click="submit"> Submit </v-btn>
+          <v-btn class="submit-btn" @click="submit" :loading="loading"> Submit </v-btn>
         </v-col>
       </v-row>
     </div>
@@ -18,16 +18,18 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import Details from "@/components/Details.vue";
 export default {
   name: "Create",
   data: () => ({
+    loading: false,
     data: {
       internship: {
         position: "",
         duration: "",
         wage: "",
+        major: "",
         hasHousing: false,
         isRemote: false,
         description: "",
@@ -58,9 +60,11 @@ export default {
   components: {
     Details,
   },
-  computed: {},
+  computed: {
+    ...mapGetters(["getUser"]),
+  },
   methods: {
-    ...mapActions(["addInternship"]),
+    ...mapActions(["addInternship", "addUser"]),
     setV(val) {
       this.v = val;
     },
@@ -73,6 +77,7 @@ export default {
             wage: val.wage,
             rating: val.rating,
             hasHousing: val.hasHousing,
+            major: val.major,
             isRemote: val.isRemote,
             description: val.description,
           },
@@ -96,15 +101,26 @@ export default {
             total: 0,
             lkpKey: +new Date(),
           },
+          user: {
+            name: "",
+            email: "",
+          },
         };
       }
     },
     submit() {
+      this.loading = true
       this.v.$touch();
       if (!this.v.$invalid) {
-        this.addInternship({ data: this.data }).finally(() => {
-          //add modal?
-          this.$router.push({ name: "Explore" });
+        this.addUser({ user: this.$auth.user }).then(() => {
+          this.data.user = {...this.getUser}
+        }).then(() => {
+          console.log(this.data)
+          this.addInternship({ internshipHeaders: this.data })
+        }).finally(() => {
+            //add modal?
+            this.loading = false
+            this.$router.push({ name: "Explore" });
         });
       }
     },

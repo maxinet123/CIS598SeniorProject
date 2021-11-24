@@ -13,6 +13,7 @@ export default new Vuex.Store({
     disciplines: [],
     locations: [],
     ratings: [],
+    majors: [],
   },
   getters: {
     getUser: (state) => state.user,
@@ -21,6 +22,7 @@ export default new Vuex.Store({
     getDisciplines: (state) => state.disciplines,
     getLocations: (state) => state.locatins,
     getRatings: (state) => state.ratings,
+    getMajors: (state) => state.majors,
   },
   mutations: {
     setUser: (state, data) => {
@@ -40,6 +42,9 @@ export default new Vuex.Store({
     },
     setRatings: (state, data) => {
       state.ratings = data;
+    },
+    setMajors: (state, data) => {
+      state.majors = data;
     },
   },
   actions: {
@@ -127,13 +132,10 @@ export default new Vuex.Store({
           });
       });
     },
-    addInternship: ({ dispatch }, { internship }) => {
+    addInternship: ({ dispatch }, { internshipHeaders }) => {
       return new Promise((resolve, reject) => {
         axios
-          .get(
-            `https://localhost:44386/api/Internship/AddInternship`,
-            internship
-          )
+          .post(`https://localhost:44386/api/Internship/AddInternship`, internshipHeaders)
           .then(() => {
             dispatch("fetchInternships");
             resolve();
@@ -168,8 +170,7 @@ export default new Vuex.Store({
         axios
           .post(`https://localhost:44386/api/Internship/AddUser`, user)
           .then((response) => {
-            console.log(response)
-            commit("setUser", response);
+            commit("setUser", response.data.$values);
             resolve();
           })
           .catch(() => {

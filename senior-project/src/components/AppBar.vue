@@ -73,7 +73,6 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
 export default {
   name: "AppBar",
   data: () => ({
@@ -83,7 +82,6 @@ export default {
   components: {},
   computed: {},
   methods: {
-    ...mapActions(["addUser"]),
     home() {
       this.$router.push({ name: "Home" }).catch(() => {});
     },

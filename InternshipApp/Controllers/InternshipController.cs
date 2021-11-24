@@ -23,49 +23,43 @@ namespace InternshipApp.Controllers
         [HttpGet("GetInternships")]
         public Task<List<Data>> GetInternships()
         {
-            var data = _internshipService.GetInternships();
-            return data;
+            return _internshipService.GetInternships();
         }
 
         [HttpGet("GetCompanies")]
         public Task<List<Company>> GetCompanies()
         {
-            var data = _internshipService.GetCompanies();
-            return data;
+            return _internshipService.GetCompanies();
         }
 
         [HttpGet("GetDisciplines")]
         public Task<List<Discipline>> GetDisciplines()
         {
-            var data = _internshipService.GetDisciplines();
-            return data;
+            return _internshipService.GetDisciplines();
         }
 
         [HttpGet("GetLocations")]
         public Task<List<Location>> GetLocations()
         {
-            var data = _internshipService.GetLocations();
-            return data;
+            return _internshipService.GetLocations();
         }
 
         [HttpGet("GetRatings")]
         public Task<List<Rating>> GetRatings()
         {
-            var data = _internshipService.GetRatings();
-            return data;
+            return _internshipService.GetRatings();
         }
 
         [HttpGet("GetMajors")]
         public Task<List<Major>> GetMajors()
         {
-            var data = _internshipService.GetMajors();
-            return data;
+            return _internshipService.GetMajors();
         }
 
         [HttpPost("AddInternship")]
-        public IActionResult AddInternship([FromHeader] InternshipHeaders internshipHeaders)
+        public IActionResult AddInternship([FromBody] InternshipHeaders internshipHeaders)
         {
-            _internshipService.AddInternship(internshipHeaders.Internship, internshipHeaders.Company, internshipHeaders.Location, internshipHeaders.Major, internshipHeaders.Discipline, internshipHeaders.Rating, internshipHeaders.User);
+            _internshipService.AddInternship(internshipHeaders.Internship, internshipHeaders.Company, internshipHeaders.Location, internshipHeaders.Major, internshipHeaders.Discipline, internshipHeaders.Rating);
             return Ok();
         }
 
@@ -81,8 +75,7 @@ namespace InternshipApp.Controllers
         [HttpPost("AddUser")]
         public Task<User> AddUser( [FromBody] User user)
         {
-            var data = _internshipService.AddUser(user);
-            return data;
+            return _internshipService.AddUser(user);
         }
     }
 }
