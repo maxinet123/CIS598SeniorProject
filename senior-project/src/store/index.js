@@ -150,13 +150,14 @@ export default new Vuex.Store({
       return new Promise((resolve, reject) => {
         axios
           .post(`https://localhost:44386/api/Internship/UpdateVote`, internship)
-          .then(() => {
-            var internships = getters.getInternships;
-            // var index = internships.indexOf((x) => x.id === internship.id)
-            // if (index !== -1) {
-            //   internships[index] = response.data
-            commit("setInternships", internships);
-            // }
+          .then((response) => {
+            var item = response.data.$values
+            var iArray = getters.getInternships;
+            var index = iArray.indexOf((x) => x.id === item.id)
+            if (index !== -1) {
+              iArray.splice(index, 1, item)
+              commit("setInternships", iArray);
+            }
             resolve();
           })
           .catch((error) => {

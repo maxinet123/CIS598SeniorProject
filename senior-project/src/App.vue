@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <app-bar />
+    <nav-drawer />
     <v-main class="page">
       <router-view />
     </v-main>
@@ -9,12 +10,14 @@
 
 <script>
 import { mapActions } from "vuex";
-
+import NavDrawer from "./components/NavDrawer.vue";
 import AppBar from "./components/AppBar.vue";
+
 export default {
   name: "App",
   components: {
     AppBar,
+    NavDrawer
   },
   data: (vm) => ({
     initialDark: vm.$vuetify ? vm.$vuetify.theme.dark : false,
