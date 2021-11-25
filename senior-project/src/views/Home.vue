@@ -83,7 +83,7 @@ export default {
   }
 }
 .icon {
-  z-index: 1;
+  z-index: 0;
   font-size: 64px;
   color: white;
 }

@@ -1,7 +1,6 @@
 <template>
   <div>
     <v-app-bar app class="purple" fixed dense dark elevate-on-scroll>
-      <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
       <v-spacer></v-spacer>
       <v-icon class="sunny-theme">mdi-weather-sunny</v-icon>
       <v-switch
@@ -12,63 +11,6 @@
       />
       <v-icon>mdi-weather-night</v-icon>
     </v-app-bar>
-    <v-navigation-drawer v-model="drawer" absolute temporary>
-      <v-list nav dense>
-        <v-list-item-group
-          v-model="group"
-          active-class="deep-purple--text text--accent-4"
-        >
-          <v-list-item @click="home">
-            <v-list-item-icon>
-              <v-icon>mdi-home</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Home</v-list-item-title>
-          </v-list-item>
-
-          <v-list-item @click="create">
-            <v-list-item-icon>
-              <v-icon>mdi-square-edit-outline</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Create Post</v-list-item-title>
-          </v-list-item>
-
-          <v-list-item @click="explore">
-            <v-list-item-icon>
-              <v-icon>mdi-compass</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Expore Posts</v-list-item-title>
-          </v-list-item>
-
-          <v-list-item
-            @click="login"
-            v-show="!$auth.loading && !$auth.isAuthenticated"
-          >
-            <v-list-item-icon>
-              <v-icon>mdi-account</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Login</v-list-item-title>
-          </v-list-item>
-          <v-list-item
-            @click="profile"
-            v-show="!$auth.loading && $auth.isAuthenticated"
-          >
-            <v-list-item-icon>
-              <v-icon>mdi-account</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Profile</v-list-item-title>
-          </v-list-item>
-          <v-list-item
-            @click="logout"
-            v-show="!$auth.loading && $auth.isAuthenticated"
-          >
-            <v-list-item-icon>
-              <v-icon>mdi-share</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Logout</v-list-item-title>
-          </v-list-item>
-        </v-list-item-group>
-      </v-list>
-    </v-navigation-drawer>
   </div>
 </template>
 

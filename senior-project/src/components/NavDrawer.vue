@@ -1,16 +1,10 @@
 <template>
-      <v-navigation-drawer absolute permanent expand-on-hover>
+      <v-navigation-drawer absolute permanent expand-on-hover class="nav-drawer">
         <v-list v-if="!$auth.loading && $auth.isAuthenticated">
-            <v-list-item class="px-2">
-            <v-list-item-avatar>
-                <v-img src="https://randomuser.me/api/portraits/women/85.jpg"></v-img>
-            </v-list-item-avatar>
-            </v-list-item>
-
-            <v-list-item link>
+            <v-list-item>
             <v-list-item-content>
                 <v-list-item-title class="text-h6">
-                {{$auth.user.name}}
+                {{$auth.user.nickname}}
                 </v-list-item-title>
                 <v-list-item-subtitle>{{$auth.user.email}}</v-list-item-subtitle>
             </v-list-item-content>
@@ -99,7 +93,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.sunny-theme {
-  padding-right: 15px;
+.nav-drawer {
+    margin-top: 48px;
 }
 </style>

@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <load-overlay v-if="loading || $auth.isLoading"/>
     <app-bar />
     <nav-drawer />
     <v-main class="page">
@@ -10,22 +11,29 @@
 
 <script>
 import { mapActions } from "vuex";
+import LoadOverlay from "./components/LoadOverlay.vue";
 import NavDrawer from "./components/NavDrawer.vue";
 import AppBar from "./components/AppBar.vue";
 
 export default {
   name: "App",
   components: {
+    LoadOverlay,
     AppBar,
     NavDrawer
   },
   data: (vm) => ({
     initialDark: vm.$vuetify ? vm.$vuetify.theme.dark : false,
+    loading: true
   }),
   mounted() {
     setTimeout(() => {
-      this.fetchInternships();
-      this.fetchMajors();
+      this.fetchInternships()
+      .then(() => { 
+        this.fetchMajors() 
+      }).finally(() => {
+        this.loading = false
+      });
     }, 5000);
   },
   methods: {
