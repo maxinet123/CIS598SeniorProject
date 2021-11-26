@@ -53,7 +53,7 @@ export default {
 .page {
   margin: 25px 150px;
   @media all and (max-width: 960px) {
-    margin: 10px;
+    margin: 35px 10px 35px 68px;
   }
 }
 </style>

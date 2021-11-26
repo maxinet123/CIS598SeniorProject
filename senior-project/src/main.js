@@ -8,9 +8,11 @@ import vuetify from "./plugins/vuetify";
 import { VueMaskDirective } from "v-mask";
 import { domain, clientId } from "../auth_config.json";
 import { Auth0Plugin } from "./auth";
+import LottieAnimation from "lottie-vuejs/src/LottieAnimation.vue"; // import lottie-vuejs
 
 Vue.directive("mask", VueMaskDirective);
 Vue.use(VueAxios, axios);
+Vue.use(LottieAnimation); // add lottie-animation to your global scope
 
 Vue.use(Auth0Plugin, {
   domain,
