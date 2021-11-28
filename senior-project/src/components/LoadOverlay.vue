@@ -1,35 +1,32 @@
 <template>
-    <v-overlay :value="overlay" :z-index="2">
-        <v-progress-circular
-            :size="50"
-            color="purple"
-            indeterminate
-            ></v-progress-circular>
-        <!-- <lottie-animation
-            path="https://lottiefiles.com/9629-loading"
-            :loop="true"
-            :autoPlay="true"
-            :loopDelayMin="2.5"
-            :loopDelayMax="5"
-            :speed="1"
-        /> -->
-    </v-overlay>
+  <v-overlay :value="overlay" :z-index="6" :opacity=".75"> 
+      <lottie :options="defaultOptions" :height="150" :width="150" class="loader"
+        @animCreated="handleAnimation"/>
+  </v-overlay>
 </template>
 
 <script>
-// import LottieAnimation from "lottie-vuejs";
+import animationData from '../assets/loader.json';
+import Lottie from "vue-lottie";
 
 export default {
-    name: "LoadOverlay",
-    data: () => ({
-        overlay: true,
-    }),
-    components: {
-        // LottieAnimation
+  name: "LoadOverlay",
+  data: () => ({
+    overlay: true,
+    defaultOptions: {animationData: animationData},
+  }),
+  components: {
+    Lottie,
+  },
+  methods: {
+    handleAnimation(anim) {
+      this.anim = anim;
     },
-}
+  }
+};
 </script>
-
 <style lang="scss" scoped>
-
+.loader > svg > g > g > g > path {
+  fill: transparent !important;
+}
 </style>

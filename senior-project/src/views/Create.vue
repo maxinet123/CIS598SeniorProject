@@ -10,7 +10,9 @@
       </v-card>
       <v-row class="btn-wrapper">
         <v-col cols="12" xs="12">
-          <v-btn class="submit-btn" @click="submit" :loading="loading"> Submit </v-btn>
+          <v-btn class="submit-btn" @click="submit" :loading="loading">
+            Submit
+          </v-btn>
         </v-col>
       </v-row>
     </div>
@@ -109,19 +111,22 @@ export default {
       }
     },
     submit() {
-      this.loading = true
+      this.loading = true;
       this.v.$touch();
       if (!this.v.$invalid) {
-        this.addUser({ user: this.$auth.user }).then(() => {
-          this.data.user = {...this.getUser}
-        }).then(() => {
-          console.log(this.data)
-          this.addInternship({ internshipHeaders: this.data })
-        }).finally(() => {
+        this.addUser({ user: this.$auth.user })
+          .then(() => {
+            this.data.user = { ...this.getUser };
+          })
+          .then(() => {
+            console.log(this.data);
+            this.addInternship({ internshipHeaders: this.data });
+          })
+          .finally(() => {
             //add modal?
-            this.loading = false
+            this.loading = false;
             this.$router.push({ name: "Explore" });
-        });
+          });
       }
     },
   },

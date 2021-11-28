@@ -1,7 +1,7 @@
 <template>
   <v-container class="explore">
     <h1 class="title">Explore experiences here!</h1>
-    <filter-modal v-show="false"/>
+    <filters v-show="true" />
     <div v-if="getInternships.length > 0">
       <div v-for="item in getInternships" :key="item.id">
         <v-row>
@@ -10,16 +10,14 @@
           </v-col>
           <v-col cols="2" sm="2" class="vote-wrapper remove-padding">
             <div class="wrapper">
-              <v-btn
-                large
-                icon
-                @click="upVote(item.internship)"
-                class="up"
-              >
+              <v-btn large icon @click="upVote(item.internship)" class="up">
                 <v-icon>mdi-arrow-up-bold-circle-outline</v-icon>
               </v-btn>
               <div class="vote-text">{{ item.internship.votes }}</div>
-              <v-btn icon large :disabled="item.internship.votes === 0"
+              <v-btn
+                icon
+                large
+                :disabled="item.internship.votes === 0"
                 @click="downVote(item.internship)"
                 class="down"
               >
@@ -45,7 +43,7 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import InternshipCard from "../components/InternshipCard.vue";
-import FilterModal from "../components/FilterModal.vue";
+import Filters from "../components/Filters.vue";
 
 export default {
   name: "Explore",
@@ -53,7 +51,7 @@ export default {
   props: {},
   components: {
     InternshipCard,
-    FilterModal
+    Filters,
   },
   mounted() {},
   computed: {

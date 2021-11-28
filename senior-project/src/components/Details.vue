@@ -55,7 +55,7 @@
           @input="$v.details.company.$touch()"
           @blur="$v.details.company.$touch()"
           :error-messages="companyErrors"
-        /> 
+        />
       </v-col>
     </v-row>
     <v-row>
@@ -354,7 +354,11 @@ export default {
           : rating + " star";
     },
     formatWage(wage) {
-      return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', currencyDisplay: 'narrowSymbol' }).format(wage);
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        currencyDisplay: "narrowSymbol",
+      }).format(wage);
     },
     customStateFilter(item, queryText) {
       const textOne = item.name.toLowerCase();
@@ -367,9 +371,7 @@ export default {
     customMajorFilter(item, queryText) {
       const textOne = item.majorName.toLowerCase();
       const searchText = queryText.toLowerCase();
-      return (
-        textOne.indexOf(searchText) > -1
-      );
+      return textOne.indexOf(searchText) > -1;
     },
     setCurrentSelectedRating(rating) {
       this.currentSelectedRating =

@@ -20,9 +20,19 @@ export default new Vuex.Store({
     getInternships: (state) => state.internships,
     getCompanies: (state) => state.companies,
     getDisciplines: (state) => state.disciplines,
-    getLocations: (state) => state.locatins,
+    getLocations: (state) => state.locations,
     getRatings: (state) => state.ratings,
-    getMajors: (state) => state.majors,
+    getMajors: (state) => state.majors.sort((a,b) => { 
+      if (a.majorName < b.majorName) {
+        return -1;
+      }
+      if (a.majorName > b.majorName) {
+        return 1;
+      }
+      // a must be equal to b
+      return 0;
+
+    }),
   },
   mutations: {
     setUser: (state, data) => {
@@ -135,7 +145,10 @@ export default new Vuex.Store({
     addInternship: ({ dispatch }, { internshipHeaders }) => {
       return new Promise((resolve, reject) => {
         axios
-          .post(`https://localhost:44386/api/Internship/AddInternship`, internshipHeaders)
+          .post(
+            `https://localhost:44386/api/Internship/AddInternship`,
+            internshipHeaders
+          )
           .then(() => {
             dispatch("fetchInternships");
             resolve();
@@ -151,11 +164,11 @@ export default new Vuex.Store({
         axios
           .post(`https://localhost:44386/api/Internship/UpdateVote`, internship)
           .then((response) => {
-            var item = response.data.$values
+            var item = response.data.$values;
             var iArray = getters.getInternships;
-            var index = iArray.indexOf((x) => x.id === item.id)
+            var index = iArray.indexOf((x) => x.id === item.id);
             if (index !== -1) {
-              iArray.splice(index, 1, item)
+              iArray.splice(index, 1, item);
               commit("setInternships", iArray);
             }
             resolve();

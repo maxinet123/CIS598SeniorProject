@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <load-overlay v-if="loading || $auth.isLoading"/>
+    <load-overlay v-show="loading || $auth.isLoading"/>
     <app-bar />
     <nav-drawer />
     <v-main class="page">
@@ -20,31 +20,37 @@ export default {
   components: {
     LoadOverlay,
     AppBar,
-    NavDrawer
+    NavDrawer,
   },
   data: (vm) => ({
     initialDark: vm.$vuetify ? vm.$vuetify.theme.dark : false,
-    loading: true
+    loading: true,
   }),
   mounted() {
     setTimeout(() => {
       this.fetchInternships()
-      .then(() => { 
-        this.fetchMajors() 
-      }).finally(() => {
-        this.loading = false
+      .then(() => {
+        this.fetchCompanies();
+        this.fetchDisciplines();
+        this.fetchLocations();
+        this.fetchRatings();
+        this.fetchMajors();
+      })
+      .finally(() => {
+        this.loading = false;
       });
     }, 5000);
   },
   methods: {
-    ...mapActions(["fetchInternships", "fetchMajors"]),
+    ...mapActions(["fetchInternships", "fetchMajors", "fetchCompanies", "fetchDisciplines", 
+      "fetchLocations", "fetchRatings"]),
     logout() {
       this.$auth.logout();
       this.$router.push({ path: "/" }).catch(() => {});
-    }
+    },
   },
   created() {
-    window.addEventListener('beforeunload', this.logout)
+    window.addEventListener("beforeunload", this.logout);
   },
 };
 </script>

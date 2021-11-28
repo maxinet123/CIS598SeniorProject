@@ -34,7 +34,7 @@ export default {
       this.$router.push({ name: "Explore" }).catch(() => {});
     },
     login() {
-      this.$auth.loginWithRedirect()
+      this.$auth.loginWithRedirect();
     },
     logout() {
       this.$auth.logout();
