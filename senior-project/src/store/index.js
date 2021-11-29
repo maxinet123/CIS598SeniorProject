@@ -20,7 +20,10 @@ export default new Vuex.Store({
     getInternships: (state) => state.internships,
     getCompanies: (state) => state.companies,
     getDisciplines: (state) => state.disciplines,
-    getLocations: (state) => state.locations,
+    getLocations: (state) => state.locations.map((x) => ({
+      ...x,
+      fullLocation: `${x.city}, ${x.state}`
+    })),
     getRatings: (state) => state.ratings,
     getMajors: (state) => state.majors.sort((a,b) => { 
       if (a.majorName < b.majorName) {

@@ -14,6 +14,7 @@ import { mapActions } from "vuex";
 import LoadOverlay from "./components/LoadOverlay.vue";
 import NavDrawer from "./components/NavDrawer.vue";
 import AppBar from "./components/AppBar.vue";
+      // <v-icon>mdi-filter-outline</v-icon>
 
 export default {
   name: "App",
