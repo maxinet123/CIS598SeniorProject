@@ -1,15 +1,11 @@
 <template>
   <div>
     <v-app-bar app class="purple" fixed dense dark elevate-on-scroll>
-      <h2 class="logo">Internshare.com</h2>
+      <h2 class="logo">Internshare</h2>
       <v-spacer></v-spacer>
       <v-icon class="sunny-theme">mdi-weather-sunny</v-icon>
-      <v-switch
-        v-model="$vuetify.theme.dark"
-        hide-details
-        inset
-        type="button"
-      />
+      <v-switch v-model="$vuetify.theme.dark"
+        hide-details inset type="button" />
       <v-icon>mdi-weather-night</v-icon>
     </v-app-bar>
   </div>

@@ -144,7 +144,7 @@
           outlined
           label="Wage / hr"
           v-model="details.wage"
-          v-mask="'$##.##'"
+          @focus="isInputActive = true"
           @blur="formatWage(details.wage)"
         />
       </v-col>
@@ -161,8 +161,7 @@
           required
           hide-details
           @input="$v.details.description.$touch()"
-          @blur="$v.details.description.$touch()"
-        >
+          @blur="$v.details.description.$touch()" >
         </v-textarea>
       </v-col>
     </v-row>
@@ -211,6 +210,7 @@ export default {
       vote: "",
       rating: 0,
     },
+    isInputActive: false,
     currentRating: "No Rating",
     states: States,
     range: [
@@ -343,6 +343,7 @@ export default {
       }
       return errors;
     },
+    
   },
   methods: {
     showCurrentRating(rating) {
@@ -354,11 +355,29 @@ export default {
           : rating + " star";
     },
     formatWage(wage) {
-      return new Intl.NumberFormat("en-US", {
+      this.isInputActive = false
+      return Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD",
         currencyDisplay: "narrowSymbol",
       }).format(wage);
+        //     if (this.isInputActive) {
+        //         // Cursor is inside the input field. unformat display value for user
+        //         return this.details.wage.toString()
+        //     } else {
+        //         // User is not modifying now. Format display value for user interface
+        //         return "$ " + this.details.wage.toFixed(2).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,")
+        //     }
+        //     // Recalculate value after ignoring "$" and "," in user input
+        //     let newValue = parseFloat(modifiedValue.replace(/[^\d\.]/g, ""))
+        //     // Ensure that it is not NaN
+        //     if (isNaN(newValue)) {
+        //         newValue = 0
+        //     }
+        //     // Note: we cannot set this.value as it is a "prop". It needs to be passed to parent component
+        //     // $emit the event so that parent component gets it
+        //     this.$emit('input', newValue)
+        // }
     },
     customStateFilter(item, queryText) {
       const textOne = item.name.toLowerCase();

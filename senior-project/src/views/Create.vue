@@ -76,7 +76,7 @@ export default {
           internship: {
             position: val.position,
             duration: val.duration,
-            wage: val.wage,
+            wage: Number(val.wage.replace(/[^$]/g, '')),
             rating: val.rating,
             hasHousing: val.hasHousing,
             major: val.major,

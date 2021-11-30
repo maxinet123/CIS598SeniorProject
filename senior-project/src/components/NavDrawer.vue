@@ -32,7 +32,15 @@
         <v-list-item-icon>
           <v-icon>mdi-compass</v-icon>
         </v-list-item-icon>
-        <v-list-item-title>Expore</v-list-item-title>
+        <v-list-item-title>Explore</v-list-item-title>
+      </v-list-item>
+
+      <v-list-item link href="https://docs.google.com/forms/d/e/1FAIpQLSc9ksFU16noxq8qh3cCZ-gZM4VkJWx6eDtlf2RyuFN0SGtlPw/viewform?embedded=true"
+        target="_blank" rel="noreferrer noopener">
+        <v-list-item-icon>
+          <v-icon>mdi-message-draw</v-icon>
+        </v-list-item-icon>
+        <v-list-item-title>Feedback</v-list-item-title>
       </v-list-item>
 
       <v-list-item
