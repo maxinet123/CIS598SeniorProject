@@ -25,14 +25,14 @@
         <v-list-item-icon>
           <v-icon>mdi-square-edit-outline</v-icon>
         </v-list-item-icon>
-        <v-list-item-title>Create Post</v-list-item-title>
+        <v-list-item-title>Create</v-list-item-title>
       </v-list-item>
 
       <v-list-item link @click="explore">
         <v-list-item-icon>
           <v-icon>mdi-compass</v-icon>
         </v-list-item-icon>
-        <v-list-item-title>Expore Posts</v-list-item-title>
+        <v-list-item-title>Expore</v-list-item-title>
       </v-list-item>
 
       <v-list-item

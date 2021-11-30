@@ -13,7 +13,7 @@
               <v-icon class="icon icon_color">mdi-pencil</v-icon>
             </div>
           </v-card-actions>
-          <v-card-title> Create Post </v-card-title>
+          <v-card-title> Create </v-card-title>
         </v-card>
       </v-col>
       <v-col cols="12" md="6" sm="6">
@@ -23,7 +23,7 @@
               <v-icon class="icon">mdi-compass</v-icon>
             </div>
           </v-card-actions>
-          <v-card-title> Explore Posts </v-card-title>
+          <v-card-title> Explore </v-card-title>
         </v-card>
       </v-col>
     </v-row>

@@ -1,31 +1,34 @@
 <template>
     <div>
-        <v-row>
-            <v-col cols="12" sm="4" v-show="getCompanies.length > 0">
+        <v-card class="spacing">
+            <v-card-subtitle class="subtitles" v-show="getCompanies.length > 0">Companies:</v-card-subtitle>
+            <v-card-actions v-show="getCompanies.length > 0">
                 <v-combobox v-model="companies" :items="getCompanies" class="combobox"
-                    chips multiple outlined persistent-placeholder
-                    placeholder="Companies" item-text="companyName" hide-details>
+                    chips multiple outlined item-text="companyName" hide-details>
                 </v-combobox>
-            </v-col>
-            <v-col cols="12" sm="4" v-show="getDisciplines.length > 0">
+            </v-card-actions>
+            <v-card-subtitle class="subtitles"  v-show="getDisciplines.length > 0">Disciplines: </v-card-subtitle>
+            <v-card-actions  v-show="getDisciplines.length > 0">
                 <v-combobox v-model="disciplines" :items="getDisciplines" class="combobox"
-                    chips multiple outlined persistent-placeholder
-                    placeholder="Disciplines" item-text="disciplineName" hide-details>
+                    chips multiple outlined item-text="disciplineName" hide-details>
                 </v-combobox>
-            </v-col>
-            <v-col cols="12" sm="4" v-show="getMajors.length > 0">
+            </v-card-actions>
+            <v-card-subtitle class="subtitles" v-show="getMajors.length > 0">Majors: </v-card-subtitle>
+            <v-card-actions  v-show="getMajors.length > 0">
                 <v-combobox v-model="majors" :items="getMajors" class="combobox"
-                    chips multiple outlined persistent-placeholder
-                    placeholder="Majors" item-text="majorName" hide-details>
+                    chips multiple outlined item-text="majorName" hide-details>
                 </v-combobox>
-            </v-col>
-            <v-col cols="12" sm="4" v-show="getLocations.length > 0">
+            </v-card-actions>
+            <v-card-subtitle class="subtitles"  v-show="getLocations.length > 0">Locations: </v-card-subtitle>
+            <v-card-actions  v-show="getLocations.length > 0">
                 <v-combobox v-model="locations" :items="getLocations" class="combobox"
-                    chips multiple outlined persistent-placeholder
-                    placeholder="Locations" item-text="fullLocation" hide-details>
+                    chips multiple outlined item-text="fullLocation" hide-details>
                 </v-combobox>
-            </v-col>
-        </v-row>
+            </v-card-actions>
+            <v-card-actions class="filter-btn">
+                <v-btn  color="purple" @click="filterPosts">Filter</v-btn>
+            </v-card-actions>
+        </v-card>
     </div>
 </template>
 
@@ -38,7 +41,8 @@ export default {
         majors: [],
         companies: [],
         disciplines: [],
-        locations: []
+        locations: [],
+        arrays: [],
     }),
     components: {
     },
@@ -46,6 +50,21 @@ export default {
         ...mapGetters(["getCompanies" , "getDisciplines", "getLocations", "getRatings", "getMajors"]),
     },
     methods: {
+        filterPosts() {
+            this.majors.forEach((x) => {
+                this.arrays.append(x)
+            })
+            // this.companies.forEach((x) => {
+            //     this.arrays.append(x)
+            // })
+            // this.disciplines.forEach((x) => {
+            //     this.arrays.append(x)
+            // })
+            // this.locations.forEach((x) => {
+            //     this.arrays.append(x)
+            // })
+            this.$emit('filter', this.arrays)
+        }
     }
 }
 </script>
@@ -56,5 +75,18 @@ export default {
 }
 .combobox {
     overflow: hidden;
+}
+.spacing {
+    min-width: 500px;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #545454
+}
+.subtitles {
+    padding: 10px;
+}
+.filter-btn {
+    display: flex;
+    flex-direction: row-reverse;
 }
 </style>

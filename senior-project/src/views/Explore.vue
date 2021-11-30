@@ -1,7 +1,6 @@
 <template>
   <v-container class="explore">
     <h1 class="title">Explore experiences here!</h1>
-    <filters v-show="true" />
     <div v-if="getInternships.length > 0">
       <div v-for="item in getInternships" :key="item.id">
         <v-row>
@@ -43,7 +42,6 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import InternshipCard from "../components/InternshipCard.vue";
-import Filters from "../components/Filters.vue";
 
 export default {
   name: "Explore",
@@ -51,7 +49,6 @@ export default {
   props: {},
   components: {
     InternshipCard,
-    Filters,
   },
   mounted() {},
   computed: {
