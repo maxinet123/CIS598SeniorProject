@@ -57,7 +57,7 @@ export default {
       },
       user: {
         userName: "",
-        email: ""
+        email: "",
       }
     },
     v: {},

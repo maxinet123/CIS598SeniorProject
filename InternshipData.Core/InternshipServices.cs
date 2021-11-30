@@ -226,17 +226,18 @@ namespace InternshipData.Core
             var locationResult = await AddLocation(location);
             var ratingResult = await AddRating(rating);
             var majorResult = await AddMajor(major);
+            var userResult = await AddUser(user);
 
             internship.CompanyId = companyResult.Id;
             internship.DisciplineId = disciplineResult.Id;
             internship.LocationId = locationResult.Id;
             internship.RatingId = ratingResult.Id;
             internship.MajorId = majorResult.Id;
-            internship.UserId = user.Id;
+            internship.UserId = userResult.Id;
 
             await _internships.InsertOneAsync(internship);
 
-            var filter = Builders<Internship>.Filter.Eq("CreatedDate", internship.CreatedDate);
+            var filter = Builders<Internship>.Filter.Eq("Description", internship.Description);
             var ship = await _internships.Find(filter).FirstAsync();
 
              await AddVote(ship.Id);

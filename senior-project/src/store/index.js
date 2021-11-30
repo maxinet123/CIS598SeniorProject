@@ -186,7 +186,7 @@ export default new Vuex.Store({
         axios
           .post(`${process.env.VUE_APP_API}/Internship/AddUser`, user)
           .then((response) => {
-            commit("setUser", response.data.$values);
+            commit("setUser", response.data);
             resolve();
           })
           .catch(() => {
