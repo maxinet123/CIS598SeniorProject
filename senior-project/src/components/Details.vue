@@ -3,15 +3,15 @@
     <v-row>
       <v-col cols="12" sm="6">
         <v-text-field
-          :hide-details="nameErrors.length <= 0"
+          :hide-details="positionErrors.length <= 0"
           dense
           outlined
           label="Position Name"
           required
-          v-model="details.name"
-          @input="$v.details.name.$touch()"
-          @blur="$v.details.name.$touch()"
-          :error-messages="nameErrors"
+          v-model="details.position"
+          @input="$v.details.position.$touch()"
+          @blur="$v.details.position.$touch()"
+          :error-messages="positionErrors"
         />
       </v-col>
       <v-col cols="12" sm="6">
@@ -139,13 +139,14 @@
       </v-col>
       <v-col cols="12" xs="12" sm="6">
         <v-text-field
-          hide-details
+          :hide-details="wageErrors.length <= 0"
           dense
           outlined
           label="Wage / hr"
           v-model="details.wage"
-          @focus="isInputActive = true"
+          @input="$v.details.wage.$touch()"
           @blur="formatWage(details.wage)"
+          :error-messages="wageErrors"
         />
       </v-col>
     </v-row>
@@ -191,11 +192,12 @@ import { required, numeric, maxLength } from "vuelidate/lib/validators";
 import { validationMixin } from "vuelidate";
 import States from "@/assets/states_titlecase.json";
 import { mapGetters } from "vuex";
+
 export default {
   name: "Details",
   data: () => ({
     details: {
-      name: "",
+      position: "",
       discipline: "",
       company: "",
       major: "",
@@ -210,7 +212,6 @@ export default {
       vote: "",
       rating: 0,
     },
-    isInputActive: false,
     currentRating: "No Rating",
     states: States,
     range: [
@@ -226,9 +227,8 @@ export default {
       "10 weeks",
       "11 weeks",
       "12 weeks",
+      "13+ weeks"
     ],
-    menu1: false,
-    menu2: false,
   }),
   components: {
     StarRating,
@@ -236,12 +236,18 @@ export default {
   mixins: [validationMixin],
   validations: {
     details: {
-      name: { required },
+      position: { required },
       discipline: { required },
       major: { required },
       company: { required },
       city: { required },
       state: { required },
+      wage: { 
+        isNumber(value) {
+          var modifiedVal = Number(value.replace(/\$|,/g, ''));
+          return !isNaN(modifiedVal)
+        }
+      },
       zipCode: {
         required,
         numeric,
@@ -253,13 +259,13 @@ export default {
   },
   computed: {
     ...mapGetters(["getMajors"]),
-    nameErrors() {
+    positionErrors() {
       const errors = [];
-      if (!this.$v.details.name.$dirty) {
+      if (!this.$v.details.position.$dirty) {
         return errors;
       }
-      if (!this.$v.details.name.required) {
-        errors.push("Position name is required. Ex. IT Intern");
+      if (!this.$v.details.position.required) {
+        errors.push("Position title is required. Ex. IT Intern");
       }
       return errors;
     },
@@ -343,7 +349,16 @@ export default {
       }
       return errors;
     },
-    
+    wageErrors() {
+      const errors = [];
+      if (!this.$v.details.wage.$dirty) {
+        return errors;
+      }
+      if (!this.$v.details.wage.isNumber) {
+        errors.push("Wage must be a number.");
+      }
+      return errors;
+    },
   },
   methods: {
     showCurrentRating(rating) {
@@ -355,29 +370,13 @@ export default {
           : rating + " star";
     },
     formatWage(wage) {
-      this.isInputActive = false
-      return Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-        currencyDisplay: "narrowSymbol",
-      }).format(wage);
-        //     if (this.isInputActive) {
-        //         // Cursor is inside the input field. unformat display value for user
-        //         return this.details.wage.toString()
-        //     } else {
-        //         // User is not modifying now. Format display value for user interface
-        //         return "$ " + this.details.wage.toFixed(2).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,")
-        //     }
-        //     // Recalculate value after ignoring "$" and "," in user input
-        //     let newValue = parseFloat(modifiedValue.replace(/[^\d\.]/g, ""))
-        //     // Ensure that it is not NaN
-        //     if (isNaN(newValue)) {
-        //         newValue = 0
-        //     }
-        //     // Note: we cannot set this.value as it is a "prop". It needs to be passed to parent component
-        //     // $emit the event so that parent component gets it
-        //     this.$emit('input', newValue)
-        // }
+      this.$v.details.wage.$touch()
+      let newValue = parseFloat(wage.replace(/[^\d.]/g, ""))
+      if (isNaN(newValue)) {
+        this.details.wage = "$0.00"
+      } else {
+        this.details.wage = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', }).format(wage);
+      }
     },
     customStateFilter(item, queryText) {
       const textOne = item.name.toLowerCase();

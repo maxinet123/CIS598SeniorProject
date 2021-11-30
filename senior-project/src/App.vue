@@ -2,7 +2,7 @@
   <v-app>
     <load-overlay v-show="loading || $auth.isLoading"/>
     <v-overlay :opacity=".75" v-show="showFilters" >
-      <filters @filter="closeFilters"/>
+      <filters @filter="filterPosts" @close="close"/>
     </v-overlay>
     <app-bar />
     <nav-drawer />
@@ -61,8 +61,11 @@ export default {
       this.$auth.logout();
       this.$router.push({ path: "/" }).catch(() => {});
     },
-    closeFilters(val) {
-      this.showFilters = false
+    close(val) {
+      this.showFilters = val
+    },
+    filterPosts(val) {
+      this.close(false)
       console.log(val)
     }
   },

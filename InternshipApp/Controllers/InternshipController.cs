@@ -59,7 +59,7 @@ namespace InternshipApp.Controllers
         [HttpPost("AddInternship")]
         public IActionResult AddInternship([FromBody] InternshipHeaders internshipHeaders)
         {
-            _internshipService.AddInternship(internshipHeaders.Internship, internshipHeaders.Company, internshipHeaders.Location, internshipHeaders.Major, internshipHeaders.Discipline, internshipHeaders.Rating);
+            _internshipService.AddInternship(internshipHeaders.Internship, internshipHeaders.Company, internshipHeaders.Location, internshipHeaders.Major, internshipHeaders.Discipline, internshipHeaders.Rating, internshipHeaders.User);
             return Ok();
         }
 

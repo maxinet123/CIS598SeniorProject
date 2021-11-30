@@ -55,6 +55,10 @@ export default {
         total: 0,
         lkpKey: 0,
       },
+      user: {
+        userName: "",
+        email: ""
+      }
     },
     v: {},
   }),
@@ -76,10 +80,9 @@ export default {
           internship: {
             position: val.position,
             duration: val.duration,
-            wage: Number(val.wage.replace(/[^$]/g, '')),
+            wage: Number(val.wage.replace(/\$|,/g, '')),
             rating: val.rating,
             hasHousing: val.hasHousing,
-            major: val.major,
             isRemote: val.isRemote,
             description: val.description,
           },
@@ -94,6 +97,9 @@ export default {
             state: val.state,
             zipCode: val.zipCode,
           },
+          major: {
+            majorName: val.major,
+          },
           rating: {
             stars:
               val.rating === 1 ? val.rating + " star" : val.rating + " stars",
@@ -103,10 +109,6 @@ export default {
             total: 0,
             lkpKey: +new Date(),
           },
-          user: {
-            name: "",
-            email: "",
-          },
         };
       }
     },
@@ -115,18 +117,18 @@ export default {
       this.v.$touch();
       if (!this.v.$invalid) {
         this.addUser({ user: this.$auth.user })
-          .then(() => {
-            this.data.user = { ...this.getUser };
-          })
-          .then(() => {
-            console.log(this.data);
-            this.addInternship({ internshipHeaders: this.data });
-          })
+        .then(() => {
+          this.data.user = { ...this.getUser };
+        })
+        .finally(() => {
+          console.log(this.data);
+          this.addInternship({ internshipHeaders: this.data })
           .finally(() => {
             //add modal?
             this.loading = false;
             this.$router.push({ name: "Explore" });
           });
+        })
       }
     },
   },

@@ -1,6 +1,11 @@
 <template>
     <div>
         <v-card class="spacing">
+            <v-card-actions class="filter-btn">
+                <v-btn icon @click="close">
+                    <v-icon>mdi-close</v-icon>
+                </v-btn>
+            </v-card-actions>
             <v-card-subtitle class="subtitles" v-show="getCompanies.length > 0">Companies:</v-card-subtitle>
             <v-card-actions v-show="getCompanies.length > 0">
                 <v-combobox v-model="companies" :items="getCompanies" class="combobox"
@@ -64,6 +69,9 @@ export default {
             //     this.arrays.append(x)
             // })
             this.$emit('filter', this.arrays)
+        },
+        close() {
+            this.$emit('close', true)
         }
     }
 }

@@ -218,7 +218,7 @@ namespace InternshipData.Core
         /// </summary>
         /// <param name="data">Data object containing internship info</param>
         /// <returns> containing the object</returns>
-        public async Task AddInternship(Internship internship, Company company, Location location, Major major, Discipline discipline, Rating rating)
+        public async Task AddInternship(Internship internship, Company company, Location location, Major major, Discipline discipline, Rating rating, User user)
         {
 
             var companyResult = await AddCompany(company);
@@ -232,6 +232,7 @@ namespace InternshipData.Core
             internship.LocationId = locationResult.Id;
             internship.RatingId = ratingResult.Id;
             internship.MajorId = majorResult.Id;
+            internship.UserId = user.Id;
 
             await _internships.InsertOneAsync(internship);
 

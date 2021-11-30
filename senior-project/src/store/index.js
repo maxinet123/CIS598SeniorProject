@@ -1,7 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
-//import variables from "../variables.js";
 
 Vue.use(Vuex);
 
@@ -64,7 +63,7 @@ export default new Vuex.Store({
     fetchInternships: ({ commit }) => {
       return new Promise((resolve, reject) => {
         axios
-          .get(`https://localhost:44386/api/Internship/GetInternships`)
+          .get(`${process.env.VUE_APP_API}/Internship/GetInternships`)
           .then((response) => {
             commit("setInternships", response.data.$values);
             resolve();
@@ -78,7 +77,7 @@ export default new Vuex.Store({
     fetchCompanies: ({ commit }) => {
       return new Promise((resolve, reject) => {
         axios
-          .get(`https://localhost:44386/api/Internship/GetCompanies`)
+          .get(`${process.env.VUE_APP_API}/Internship/GetCompanies`)
           .then((response) => {
             commit("setCompanies", response.data.$values);
             resolve();
@@ -92,7 +91,7 @@ export default new Vuex.Store({
     fetchDisciplines: ({ commit }) => {
       return new Promise((resolve, reject) => {
         axios
-          .get(`https://localhost:44386/api/Internship/GetDisciplines`)
+          .get(`${process.env.VUE_APP_API}/Internship/GetDisciplines`)
           .then((response) => {
             commit("setDisciplines", response.data.$values);
             resolve();
@@ -106,7 +105,7 @@ export default new Vuex.Store({
     fetchLocations: ({ commit }) => {
       return new Promise((resolve, reject) => {
         axios
-          .get(`https://localhost:44386/api/Internship/GetLocations`)
+          .get(`${process.env.VUE_APP_API}/Internship/GetLocations`)
           .then((response) => {
             commit("setLocations", response.data.$values);
             resolve();
@@ -120,7 +119,7 @@ export default new Vuex.Store({
     fetchRatings: ({ commit }) => {
       return new Promise((resolve, reject) => {
         axios
-          .get(`https://localhost:44386/api/Internship/GetRatings`)
+          .get(`${process.env.VUE_APP_API}/Internship/GetRatings`)
           .then((response) => {
             commit("setRatings", response.data.$values);
             resolve();
@@ -134,7 +133,7 @@ export default new Vuex.Store({
     fetchMajors: ({ commit }) => {
       return new Promise((resolve, reject) => {
         axios
-          .get(`https://localhost:44386/api/Internship/GetMajors`)
+          .get(`${process.env.VUE_APP_API}/Internship/GetMajors`)
           .then((response) => {
             commit("setMajors", response.data.$values);
             resolve();
@@ -149,7 +148,7 @@ export default new Vuex.Store({
       return new Promise((resolve, reject) => {
         axios
           .post(
-            `https://localhost:44386/api/Internship/AddInternship`,
+            `${process.env.VUE_APP_API}/Internship/AddInternship`,
             internshipHeaders
           )
           .then(() => {
@@ -165,7 +164,7 @@ export default new Vuex.Store({
     updateVote: ({ commit, getters }, { internship }) => {
       return new Promise((resolve, reject) => {
         axios
-          .post(`https://localhost:44386/api/Internship/UpdateVote`, internship)
+          .post(`${process.env.VUE_APP_API}/Internship/UpdateVote`, internship)
           .then((response) => {
             var item = response.data.$values;
             var iArray = getters.getInternships;
@@ -185,7 +184,7 @@ export default new Vuex.Store({
     addUser: ({ commit }, { user }) => {
       return new Promise((resolve, reject) => {
         axios
-          .post(`https://localhost:44386/api/Internship/AddUser`, user)
+          .post(`${process.env.VUE_APP_API}/Internship/AddUser`, user)
           .then((response) => {
             commit("setUser", response.data.$values);
             resolve();

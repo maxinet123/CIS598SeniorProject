@@ -22,7 +22,7 @@ namespace InternshipData.Core
         Task<Major> GetMajorById(ObjectId id);
         Task<Vote> GetVoteById(ObjectId id);
         Task<User> GetUserById(ObjectId id);
-        Task AddInternship(Internship internship, Company company, Location location, Major major, Discipline discipline, Rating rating);
+        Task AddInternship(Internship internship, Company company, Location location, Major major, Discipline discipline, Rating rating, User user);
         Task<Company> AddCompany(Company company);
         Task<Discipline> AddDiscipline(Discipline discipline);
         Task<Location> AddLocation(Location location);

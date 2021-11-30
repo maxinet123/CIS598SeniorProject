@@ -9,15 +9,15 @@
           </v-col>
           <v-col cols="2" sm="2" class="vote-wrapper remove-padding">
             <div class="wrapper">
-              <v-btn large icon @click="upVote(item.internship)" class="up">
+              <v-btn large icon @click="upVote(item)" class="up">
                 <v-icon>mdi-arrow-up-bold-circle-outline</v-icon>
               </v-btn>
-              <div class="vote-text">{{ item.internship.votes }}</div>
+              <div class="vote-text">{{ item.votes }}</div>
               <v-btn
                 icon
                 large
-                :disabled="item.internship.votes === 0"
-                @click="downVote(item.internship)"
+                :disabled="item.votes === 0"
+                @click="downVote(item)"
                 class="down"
               >
                 <v-icon>mdi-arrow-down-bold-circle-outline</v-icon>
