@@ -24,7 +24,5 @@ namespace InternshipData.Core.Models
         public string Discipline { get; set; }
         public string Company { get; set; }
         public string Major { get; set; }
-        public string Username { get; set; }
-        public string Email { get; set; }
     }
 }

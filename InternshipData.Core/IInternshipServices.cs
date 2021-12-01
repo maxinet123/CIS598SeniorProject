@@ -30,7 +30,7 @@ namespace InternshipData.Core
         Task<Rating> AddRating(Rating rating);
         Task AddVote(ObjectId internshipId);
         Task<User> AddUser(User user);
-        Task UpdateVote(Internship internship);
+        Task UpdateVote(Data internship);
         Task<Internship> GetInternshipById(ObjectId id);
 
 

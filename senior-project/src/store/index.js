@@ -162,6 +162,7 @@ export default new Vuex.Store({
       });
     },
     updateVote: ({ commit, getters }, { internship }) => {
+      console.log(internship)
       return new Promise((resolve, reject) => {
         axios
           .post(`${process.env.VUE_APP_API}/Internship/UpdateVote`, internship)

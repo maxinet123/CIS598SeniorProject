@@ -65,11 +65,11 @@ namespace InternshipApp.Controllers
 
 
         [HttpPost("UpdateVote")]
-        public IActionResult UpdateVote([FromBody] Internship internship)
+        public Task<Internship> UpdateVote([FromHeader] Data internship)
         {
              _internshipService.UpdateVote(internship);
-            var data = _internshipService.GetInternshipById(internship.Id);
-            return Ok(data);
+            var data = _internshipService.GetInternshipById(internship.InternshipId);
+            return data;
         }
 
         [HttpPost("AddUser")]

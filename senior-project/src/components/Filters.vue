@@ -17,7 +17,7 @@
                 </v-card-actions>
             </div>
             <div v-show="getDisciplines.length > 0" >
-                <v-card-subtitle class="subtitles"  >Disciplines: </v-card-subtitle>
+                <v-card-subtitle class="subtitles">Disciplines: </v-card-subtitle>
                 <v-card-actions>
                     <v-combobox v-model="disciplines" :items="getDisciplines" class="combobox"
                         chips multiple outlined item-text="disciplineName" hide-details filled>
@@ -68,6 +68,12 @@ export default {
     },
     computed: {
         ...mapGetters(["getCompanies" , "getDisciplines", "getLocations", "getRatings", "getMajors"]),
+        hasFilters() {
+            if (this.majors.length > 0 || this.companies.length > 0 || this.disciplines.length > 0 || this.locations.length > 0) {
+                return true
+            }
+            return false
+        }
     },
     methods: {
         filterPosts() {
@@ -84,11 +90,15 @@ export default {
             if (this.locations.length > 0) {
                 arrays.concat(this.locations)
             }
-            EventBus.$emit('filter', this.arrays)
-            this.$emit('hasFilters', true)
+            let removeDupes = arrays.filter((item, pos) => {
+                return arrays.indexOf(item) == pos;
+            })
+            EventBus.$emit('filter', removeDupes)
+            this.$emit('hasFilters', this.hasFilters)
+            this.$emit('close', false)
         },
         close() {
-            this.$emit('close', true)
+            this.$emit('close', false)
         },
         clear() {
             this.$emit('hasFilters', false)

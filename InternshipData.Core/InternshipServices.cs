@@ -48,7 +48,6 @@ namespace InternshipData.Core
                 var loc = await GetLocationById(item.LocationId);
                 var rate = await GetRatingById(item.RatingId);
                 var maj = await GetMajorById(item.MajorId);
-                var user = await GetUserById(item.UserId);
                 var vo = await GetVoteById(item.Id);
 
                 item.Votes = vo.Total;
@@ -71,9 +70,7 @@ namespace InternshipData.Core
                         ZipCode = loc.ZipCode,
                         Discipline = disc.DisciplineName,
                         Company = comp.CompanyName,
-                        Major = maj.MajorName,
-                        Username = user.Nickname,
-                        Email = user.Email,
+                        Major = maj.MajorName
                     }
                 );
             }
@@ -383,13 +380,13 @@ namespace InternshipData.Core
         /// Updates values for the votes to increment or decrement
         /// </summary>
         /// <param name="internship">Id for Internship</param>
-        public async Task UpdateVote(Internship internship)
+        public async Task UpdateVote(Data internship)
         {
-            var filter = Builders<Vote>.Filter.Eq(v => v.InternshipId, internship.Id);
+            var filter = Builders<Vote>.Filter.Eq(v => v.InternshipId, internship.InternshipId);
             var update = Builders<Vote>.Update.Set(v => v.Total, internship.Votes);
             await _votes.UpdateOneAsync(filter, update);
 
-            var ifilter = Builders<Internship>.Filter.Eq(v => v.Id, internship.Id);
+            var ifilter = Builders<Internship>.Filter.Eq(v => v.Id, internship.InternshipId);
             var iupdate = Builders<Internship>.Update.Set(v => v.Votes, internship.Votes);
             await _internships.UpdateOneAsync(ifilter, iupdate);
 
@@ -402,7 +399,7 @@ namespace InternshipData.Core
         /// <returns>Updated internship object</returns>
         public async Task<Internship> GetInternshipById(ObjectId id)
         {
-            var filter = Builders<Internship>.Filter.Eq("_id", id);
+            var filter = Builders<Internship>.Filter.Eq("id", id);
             var intern = await _internships.Find(filter).FirstAsync();
 
             return intern;

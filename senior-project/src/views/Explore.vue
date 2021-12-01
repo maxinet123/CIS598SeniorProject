@@ -2,30 +2,28 @@
   <v-container class="explore">
     <h1 class="title">Explore experiences here!</h1>
     <div v-if="getInternships.length > 0">
-      <div v-for="item in getInternships" :key="item.id">
-        <v-row>
-          <v-col cols="10" sm="10" class="remove-padding">
-            <internship-card class="icard" :data="item" />
-          </v-col>
-          <v-col cols="2" sm="2" class="vote-wrapper remove-padding">
-            <div class="wrapper">
-              <v-btn large icon @click="upVote(item)" class="up">
-                <v-icon>mdi-arrow-up-bold-circle-outline</v-icon>
-              </v-btn>
-              <div class="vote-text">{{ item.votes }}</div>
-              <v-btn
-                icon
-                large
-                :disabled="item.votes === 0"
-                @click="downVote(item)"
-                class="down"
-              >
-                <v-icon>mdi-arrow-down-bold-circle-outline</v-icon>
-              </v-btn>
-            </div>
-          </v-col>
-        </v-row>
-      </div>
+      <v-row v-for="item in getInternships" :key="item.id">
+        <v-col cols="10" sm="10" class="remove-padding">
+          <internship-card class="icard" :data="item" />
+        </v-col>
+        <v-col cols="2" sm="2" class="vote-wrapper remove-padding">
+          <div class="wrapper">
+            <v-btn large icon @click="upVote(item)" class="up" :disabled="!isSaved">
+              <v-icon>mdi-arrow-up-bold-circle-outline</v-icon>
+            </v-btn>
+            <div class="vote-text">{{ item.votes }}</div>
+            <v-btn
+              icon
+              large
+              :disabled="!isSaved || item.votes === 0"
+              @click="downVote(item)"
+              class="down"
+            >
+              <v-icon>mdi-arrow-down-bold-circle-outline</v-icon>
+            </v-btn>
+          </div>
+        </v-col>
+      </v-row>
     </div>
     <div v-else>
       <v-row>
@@ -47,7 +45,8 @@ import { EventBus } from '../event-bus';
 export default {
   name: "Explore",
   data: () => ({
-    filters: []
+    filters: [],
+    isSaved: true,
   }),
   props: {},
   components: {
@@ -64,10 +63,12 @@ export default {
   computed: {
     ...mapGetters(["getInternships"]),
     filteredInternships() {
-      return this.getInternships.filter((x) => {
-        console.log(this.filters.some((y) => x.includes(y)))
-        return this.filters.some((y) => x.includes(y))
-      })
+      console.log('hi')
+      return this.getInternships; 
+      // this.getInternships.filter((x) => {
+      //   console.log(this.filters.some((y) => x.includes(y)))
+      //   return this.filters.some((y) => x.includes(y))
+      // })
     }
   },
   methods: {
@@ -76,8 +77,12 @@ export default {
       this.$router.push({ name: "Create" }).catch(() => {});
     },
     upVote(internship) {
+      this.isSaved = false
       internship.votes += 1;
-      this.updateVote({ internship: internship });
+      this.updateVote({ internship: internship })
+      .finally(() => {
+        this.isSaved = true
+      });
     },
     downVote(internship) {
       internship.votes -= 1;
