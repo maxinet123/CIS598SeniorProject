@@ -42,17 +42,33 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import InternshipCard from "../components/InternshipCard.vue";
+import { EventBus } from '../event-bus';
 
 export default {
   name: "Explore",
-  data: () => ({}),
+  data: () => ({
+    filters: []
+  }),
   props: {},
   components: {
     InternshipCard,
   },
-  mounted() {},
+  mounted() {
+    EventBus.$on('filter', (val) => {
+      this.filters = [...val]
+    })
+    EventBus.$on('clearFilter', () => {
+      this.filters = []
+    })
+  },
   computed: {
     ...mapGetters(["getInternships"]),
+    filteredInternships() {
+      return this.getInternships.filter((x) => {
+        console.log(this.filters.some((y) => x.includes(y)))
+        return this.filters.some((y) => x.includes(y))
+      })
+    }
   },
   methods: {
     ...mapActions(["updateVote"]),
@@ -68,7 +84,6 @@ export default {
       this.updateVote({ internship: internship });
     },
   },
-  watch: {},
 };
 </script>
 

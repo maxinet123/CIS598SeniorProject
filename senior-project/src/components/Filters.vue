@@ -1,37 +1,49 @@
 <template>
     <div>
         <v-card class="spacing">
-            <v-card-actions class="filter-btn">
-                <v-btn icon @click="close">
-                    <v-icon>mdi-close</v-icon>
-                </v-btn>
-            </v-card-actions>
-            <v-card-subtitle class="subtitles" v-show="getCompanies.length > 0">Companies:</v-card-subtitle>
-            <v-card-actions v-show="getCompanies.length > 0">
-                <v-combobox v-model="companies" :items="getCompanies" class="combobox"
-                    chips multiple outlined item-text="companyName" hide-details>
-                </v-combobox>
-            </v-card-actions>
-            <v-card-subtitle class="subtitles"  v-show="getDisciplines.length > 0">Disciplines: </v-card-subtitle>
-            <v-card-actions  v-show="getDisciplines.length > 0">
-                <v-combobox v-model="disciplines" :items="getDisciplines" class="combobox"
-                    chips multiple outlined item-text="disciplineName" hide-details>
-                </v-combobox>
-            </v-card-actions>
-            <v-card-subtitle class="subtitles" v-show="getMajors.length > 0">Majors: </v-card-subtitle>
-            <v-card-actions  v-show="getMajors.length > 0">
-                <v-combobox v-model="majors" :items="getMajors" class="combobox"
-                    chips multiple outlined item-text="majorName" hide-details>
-                </v-combobox>
-            </v-card-actions>
-            <v-card-subtitle class="subtitles"  v-show="getLocations.length > 0">Locations: </v-card-subtitle>
-            <v-card-actions  v-show="getLocations.length > 0">
+            <v-row class="align-right">
+                <v-col cols="12">
+                    <v-btn icon @click="close">
+                        <v-icon>mdi-close</v-icon>
+                    </v-btn>
+                </v-col>
+            </v-row>
+            <div v-show="getCompanies.length > 0">
+                <v-card-subtitle class="subtitles">Companies:</v-card-subtitle>
+                <v-card-actions >
+                    <v-combobox v-model="companies" :items="getCompanies" class="combobox"
+                        chips multiple outlined item-text="companyName" hide-details filled>
+                    </v-combobox>
+                </v-card-actions>
+            </div>
+            <div v-show="getDisciplines.length > 0" >
+                <v-card-subtitle class="subtitles"  >Disciplines: </v-card-subtitle>
+                <v-card-actions>
+                    <v-combobox v-model="disciplines" :items="getDisciplines" class="combobox"
+                        chips multiple outlined item-text="disciplineName" hide-details filled>
+                    </v-combobox>
+                </v-card-actions>
+            </div>
+            <div v-show="getMajors.length > 0" >
+                <v-card-subtitle class="subtitles">Majors: </v-card-subtitle>
+                <v-card-actions>
+                    <v-combobox v-model="majors" :items="getMajors" class="combobox"
+                        chips multiple outlined item-text="majorName" hide-details filled>
+                    </v-combobox>
+                </v-card-actions>
+            </div>
+            <div v-show="getLocations.length > 0">
+            <v-card-subtitle class="subtitles">Locations: </v-card-subtitle>
+            <v-card-actions>
                 <v-combobox v-model="locations" :items="getLocations" class="combobox"
-                    chips multiple outlined item-text="fullLocation" hide-details>
+                    chips multiple outlined item-text="fullLocation" hide-details filled>
                 </v-combobox>
             </v-card-actions>
+            </div>
             <v-card-actions class="filter-btn">
-                <v-btn  color="purple" @click="filterPosts">Filter</v-btn>
+                <v-btn color="purple" secondary @click="clear">Clear</v-btn>
+                <v-spacer />
+                <v-btn color="purple" primary @click="filterPosts">Filter</v-btn>
             </v-card-actions>
         </v-card>
     </div>
@@ -39,6 +51,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { EventBus } from '../event-bus';
 
 export default {
     name: "Filters",
@@ -47,31 +60,42 @@ export default {
         companies: [],
         disciplines: [],
         locations: [],
-        arrays: [],
     }),
-    components: {
+    mounted() {
+        EventBus.$on('clearFilters', () => {
+            this.clear()
+        })
     },
     computed: {
         ...mapGetters(["getCompanies" , "getDisciplines", "getLocations", "getRatings", "getMajors"]),
     },
     methods: {
         filterPosts() {
-            this.majors.forEach((x) => {
-                this.arrays.append(x)
-            })
-            // this.companies.forEach((x) => {
-            //     this.arrays.append(x)
-            // })
-            // this.disciplines.forEach((x) => {
-            //     this.arrays.append(x)
-            // })
-            // this.locations.forEach((x) => {
-            //     this.arrays.append(x)
-            // })
-            this.$emit('filter', this.arrays)
+            let arrays = []
+            if (this.majors.length > 0) {
+                arrays.concat(this.majors)
+            }
+            if (this.companies.length > 0) {
+                arrays.concat(this.companies)
+            }
+            if (this.disciplines.length > 0) {
+                arrays.concat(this.disciplines)
+            }
+            if (this.locations.length > 0) {
+                arrays.concat(this.locations)
+            }
+            EventBus.$emit('filter', this.arrays)
+            this.$emit('hasFilters', true)
         },
         close() {
             this.$emit('close', true)
+        },
+        clear() {
+            this.$emit('hasFilters', false)
+            this.majors = []
+            this.companies = []
+            this.disciplines = []
+            this.locations = []
         }
     }
 }
@@ -95,6 +119,5 @@ export default {
 }
 .filter-btn {
     display: flex;
-    flex-direction: row-reverse;
 }
 </style>

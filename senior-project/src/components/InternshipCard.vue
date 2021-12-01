@@ -3,12 +3,12 @@
     <v-card class="icard">
       <v-row>
         <v-col cols="6" md="10" sm="8" class="text-title">
-          {{ data.internship.position }}
+          {{ data.position }}
         </v-col>
         <v-col cols="6" md="2" sm="4">
           <div class="right-col">
             <star-rating
-              v-model="data.rating.ratingNumber"
+              v-model="data.rating"
               :read-only="true"
               :show-rating="false"
               :inline="true"
@@ -19,38 +19,39 @@
       </v-row>
       <v-row>
         <v-col cols="6" sm="4" class="text-info">
-          {{ data.company.companyName }}
+          {{ data.company }}
         </v-col>
         <v-col cols="6" sm="4" class="center-col text-info">
-          {{ formatWage(data.internship.wage) }} / hr
+          {{ formatWage(data.wage) }} / hr
         </v-col>
         <v-col cols="12" sm="4" class="right-col text-info">
-          {{ data.discipline.disciplineName }}
+          {{ data.discipline }}
         </v-col>
       </v-row>
       <v-row class="row-details">
         <v-col cols="6" sm="4" class="text-info">
-          {{ data.location.city }}, {{ data.location.state }}
+          {{ data.city }}, {{ data.state }}
         </v-col>
         <v-col cols="6" sm="4" class="center-col text-info">
-          {{ data.internship.duration }}
+          {{ data.duration }}
         </v-col>
         <v-col
           cols="12"
           sm="4"
-          v-if="data.internship.hasHousing"
+          v-show="data.hasHousing && !data.isRemote"
           class="right-col text-info"
         >
           Provide Housing
         </v-col>
-        <v-col cols="12" sm="4" v-else class="right-col text-info">
+        <v-col cols="12" sm="4" v-show="!data.hasHousing && data.isRemote" class="right-col text-info">
           Remote
         </v-col>
+        <v-col cols="12" sm="4" v-show="!data.hasHousing && !isRemote" class="right-col text-info"></v-col>
       </v-row>
       <v-row>
         <v-col cols="12">
           <v-textarea
-            v-model="data.internship.description"
+            v-model="data.description"
             readonly
             outlined
             hide-details
@@ -78,10 +79,7 @@ export default {
   computed: {},
   methods: {
     formatWage(wage) {
-      return new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(wage);
+      return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', }).format(wage);
     },
   },
   watch: {},
