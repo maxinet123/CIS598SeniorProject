@@ -4,7 +4,7 @@
       <h1 class="title">Share your experience!</h1>
       <v-card>
         <v-card-subtitle class="sub-title"
-          >***All information with be kept anonymous.***</v-card-subtitle
+          >***All information will be kept anonymous.***</v-card-subtitle
         >
         <Details @details="setDetails" @v="setV" />
       </v-card>
@@ -57,7 +57,7 @@ export default {
       user: {
         userName: "",
         email: "",
-      }
+      },
     },
     v: {},
   }),
@@ -79,7 +79,7 @@ export default {
           internship: {
             position: val.position,
             duration: val.duration,
-            wage: Number(val.wage.replace(/\$|,/g, '')),
+            wage: Number(val.wage.replace(/\$|,/g, "")),
             rating: val.rating,
             hasHousing: val.hasHousing,
             isRemote: val.isRemote,
@@ -115,17 +115,16 @@ export default {
       this.v.$touch();
       if (!this.v.$invalid) {
         this.addUser({ user: this.$auth.user })
-        .then(() => {
-          this.data.user = { ...this.getUser };
-        })
-        .finally(() => {
-          this.addInternship({ internshipHeaders: this.data })
+          .then(() => {
+            this.data.user = { ...this.getUser };
+          })
           .finally(() => {
-            //add modal?
-            this.loading = false;
-            this.$router.push({ name: "Explore" });
+            this.addInternship({ internshipHeaders: this.data }).finally(() => {
+              //add modal?
+              this.loading = false;
+              this.$router.push({ name: "Explore" });
+            });
           });
-        })
       }
     },
   },

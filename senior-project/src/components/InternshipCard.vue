@@ -43,10 +43,20 @@
         >
           Provide Housing
         </v-col>
-        <v-col cols="12" sm="4" v-show="!data.hasHousing && data.isRemote" class="right-col text-info">
+        <v-col
+          cols="12"
+          sm="4"
+          v-show="!data.hasHousing && data.isRemote"
+          class="right-col text-info"
+        >
           Remote
         </v-col>
-        <v-col cols="12" sm="4" v-show="!data.hasHousing && !isRemote" class="right-col text-info"></v-col>
+        <v-col
+          cols="12"
+          sm="4"
+          v-show="!data.hasHousing && !isRemote"
+          class="right-col text-info"
+        ></v-col>
       </v-row>
       <v-row>
         <v-col cols="12">
@@ -79,7 +89,10 @@ export default {
   computed: {},
   methods: {
     formatWage(wage) {
-      return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', }).format(wage);
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+      }).format(wage);
     },
   },
   watch: {},
@@ -96,10 +109,8 @@ export default {
   padding: 7px 12px !important;
 }
 .icard {
+  border: 1px solid #545454;
   padding: 20px;
-}
-.divider {
-  border: 1px solid grey;
 }
 .right-col {
   text-align: end;

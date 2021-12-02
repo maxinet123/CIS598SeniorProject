@@ -1,13 +1,91 @@
 <template>
   <div>
-    <v-app-bar app class="purple" fixed dense dark elevate-on-scroll>
-      <h2 class="logo">Internshare</h2>
+    <v-app-bar app class="purple" fixed dark>
+      <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
+      <v-toolbar-title>Internshare</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-icon class="sunny-theme">mdi-weather-sunny</v-icon>
+      <!-- <v-icon class="sunny-theme">mdi-weather-sunny</v-icon>
       <v-switch v-model="$vuetify.theme.dark"
         hide-details inset type="button" />
-      <v-icon>mdi-weather-night</v-icon>
+      <v-icon>mdi-weather-night</v-icon> -->
+      <v-btn icon @click="create">
+        <v-icon>mdi-square-edit-outline</v-icon>
+      </v-btn>
+      <v-menu left bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            v-bind="attrs"
+            v-on="on"
+            small
+            fab
+            outlined
+            v-show="!$auth.loading"
+          >
+            <v-icon>mdi-account</v-icon>
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item
+            link
+            @click="login"
+            v-show="!$auth.loading && !$auth.isAuthenticated"
+          >
+            <v-list-item-title>Login</v-list-item-title>
+          </v-list-item>
+          <v-list-item
+            link
+            @click="profile"
+            v-show="!$auth.loading && $auth.isAuthenticated"
+          >
+            <v-list-item-title>Profile</v-list-item-title>
+          </v-list-item>
+          <v-list-item
+            @click="logout"
+            v-show="!$auth.loading && $auth.isAuthenticated"
+          >
+            <v-list-item-title>Logout</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </v-app-bar>
+    <v-navigation-drawer v-model="drawer" expand-on-hover absolute temporary>
+      <v-list nav dense>
+        <v-list-item-group v-model="group" active-class="text--accent-4">
+          <v-list-item link @click="home">
+            <v-list-item-icon>
+              <v-icon>mdi-home</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Home</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item link @click="create">
+            <v-list-item-icon>
+              <v-icon>mdi-square-edit-outline</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Create</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item link @click="explore">
+            <v-list-item-icon>
+              <v-icon>mdi-compass</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Explore</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item
+            link
+            href="https://docs.google.com/forms/d/e/1FAIpQLSc9ksFU16noxq8qh3cCZ-gZM4VkJWx6eDtlf2RyuFN0SGtlPw/viewform?embedded=true"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            <v-list-item-icon>
+              <v-icon>mdi-message-draw</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Feedback</v-list-item-title>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
   </div>
 </template>
 

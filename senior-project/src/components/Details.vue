@@ -162,7 +162,8 @@
           required
           hide-details
           @input="$v.details.description.$touch()"
-          @blur="$v.details.description.$touch()" >
+          @blur="$v.details.description.$touch()"
+        >
         </v-textarea>
       </v-col>
     </v-row>
@@ -227,7 +228,7 @@ export default {
       "10 weeks",
       "11 weeks",
       "12 weeks",
-      "13+ weeks"
+      "13+ weeks",
     ],
   }),
   components: {
@@ -242,11 +243,11 @@ export default {
       company: { required },
       city: { required },
       state: { required },
-      wage: { 
+      wage: {
         isNumber(value) {
-          var modifiedVal = Number(value.replace(/\$|,/g, ''));
-          return !isNaN(modifiedVal)
-        }
+          var modifiedVal = Number(value.replace(/\$|,/g, ""));
+          return !isNaN(modifiedVal);
+        },
       },
       zipCode: {
         required,
@@ -370,12 +371,15 @@ export default {
           : rating + " star";
     },
     formatWage(wage) {
-      this.$v.details.wage.$touch()
-      let newValue = parseFloat(wage.replace(/[^\d.]/g, ""))
+      this.$v.details.wage.$touch();
+      let newValue = parseFloat(wage.replace(/[^\d.]/g, ""));
       if (isNaN(newValue)) {
-        this.details.wage = "$0.00"
+        this.details.wage = "$0.00";
       } else {
-        this.details.wage = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', }).format(wage);
+        this.details.wage = new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+        }).format(wage);
       }
     },
     customStateFilter(item, queryText) {

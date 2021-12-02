@@ -2,7 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
 
-const APP_URL = process.env.VUE_APP_API
+const APP_URL = process.env.VUE_APP_API;
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -17,31 +17,34 @@ export default new Vuex.Store({
   },
   getters: {
     getUser: (state) => state.user,
-    getInternships: (state) => state.internships.sort((a,b) => { 
-      if (a.votes < b.votes) {
-        return -1;
-      }
-      if (a.votes > b.votes) {
-        return 1;
-      }
-      return 0;
-    }),
+    getInternships: (state) =>
+      state.internships.sort((a, b) => {
+        if (a.votes < b.votes) {
+          return -1;
+        }
+        if (a.votes > b.votes) {
+          return 1;
+        }
+        return 0;
+      }),
     getCompanies: (state) => state.companies,
     getDisciplines: (state) => state.disciplines,
-    getLocations: (state) => state.locations.map((x) => ({
-      ...x,
-      fullLocation: `${x.city}, ${x.state}`
-    })),
+    getLocations: (state) =>
+      state.locations.map((x) => ({
+        ...x,
+        fullLocation: `${x.city}, ${x.state}`,
+      })),
     getRatings: (state) => state.ratings,
-    getMajors: (state) => state.majors.sort((a,b) => { 
-      if (a.majorName < b.majorName) {
-        return -1;
-      }
-      if (a.majorName > b.majorName) {
-        return 1;
-      }
-      return 0;
-    }),
+    getMajors: (state) =>
+      state.majors.sort((a, b) => {
+        if (a.majorName < b.majorName) {
+          return -1;
+        }
+        if (a.majorName > b.majorName) {
+          return 1;
+        }
+        return 0;
+      }),
   },
   mutations: {
     setUser: (state, data) => {
@@ -154,10 +157,7 @@ export default new Vuex.Store({
     addInternship: ({ dispatch }, { internshipHeaders }) => {
       return new Promise((resolve, reject) => {
         axios
-          .post(
-            `${APP_URL}/Internship/AddInternship`,
-            internshipHeaders
-          )
+          .post(`${APP_URL}/Internship/AddInternship`, internshipHeaders)
           .then(() => {
             dispatch("fetchInternships");
             resolve();
@@ -173,10 +173,10 @@ export default new Vuex.Store({
         axios
           .post(`${APP_URL}/Internship/UpVote`, {
             id,
-            total
+            total,
           })
           .then(() => {
-            dispatch('fetchInternships')
+            dispatch("fetchInternships");
             resolve();
           })
           .catch((error) => {
@@ -188,14 +188,18 @@ export default new Vuex.Store({
     downVote: ({ dispatch }, { id, total }) => {
       return new Promise((resolve, reject) => {
         axios
-          .post(`${APP_URL}/Internship/DownVote`, {}, {
-            headers: {
-              id,
-              total
+          .post(
+            `${APP_URL}/Internship/DownVote`,
+            {},
+            {
+              headers: {
+                id,
+                total,
+              },
             }
-          })
+          )
           .then(() => {
-            dispatch('fetchInternships')
+            dispatch("fetchInternships");
             resolve();
           })
           .catch((error) => {
