@@ -10,7 +10,8 @@ namespace InternshipData.Core.Models
     public class Rating
     {
         [BsonId]
-        public ObjectId Id { get; set; }
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
         [BsonElement("stars")] 
         public string Stars { get; set; }
         [BsonElement("rating")]

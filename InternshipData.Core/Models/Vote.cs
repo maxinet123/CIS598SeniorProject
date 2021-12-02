@@ -9,9 +9,8 @@ namespace InternshipData.Core.Models
     public class Vote
     {
         [BsonId]
-        public ObjectId Id { get; set; }
-        [BsonElement("internshipId")]
-        public ObjectId InternshipId { get; set; }
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
         [BsonElement("total")]
         public int Total { get; set; }
     }

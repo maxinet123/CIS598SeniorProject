@@ -8,16 +8,13 @@
         </v-col>
         <v-col cols="2" sm="2" class="vote-wrapper remove-padding">
           <div class="wrapper">
-            <v-btn large icon @click="upVote(item)" class="up" :disabled="!isSaved">
+            <v-btn large icon @click="upVote(item)" class="up" :disabled="!$auth.isAuthenticated || !isSaved">
               <v-icon>mdi-arrow-up-bold-circle-outline</v-icon>
             </v-btn>
             <div class="vote-text">{{ item.votes }}</div>
-            <v-btn
-              icon
-              large
-              :disabled="!isSaved || item.votes === 0"
-              @click="downVote(item)"
-              class="down"
+            <v-btn icon large @click="downVote(item)" class="down"
+              :disabled="!$auth.isAuthenticated || !isSaved || item.votes === 0"
+              
             >
               <v-icon>mdi-arrow-down-bold-circle-outline</v-icon>
             </v-btn>
@@ -78,15 +75,17 @@ export default {
     },
     upVote(internship) {
       this.isSaved = false
-      internship.votes += 1;
-      this.updateVote({ internship: internship })
+      this.upVote({ id: internship.id, total: internship.votes })
       .finally(() => {
         this.isSaved = true
       });
     },
     downVote(internship) {
-      internship.votes -= 1;
-      this.updateVote({ internship: internship });
+      this.isSaved = false
+      this.downVote({ id: internship.id, total: internship.votes })
+      .finally(() => {
+        this.isSaved = true
+      });
     },
   },
 };

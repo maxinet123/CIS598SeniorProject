@@ -10,7 +10,8 @@ namespace InternshipData.Core.Models
     public class User
     {
         [BsonId]
-        public ObjectId Id { get; set; }
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
         [BsonElement("name")]
         public string Nickname { get; set; }
         [BsonElement("email")]

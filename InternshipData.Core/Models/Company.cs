@@ -10,7 +10,8 @@ namespace InternshipData.Core.Models
     public class Company
     {
         [BsonId]
-        public ObjectId Id { get; set; }
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
         [BsonElement("companyName")]
         public string CompanyName { get; set; }
     }

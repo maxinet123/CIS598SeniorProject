@@ -10,7 +10,8 @@ namespace InternshipData.Core.Models
     public class Location
     {
         [BsonId]
-        public ObjectId Id { get; set; }
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
         [BsonElement("city")]
         public string City { get; set; }
         [BsonElement("state")]

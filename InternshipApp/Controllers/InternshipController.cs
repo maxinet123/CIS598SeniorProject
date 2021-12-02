@@ -59,17 +59,25 @@ namespace InternshipApp.Controllers
         [HttpPost("AddInternship")]
         public IActionResult AddInternship([FromBody] InternshipHeaders internshipHeaders)
         {
-            _internshipService.AddInternship(internshipHeaders.Internship, internshipHeaders.Company, internshipHeaders.Location, internshipHeaders.Major, internshipHeaders.Discipline, internshipHeaders.Rating, internshipHeaders.User);
+            _internshipService.AddInternship(internshipHeaders.Internship, internshipHeaders.Company, 
+                internshipHeaders.Location, internshipHeaders.Major, internshipHeaders.Discipline, 
+                internshipHeaders.Rating, internshipHeaders.Vote, internshipHeaders.User);
             return Ok();
         }
 
 
-        [HttpPost("UpdateVote")]
-        public Task<Internship> UpdateVote([FromHeader] Data internship)
+        [HttpPost("UpVote")]
+        public IActionResult UpVote([FromHeader] string id, int total)
         {
-             _internshipService.UpdateVote(internship);
-            var data = _internshipService.GetInternshipById(internship.InternshipId);
-            return data;
+            _internshipService.UpdateVote(id, ++total);
+            return Ok();
+        }
+
+        [HttpPost("DownVote")]
+        public IActionResult DownVote([FromHeader] string id, int total)
+        {
+            _internshipService.UpdateVote(id, --total);
+            return Ok();
         }
 
         [HttpPost("AddUser")]

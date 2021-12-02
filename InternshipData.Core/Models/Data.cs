@@ -1,4 +1,5 @@
 ﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,7 +8,9 @@ namespace InternshipData.Core.Models
 {
     public class Data
     {
-        public ObjectId InternshipId { get; set; }
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string InternshipId { get; set; }
         public string Position { get; set; }
         public string Description { get; set; }
         public bool IsRemote { get; set; }
@@ -15,7 +18,6 @@ namespace InternshipData.Core.Models
         public double Wage { get; set; }
         public int Votes { get; set; }
         public string Duration { get; set; }
-        public DateTime CreatedDate { get; set; }
         public string Stars { get; set; }
         public int Rating { get; set; }
         public string City { get; set; }

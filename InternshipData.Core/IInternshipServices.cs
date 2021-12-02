@@ -11,27 +11,27 @@ namespace InternshipData.Core
     {
         Task<List<Data>> GetInternships();
         Task<List<Company>> GetCompanies();
-        Task<Company> GetCompanyById(ObjectId id);
+        Task<Company> GetCompanyById(string id);
         Task<List<Discipline>> GetDisciplines();
-        Task<Discipline> GetDisciplineById(ObjectId id);
+        Task<Discipline> GetDisciplineById(string id);
         Task<List<Location>> GetLocations();
-        Task<Location> GetLocationById(ObjectId id);
+        Task<Location> GetLocationById(string id);
         Task<List<Rating>> GetRatings();
-        Task<Rating> GetRatingById(ObjectId id);
+        Task<Rating> GetRatingById(string id);
         Task<List<Major>> GetMajors();
-        Task<Major> GetMajorById(ObjectId id);
-        Task<Vote> GetVoteById(ObjectId id);
-        Task<User> GetUserById(ObjectId id);
-        Task AddInternship(Internship internship, Company company, Location location, Major major, Discipline discipline, Rating rating, User user);
-        Task<Company> AddCompany(Company company);
-        Task<Discipline> AddDiscipline(Discipline discipline);
-        Task<Location> AddLocation(Location location);
-        Task<Major> AddMajor(Major major);
-        Task<Rating> AddRating(Rating rating);
-        Task AddVote(ObjectId internshipId);
+        Task<Major> GetMajorById(string id);
+        Task<Vote> GetVoteById(string id);
+        Task<User> GetUserById(string id);
+        Task AddInternship(Internship internship, Company company, Location location, Major major, Discipline discipline, Rating rating, Vote vote, User user);
+        Task<string> AddCompany(Company company);
+        Task<string> AddDiscipline(Discipline discipline);
+        Task<string> AddLocation(Location location);
+        Task<string> AddMajor(Major major);
+        Task<string> AddVote(Vote vote);
+        Task<string> AddRating(Rating rating);
         Task<User> AddUser(User user);
-        Task UpdateVote(Data internship);
-        Task<Internship> GetInternshipById(ObjectId id);
+        Task UpdateVote(string id, int newTotal);
+        Task<Internship> GetInternshipById(string id);
 
 
     }

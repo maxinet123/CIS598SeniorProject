@@ -11,7 +11,8 @@ namespace InternshipData.Core.Models
     public class Internship
     {
         [BsonId]
-        public ObjectId Id { get; set; }
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
         [BsonElement("position")]
         public string Position { get; set; }
         [BsonElement("description")]
@@ -26,19 +27,19 @@ namespace InternshipData.Core.Models
         public int Votes { get; set; }
         [BsonElement("duration")]
         public string Duration { get; set; }
-        [BsonElement("createdDate")]
-        public DateTime CreatedDate { get; set; }
         [BsonElement("ratingId")]
-        public ObjectId RatingId { get; set; }
+        public string RatingId { get; set; }
         [BsonElement("locationId")]
-        public ObjectId LocationId { get; set; }
+        public string LocationId { get; set; }
         [BsonElement("disciplineId")]
-        public ObjectId DisciplineId { get; set; }
+        public string DisciplineId { get; set; }
         [BsonElement("companyId")]
-        public ObjectId CompanyId { get; set; }
+        public string CompanyId { get; set; }
+        [BsonElement("voteId")]
+        public string VoteId { get; set; }
         [BsonElement("majorId")]
-        public ObjectId MajorId { get; set; }
+        public string MajorId { get; set; }
         [BsonElement("userId")]
-        public ObjectId UserId { get; set; }
+        public string UserId { get; set; }
     }
 }
