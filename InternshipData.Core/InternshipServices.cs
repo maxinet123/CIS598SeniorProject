@@ -91,7 +91,7 @@ namespace InternshipData.Core
         /// <returns> containing the object</returns>
         public async Task<Company> GetCompanyById(string id)
         {
-            var filter = Builders<Company>.Filter.Eq("_id", id);
+            var filter = Builders<Company>.Filter.Eq("_id", ObjectId.Parse(id));
             var comp = await _companies.Find(filter).FirstAsync();
             return comp;
         }
@@ -113,7 +113,7 @@ namespace InternshipData.Core
         /// <returns> containing the object</returns>
         public async Task<Discipline> GetDisciplineById(string id)
         {
-            var filter = Builders<Discipline>.Filter.Eq("_id", id);
+            var filter = Builders<Discipline>.Filter.Eq("_id", ObjectId.Parse(id));
             var disc = await _disciplines.Find(filter).FirstAsync();
             return disc;
         }
@@ -135,7 +135,7 @@ namespace InternshipData.Core
         /// <returns> containing the object</returns>
         public async Task<Location> GetLocationById(string id)
         {
-            var filter = Builders<Location>.Filter.Eq("_id", id);
+            var filter = Builders<Location>.Filter.Eq("_id", ObjectId.Parse(id));
             var loc = await _locations.Find(filter).FirstAsync();
             return loc;
         }
@@ -157,7 +157,7 @@ namespace InternshipData.Core
         /// <returns> containing the object</returns>
         public async Task<Rating> GetRatingById(string id)
         {
-            var filter = Builders<Rating>.Filter.Eq("_id", id);
+            var filter = Builders<Rating>.Filter.Eq("_id", ObjectId.Parse(id));
             var rate = await _ratings.Find(filter).FirstAsync();
             return rate;
         }
@@ -178,7 +178,7 @@ namespace InternshipData.Core
         /// <returns> containing the object</returns>
         public async Task<Major> GetMajorById(string id)
         {
-            var filter = Builders<Major>.Filter.Eq("_id", id);
+            var filter = Builders<Major>.Filter.Eq("_id", ObjectId.Parse(id));
             var maj = await _majors.Find(filter).FirstAsync();
             return maj;
         }
@@ -190,7 +190,7 @@ namespace InternshipData.Core
         /// <returns> containing the object</returns>
         public async Task<User> GetUserById(string id)
         {
-            var filter = Builders<User>.Filter.Eq("_id", id);
+            var filter = Builders<User>.Filter.Eq("_id", ObjectId.Parse(id));
             var user = await _users.Find(filter).FirstAsync();
             return user;
         }
@@ -202,7 +202,7 @@ namespace InternshipData.Core
         /// <returns> containing the object</returns>
         public async Task<Vote> GetVoteById(string id)
         {
-            var filter = Builders<Vote>.Filter.Eq("_id", id);
+            var filter = Builders<Vote>.Filter.Eq("_id", ObjectId.Parse(id));
             var vote = await _votes.Find(filter).FirstAsync();
             return vote;
         }
@@ -374,7 +374,7 @@ namespace InternshipData.Core
         /// <returns>Updated internship object</returns>
         public async Task<Internship> GetInternshipById(string id)
         {
-            var filter = Builders<Internship>.Filter.Eq("_id", id);
+            var filter = Builders<Internship>.Filter.Eq("_id", ObjectId.Parse(id));
             var intern = await _internships.Find(filter).FirstAsync();
 
             return intern;

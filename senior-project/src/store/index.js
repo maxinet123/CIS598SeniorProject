@@ -17,7 +17,15 @@ export default new Vuex.Store({
   },
   getters: {
     getUser: (state) => state.user,
-    getInternships: (state) => state.internships,
+    getInternships: (state) => state.internships.sort((a,b) => { 
+      if (a.votes < b.votes) {
+        return -1;
+      }
+      if (a.votes > b.votes) {
+        return 1;
+      }
+      return 0;
+    }),
     getCompanies: (state) => state.companies,
     getDisciplines: (state) => state.disciplines,
     getLocations: (state) => state.locations.map((x) => ({
@@ -32,9 +40,7 @@ export default new Vuex.Store({
       if (a.majorName > b.majorName) {
         return 1;
       }
-      // a must be equal to b
       return 0;
-
     }),
   },
   mutations: {
@@ -179,7 +185,7 @@ export default new Vuex.Store({
           });
       });
     },
-    down: ({ dispatch }, { id, total }) => {
+    downVote: ({ dispatch }, { id, total }) => {
       return new Promise((resolve, reject) => {
         axios
           .post(`${APP_URL}/Internship/DownVote`, {}, {

@@ -8,14 +8,14 @@
         </v-col>
         <v-col cols="2" sm="2" class="vote-wrapper remove-padding">
           <div class="wrapper">
-            <v-btn large icon @click="upVote(item)" class="up" :disabled="!$auth.isAuthenticated || !isSaved">
+            <v-btn large icon @click="upVote(item)" class="up" :disabled="!$auth.isAuthenticate"
+              :loading="!isSaved">
               <v-icon>mdi-arrow-up-bold-circle-outline</v-icon>
             </v-btn>
             <div class="vote-text">{{ item.votes }}</div>
             <v-btn icon large @click="downVote(item)" class="down"
-              :disabled="!$auth.isAuthenticated || !isSaved || item.votes === 0"
-              
-            >
+              :disabled="!$auth.isAuthenticated || item.votes === 0"
+              :loading="!isSaved" >
               <v-icon>mdi-arrow-down-bold-circle-outline</v-icon>
             </v-btn>
           </div>
@@ -69,7 +69,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(["updateVote"]),
+    ...mapActions(["upVote", "downVote"]),
     addPost() {
       this.$router.push({ name: "Create" }).catch(() => {});
     },

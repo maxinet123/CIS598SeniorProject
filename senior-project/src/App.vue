@@ -8,11 +8,12 @@
     <nav-drawer />
     <v-main class="page">
       <router-view />
-      <div>
+    </v-main>
+    <div>
       <v-tooltip left>
         <template v-slot:activator="{ on, attrs }">
           <v-btn v-bind="attrs" v-on="on" v-show="$route.name === 'Explore' && getInternships.length > 0 && hasFilters"
-            color="purple" absolute bottom right fab @click="clearFilters">
+            color="purple" absolute class="clear-btn" fab @click="clearFilters">
           <v-icon>mdi-close</v-icon>
         </v-btn>
         </template>
@@ -21,14 +22,13 @@
       <v-tooltip left>
         <template v-slot:activator="{ on, attrs }">
           <v-btn v-bind="attrs" v-on="on" v-show="$route.name === 'Explore' && getInternships.length > 0"
-            color="purple" absolute bottom right fab @click="showFilters = true">
+            color="purple" absolute class="filter-btn" fab @click="showFilters = true">
             <v-icon>mdi-filter-outline</v-icon>
           </v-btn>
         </template>
         <span>Filter Options</span>
       </v-tooltip>
-      </div>
-    </v-main>
+    </div>
   </v-app>
 </template>
 
@@ -105,5 +105,13 @@ export default {
   @media all and (max-width: 960px) {
     margin: 35px 10px 35px 68px;
   }
+}
+.filter-btn {
+  bottom: 25px;
+  right: 25px;
+}
+.clear-btn {
+  bottom: 95px;
+  right: 25px;
 }
 </style>

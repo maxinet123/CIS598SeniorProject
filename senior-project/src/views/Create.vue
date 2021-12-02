@@ -53,7 +53,6 @@ export default {
       },
       vote: {
         total: 0,
-        lkpKey: 0,
       },
       user: {
         userName: "",
@@ -107,7 +106,6 @@ export default {
           },
           vote: {
             total: 0,
-            lkpKey: +new Date(),
           },
         };
       }
@@ -121,7 +119,6 @@ export default {
           this.data.user = { ...this.getUser };
         })
         .finally(() => {
-          console.log(this.data);
           this.addInternship({ internshipHeaders: this.data })
           .finally(() => {
             //add modal?

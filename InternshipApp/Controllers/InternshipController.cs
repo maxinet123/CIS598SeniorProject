@@ -67,16 +67,16 @@ namespace InternshipApp.Controllers
 
 
         [HttpPost("UpVote")]
-        public IActionResult UpVote([FromHeader] string id, int total)
+        public IActionResult UpVote([FromBody] Vote vote)
         {
-            _internshipService.UpdateVote(id, ++total);
+            _internshipService.UpdateVote(vote.Id, ++vote.Total);
             return Ok();
         }
 
         [HttpPost("DownVote")]
-        public IActionResult DownVote([FromHeader] string id, int total)
+        public IActionResult DownVote([FromBody] Vote vote)
         {
-            _internshipService.UpdateVote(id, --total);
+            _internshipService.UpdateVote(vote.Id, ++vote.Total);
             return Ok();
         }
 
