@@ -124,9 +124,9 @@ export default {
   min-height: 100%;
 }
 .page {
-  margin: 25px;
+  margin: 25px 0px;
   @media all and (max-width: 960px) {
-    margin: 35px 10px 35px;
+    margin: 35px 0px 35px;
   }
 }
 .filter-btn {
