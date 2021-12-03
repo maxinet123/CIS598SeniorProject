@@ -1,6 +1,6 @@
 <template>
   <v-container class="explore">
-    <h1 class="title">Explore experiences here!</h1>
+    <h1 class="title">Explore!</h1>
     <postings :getInternships="getInternships" />
   </v-container>
 </template>
@@ -25,6 +25,6 @@ export default {
 .title {
   font-size: 2.5rem !important;
   text-align: center;
-  margin-bottom: 25px;
+  margin-bottom: 45px;
 }
 </style>

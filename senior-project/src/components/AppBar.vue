@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-app-bar app class="purple" fixed dark>
+    <v-app-bar app class="primary" fixed dark elevation="10">
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
       <v-toolbar-title>Internshare</v-toolbar-title>
       <v-spacer></v-spacer>
@@ -48,7 +48,7 @@
         </v-list>
       </v-menu>
     </v-app-bar>
-    <v-navigation-drawer v-model="drawer" expand-on-hover absolute temporary>
+    <v-navigation-drawer v-model="drawer" absolute temporary>
       <v-list nav dense>
         <v-list-item-group v-model="group" active-class="text--accent-4">
           <v-list-item link @click="home">

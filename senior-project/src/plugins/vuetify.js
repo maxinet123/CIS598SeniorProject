@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuetify from "vuetify/lib/framework";
-import colors from "vuetify/lib/util/colors";
+// import colors from "vuetify/lib/util/colors";
 //import Vuelidate from 'vuelidate';
 Vue.use(Vuetify);
 //Vue.use(Vuelidate);
@@ -13,16 +13,14 @@ export default new Vuetify({
     dark: true,
     themes: {
       light: {
-        primary: "#000000",
-        secondary: colors.blue,
+        primary: "#5f6aa0",
+        secondary: "#A05F6A",
         grey: "#FFFFFF",
-        purple: "#5f6aa0",
       },
       dark: {
-        primary: "#FFFFFF",
-        secondary: "#FFFFFF",
+        primary: "#a2b5d2",
+        secondary: "#D2A2B5",
         grey: "#272727",
-        purple: "#a2b5d2",
       },
     },
   },

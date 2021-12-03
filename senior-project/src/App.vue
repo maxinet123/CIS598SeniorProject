@@ -19,7 +19,7 @@
               getInternships.length > 0 &&
               hasFilters
             "
-            color="purple"
+            color="primary"
             absolute
             class="clear-btn"
             fab
@@ -36,7 +36,7 @@
             v-bind="attrs"
             v-on="on"
             v-show="$route.name === 'Explore' && getInternships.length > 0"
-            color="purple"
+            color="primary"
             absolute
             class="filter-btn"
             fab
@@ -124,9 +124,9 @@ export default {
   min-height: 100%;
 }
 .page {
-  margin: 25px 150px;
+  margin: 25px;
   @media all and (max-width: 960px) {
-    margin: 35px 10px 35px 68px;
+    margin: 35px 10px 35px;
   }
 }
 .filter-btn {

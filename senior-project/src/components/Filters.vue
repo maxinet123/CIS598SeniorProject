@@ -77,9 +77,9 @@
         </v-card-actions>
       </div>
       <v-card-actions class="filter-btn">
-        <v-btn color="purple" secondary @click="clear">Clear</v-btn>
+        <v-btn color="primary" secondary @click="clear">Clear</v-btn>
         <v-spacer />
-        <v-btn color="purple" primary @click="filterPosts">Filter</v-btn>
+        <v-btn color="primary" primary @click="filterPosts">Filter</v-btn>
       </v-card-actions>
     </v-card>
   </div>

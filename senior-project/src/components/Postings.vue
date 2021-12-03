@@ -2,32 +2,41 @@
   <div>
     <div v-if="getInternships.length > 0">
       <v-row v-for="item in getInternships" :key="item.id">
-        <v-col cols="10" sm="10" class="remove-padding">
+        <v-col cols="10" sm="8" offset-sm="2" class="remove-padding">
           <internship-card :data="item" />
         </v-col>
         <v-col cols="2" sm="2" class="vote-wrapper remove-padding">
           <div class="wrapper">
-            <v-btn
-              large
-              icon
-              @click="upVote(item)"
-              class="up"
-              :disabled="!$auth.isAuthenticate"
-              :loading="!isSaved"
-            >
-              <v-icon>mdi-arrow-up-bold-circle-outline</v-icon>
-            </v-btn>
+            <v-tooltip right>
+              <template v-slot:activator="{ on, attrs }">
+                  <v-btn v-bind="attrs" v-on="on"
+                    large icon
+                    @click="upVote(item)"
+                    class="up"
+                    :disabled="!$auth.isAuthenticated"
+                    :loading="!isSaved"
+                  >
+                    <v-icon>mdi-arrow-up-bold-circle-outline</v-icon>
+                  </v-btn>
+              </template>
+              <span>Helpful</span>
+            </v-tooltip>
             <div class="vote-text">{{ item.votes }}</div>
-            <v-btn
-              icon
-              large
-              @click="downVote(item)"
-              class="down"
-              :disabled="!$auth.isAuthenticated || item.votes === 0"
-              :loading="!isSaved"
-            >
-              <v-icon>mdi-arrow-down-bold-circle-outline</v-icon>
-            </v-btn>
+            <v-tooltip right>
+              <template v-slot:activator="{ on, attrs }">
+                  <v-btn v-bind="attrs" v-on="on"
+                    icon
+                    large
+                    @click="downVote(item)"
+                    class="down"
+                    :disabled="!$auth.isAuthenticated || item.votes === 0"
+                    :loading="!isSaved"
+                  >
+                  <v-icon>mdi-arrow-down-bold-circle-outline</v-icon>
+                </v-btn>
+              </template>
+              <span>Unhelpful</span>
+            </v-tooltip>
           </div>
         </v-col>
       </v-row>

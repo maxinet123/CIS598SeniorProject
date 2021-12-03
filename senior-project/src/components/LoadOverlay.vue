@@ -18,7 +18,11 @@ export default {
   name: "LoadOverlay",
   data: () => ({
     overlay: true,
-    defaultOptions: { animationData: animationData },
+    defaultOptions: {
+      animationData: animationData,
+      loop: true,
+      autoplay: true
+    },
   }),
   components: {
     Lottie,
@@ -31,7 +35,4 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.loader > svg > g > g > g > path {
-  fill: transparent !important;
-}
 </style>

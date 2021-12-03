@@ -9,7 +9,7 @@
       <v-col cols="12" md="6" sm="6">
         <v-card class="card-style grey" @click="create">
           <v-card-actions>
-            <div class="circle purple">
+            <div class="circle primary">
               <v-icon class="icon icon_color">mdi-pencil</v-icon>
             </div>
           </v-card-actions>
@@ -19,7 +19,7 @@
       <v-col cols="12" md="6" sm="6">
         <v-card class="card-style grey" @click="explore">
           <v-card-actions>
-            <div class="circle purple">
+            <div class="circle primary">
               <v-icon class="icon">mdi-compass</v-icon>
             </div>
           </v-card-actions>

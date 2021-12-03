@@ -54,7 +54,7 @@
         <v-col
           cols="12"
           sm="4"
-          v-show="!data.hasHousing && !isRemote"
+          v-show="!data.hasHousing && !data.isRemote"
           class="right-col text-info"
         ></v-col>
       </v-row>
