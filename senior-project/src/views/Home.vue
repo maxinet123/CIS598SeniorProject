@@ -1,8 +1,7 @@
 <template>
     <div id="app">
         <img class="background" src="../assets/background.png">
-        <div class="home-wrapper">
-        <img  src="../assets/Internshare.png">
+        <!-- <img  src="../assets/Internshare.png"> -->
         <v-card class="intro">
           <v-card-actions>
             <v-text-field
@@ -12,13 +11,13 @@
               append-icon="mdi-magnify"
             ></v-text-field>
           </v-card-actions>
-          <v-card-actions>
+          <v-card-actions class="center-btn">
             <v-btn text small class="add-btn" @click="addPost">
               I'd like to create a post
             </v-btn>
           </v-card-actions>
         </v-card>
-        </div>
+        <!-- </div> -->
     </div>
 </template>
 
@@ -92,14 +91,22 @@ export default {
   display: none;
 }
 .home-wrapper {
+  text-align: center;
+  justify-content: center;
+}
+.center-btn {
   justify-content: center;
 }
 .intro {
+  text-align:center;
+  justify-content: center;
   background:rgb(95,106,160,0.85);
-  padding: 30px;
+  padding: 50px 30px;
   position: fixed;
   top: 50%;
   left: 50%;
+  min-width: 500px;
+  min-height: 200px;
   transform: translate(-50%, -50%);
   box-shadow: 0px 6px 6px -3px rgb(0 0 0 / 20%), 0px 10px 14px 1px rgb(0 0 0 / 14%), 0px 4px 18px 3px rgb(0 0 0 / 12%) !important;
 }

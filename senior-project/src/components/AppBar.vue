@@ -2,15 +2,12 @@
   <div>
     <v-app-bar app class="primary" fixed dark elevation="10">
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
-      <v-toolbar-title v-show="$route.name !== 'Home'">Internshare</v-toolbar-title>
+      <v-btn v-show="$route.name !== 'Create'" text @click="create">Create</v-btn>
       <v-spacer></v-spacer>
       <!-- <v-icon class="sunny-theme">mdi-weather-sunny</v-icon>
       <v-switch v-model="$vuetify.theme.dark"
         hide-details inset type="button" />
       <v-icon>mdi-weather-night</v-icon> -->
-      <v-btn icon @click="create">
-        <v-icon>mdi-square-edit-outline</v-icon>
-      </v-btn>
       <v-menu left bottom>
         <template v-slot:activator="{ on, attrs }">
           <v-btn
