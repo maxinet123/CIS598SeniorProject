@@ -81,11 +81,10 @@ export default {
   computed: {
     filteredInternships() {
       if (this.filters.length > 0) {
-        // this.getInternships.filter((x) => {
-        //   console.log(this.filters.some((y) => x.includes(y)))
-        //   return this.filters.some((y) => x.includes(y))
-        // })
-        return this.getInternships;
+        this.getInternships.filter((x) => {
+          console.log(this.filters.some((y) => x.includes(y)))
+          return this.filters.some((y) => x.includes(y))
+        }, [])
       }
       return this.getInternships;
     },

@@ -2,13 +2,16 @@
   <div>
     <v-app-bar app class="primary" fixed dark elevation="10">
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
-      <v-btn v-show="$route.name !== 'Create'" text @click="create">Create</v-btn>
+      <v-btn v-show="$route.name !== 'Create' || $route.name !== 'Home'"
+        text @click="create">
+        Create
+      </v-btn>
       <v-spacer></v-spacer>
       <!-- <v-icon class="sunny-theme">mdi-weather-sunny</v-icon>
       <v-switch v-model="$vuetify.theme.dark"
         hide-details inset type="button" />
       <v-icon>mdi-weather-night</v-icon> -->
-      <v-menu left bottom>
+      <v-menu left bottom class="menu">
         <template v-slot:activator="{ on, attrs }">
           <v-btn
             v-bind="attrs"
@@ -53,13 +56,6 @@
               <v-icon>mdi-home</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Home</v-list-item-title>
-          </v-list-item>
-
-          <v-list-item link @click="create">
-            <v-list-item-icon>
-              <v-icon>mdi-square-edit-outline</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Create</v-list-item-title>
           </v-list-item>
 
           <v-list-item link @click="explore">
@@ -123,4 +119,12 @@ export default {
 .sunny-theme {
   padding-right: 15px;
 }
+.menu {
+  min-width: 90px;
+  top: 60px;
+  left: 600px;
+  z-index: 5;
+  text-align: center;
+}
+
 </style>

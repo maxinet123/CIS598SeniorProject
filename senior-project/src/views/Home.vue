@@ -1,13 +1,14 @@
 <template>
     <div id="app">
         <img class="background" src="../assets/background.png">
-        <!-- <img  src="../assets/Internshare.png"> -->
+        <img class="title" src="../assets/Internshare.png">
         <v-card class="intro">
           <v-card-actions>
-            <v-text-field
-              label="Search for a company to start exploring!"
+            <v-text-field v-model="searched"
+              label="Search to start exploring! (ex. Company Name)"
               single-line
               solo hide-details
+              @click:append="explore"
               append-icon="mdi-magnify"
             ></v-text-field>
           </v-card-actions>
@@ -17,14 +18,17 @@
             </v-btn>
           </v-card-actions>
         </v-card>
-        <!-- </div> -->
     </div>
 </template>
 
 <script>
-
+import { EventBus } from "../event-bus";
 export default {
   name: "Home",
+  data: () => ({
+    searched: "",
+    filters: [],
+  }),
   components: {},
   computed: {},
   methods: {
@@ -32,6 +36,9 @@ export default {
       this.$router.push({ name: "Create" });
     },
     explore() {
+      this.filters.push(this.searched)
+      EventBus.$emit("hasFilters", true);
+      EventBus.$emit('filters', this.filters)
       this.$router.push({ name: "Explore" });
     },
   },
@@ -41,44 +48,12 @@ export default {
 <style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap');
 .title {
-  font-size: 2.5rem !important;
-  text-align: center;
-  font-family: 'Rammetto One', cursive;
-}
-.card-style {
-  display: flex;
-  flex-direction: column;
-  padding: 50px;
-  align-content: center;
-  text-align: center;
-  .v-card__actions {
-    justify-content: center;
-  }
-  .v-card__title {
-    justify-content: center;
-    word-break: normal;
-  }
-}
-.circle {
-  min-height: 150px;
-  min-width: 150px;
-  border-radius: 150px;
-  display: flex;
-  align-content: center;
+  top: 20%;
+  left: 50%;
+  position: fixed;
+  transform: translate(-50%, -20%);
   justify-content: center;
-  // @media all and (max-width: 1263px) {
-  //   height: 100px;
-  //   width: 100px;
-  // }
-  @media all and (max-width: 959px) {
-    min-height: 150px;
-    min-width: 150px;
-  }
-}
-.icon {
-  z-index: 0;
-  font-size: 64px;
-  color: white;
+  width: 500px;
 }
 .background {
   position: absolute;

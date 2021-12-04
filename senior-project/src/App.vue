@@ -2,7 +2,7 @@
   <v-app class="inspire">
     <load-overlay v-show="loading || $auth.isLoading" />
     <v-overlay :opacity="0.75" v-show="showFilters">
-      <filters @close="close" @hasFilters="setHasFilters" />
+      <filters @close="close"/>
     </v-overlay>
     <app-bar />
     <v-main class="page">
@@ -60,8 +60,7 @@ import { EventBus } from "./event-bus";
 
 export default {
   name: "App",
-  data: (vm) => ({
-    initialDark: vm.$vuetify ? vm.$vuetify.theme.dark : false,
+  data: () => ({
     loading: true,
     showFilters: false,
     hasFilters: false,
@@ -85,6 +84,9 @@ export default {
           this.loading = false;
         });
     }, 5000);
+    EventBus.$on("hasFilters", (val) => {
+      this.hasFilters = val
+    });
   },
   computed: {
     ...mapGetters(["getInternships"]),
@@ -108,9 +110,6 @@ export default {
     clearFilters() {
       EventBus.$emit("clearFilters");
       this.hasFilters = false;
-    },
-    setHasFilters(val) {
-      this.hasFilters = val;
     },
   },
   // created() {

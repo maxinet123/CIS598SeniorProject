@@ -124,11 +124,12 @@ export default {
   },
   methods: {
     filterPosts() {
-      let arrays = [];
+      const arrays = [];
       if (this.majors.length > 0) {
         arrays.concat(this.majors);
       }
       if (this.companies.length > 0) {
+        console.log('1')
         arrays.concat(this.companies);
       }
       if (this.disciplines.length > 0) {
@@ -140,15 +141,16 @@ export default {
       let removeDupes = arrays.filter((item, pos) => {
         return arrays.indexOf(item) == pos;
       });
+      console.log(arrays)
       EventBus.$emit("filter", removeDupes);
-      this.$emit("hasFilters", this.hasFilters);
+      EventBus.$emit("hasFilters", this.hasFilters);
       this.$emit("close", false);
     },
     close() {
       this.$emit("close", false);
     },
     clear() {
-      this.$emit("hasFilters", false);
+      EventBus.$emit("hasFilters", false);
       this.majors = [];
       this.companies = [];
       this.disciplines = [];
