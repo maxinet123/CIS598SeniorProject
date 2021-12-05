@@ -1,16 +1,12 @@
 <template>
   <div>
-    <v-app-bar app class="primary" fixed dark elevation="10">
+    <v-app-bar app color="#5f6aa0" fixed dark elevation="10">
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
       <v-btn v-show="$route.name !== 'Create' || $route.name !== 'Home'"
         text @click="create">
         Create
       </v-btn>
       <v-spacer></v-spacer>
-      <!-- <v-icon class="sunny-theme">mdi-weather-sunny</v-icon>
-      <v-switch v-model="$vuetify.theme.dark"
-        hide-details inset type="button" />
-      <v-icon>mdi-weather-night</v-icon> -->
       <v-menu left bottom class="menu">
         <template v-slot:activator="{ on, attrs }">
           <v-btn
@@ -116,9 +112,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.sunny-theme {
-  padding-right: 15px;
-}
 .menu {
   min-width: 90px;
   top: 60px;

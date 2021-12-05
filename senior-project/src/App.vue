@@ -1,7 +1,7 @@
 <template>
   <v-app class="inspire">
     <load-overlay v-show="loading || $auth.isLoading" />
-    <v-overlay :opacity="0.75" v-show="showFilters">
+    <v-overlay :dark="false" :opacity="0.75" v-show="showFilters">
       <filters @close="close"/>
     </v-overlay>
     <app-bar />
@@ -19,10 +19,10 @@
               getInternships.length > 0 &&
               hasFilters
             "
-            color="primary"
-            absolute
+            color="#5f6aa0"
+            fixed
             class="clear-btn"
-            fab
+            fab dark
             @click="clearFilters"
           >
             <v-icon>mdi-close</v-icon>
@@ -36,10 +36,10 @@
             v-bind="attrs"
             v-on="on"
             v-show="$route.name === 'Explore' && getInternships.length > 0"
-            color="primary"
-            absolute
+            color="#5f6aa0"
+            fixed dark
             class="filter-btn"
-            fab
+            fab 
             @click="showFilters = true"
           >
             <v-icon>mdi-filter-outline</v-icon>

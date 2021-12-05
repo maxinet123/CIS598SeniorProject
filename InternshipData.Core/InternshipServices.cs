@@ -61,7 +61,7 @@ namespace InternshipData.Core
                         Votes = vo.Total,
                         Duration = item.Duration,
                         Stars = rate.Stars,
-                        Rating = rate.RatingNumber,
+                        Number = rate.Number,
                         City = loc.City,
                         State = loc.State,
                         ZipCode = loc.ZipCode,
@@ -323,13 +323,7 @@ namespace InternshipData.Core
         /// <returns> containing the object</returns>
         public async Task<string> AddRating(Rating rating)
         {
-            var filter = Builders<Rating>.Filter.Eq("RatingNumber", rating.RatingNumber);
-            bool exists = await _ratings.Find(filter).AnyAsync();
-            if (!exists)
-            {
-                 await _ratings.InsertOneAsync(rating);
-            }
-
+            var filter = Builders<Rating>.Filter.Eq("Number", rating.Number);
             var rate = await _ratings.Find(filter).FirstAsync();
 
             return rate.Id;

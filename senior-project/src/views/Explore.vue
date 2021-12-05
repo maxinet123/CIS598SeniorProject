@@ -4,13 +4,26 @@
     <v-row>
       <v-col cols="8" offset-sm="2">
         <div v-for="(filter,index) in filters" :key="index">
-        <v-chip class="ma-2" close>
+        <v-chip class="ma-2" close @click="removeFilter(filter)">
           {{filter}}
         </v-chip>
         </div>
       </v-col>
     </v-row>
-    <postings :getInternships="getInternships" />
+    <div v-if="getInternships.length > 0">
+      <div v-for="item in filteredInternships" :key="item.id">
+        <postings :item="item" />
+      </div>
+    </div>
+    <div v-else>
+      <v-row>
+        <v-col cols="12" sm="12" class="center">
+          <v-btn text x-large class="add-btn" @click="addPost">
+            No internships shared. Click here to be the first!
+          </v-btn>
+        </v-col>
+      </v-row>
+    </div>
   </v-container>
 </template>
 
@@ -28,11 +41,31 @@ export default {
   },
   computed: {
     ...mapGetters(["getInternships"]),
+    filteredInternships() {
+      if (this.filters.length > 0) {
+        return this.getInternships.filter((obj) => {
+          return this.filters.some(x => x === obj.companyName || x === obj.disciplineName
+          || x === obj.location || x === obj.major)
+        }, [])
+
+      }
+      return this.getInternships
+    },
   },
-  methods: {},
+  methods: {
+    addPost() {
+      this.$router.push({ name: "Create" }).catch(() => {});
+    },
+    removeFilter(filter) {
+      let index = this.filters.indexOf(filter)
+      if (index !== -1) {
+        this.filters.splice(index,1)
+        EventBus.$emit('removeFilter', filter)
+      }
+    }
+  },
   mounted() {
     EventBus.$on("filter", (val) => {
-      console.log('hello')
       this.filters = [...val];
     });
     EventBus.$on("clearFilter", () => {

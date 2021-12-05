@@ -19,7 +19,7 @@ namespace InternshipData.Core.Models
         public int Votes { get; set; }
         public string Duration { get; set; }
         public string Stars { get; set; }
-        public int Rating { get; set; }
+        public int Number { get; set; }
         public string City { get; set; }
         public string State { get; set; }
         public string ZipCode { get; set; }

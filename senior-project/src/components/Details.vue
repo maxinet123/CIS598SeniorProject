@@ -173,7 +173,7 @@
           <div class="star-text">{{ currentRating }}</div>
           <div @mouseleave="showCurrentRating(0)" class="stars">
             <star-rating
-              v-model="details.rating"
+              v-model="details.number"
               :show-rating="false"
               @current-rating="showCurrentRating"
               :inline="true"
@@ -211,7 +211,7 @@ export default {
       isRemote: false,
       description: "",
       vote: "",
-      rating: 0,
+      number: 0,
     },
     currentRating: "No Rating",
     states: States,
@@ -362,13 +362,13 @@ export default {
     },
   },
   methods: {
-    showCurrentRating(rating) {
+    showCurrentRating(number) {
       this.currentRating =
-        rating === 0
+        number === 0
           ? this.currentSelectedRating
-          : rating !== 1
-          ? rating + " stars"
-          : rating + " star";
+          : number !== 1
+          ? number + " stars"
+          : number + " star";
     },
     formatWage(wage) {
       this.$v.details.wage.$touch();
@@ -395,9 +395,9 @@ export default {
       const searchText = queryText.toLowerCase();
       return textOne.indexOf(searchText) > -1;
     },
-    setCurrentSelectedRating(rating) {
+    setCurrentSelectedRating(number) {
       this.currentSelectedRating =
-        rating !== 1 ? rating + " stars" : rating + " star";
+        number !== 1 ? number + " stars" : number + " star";
     },
   },
   watch: {

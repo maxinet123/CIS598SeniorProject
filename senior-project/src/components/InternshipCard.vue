@@ -8,7 +8,7 @@
         <v-col cols="6" md="2" sm="4">
           <div class="right-col">
             <star-rating
-              v-model="data.rating"
+              v-model="data.number"
               :read-only="true"
               :show-rating="false"
               :inline="true"
@@ -111,6 +111,7 @@ export default {
 .icard {
   border: 1px solid #545454;
   padding: 20px;
+  margin-bottom: 40px;
 }
 .right-col {
   text-align: end;

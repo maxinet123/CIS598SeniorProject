@@ -48,8 +48,8 @@ export default {
         zipCode: "",
       },
       rating: {
-        stars: "",
-        rating: 0,
+        stars: "0 stars",
+        number: 0,
       },
       vote: {
         total: 0,
@@ -80,7 +80,6 @@ export default {
             position: val.position,
             duration: val.duration,
             wage: Number(val.wage.replace(/\$|,/g, "")),
-            rating: val.rating,
             hasHousing: val.hasHousing,
             isRemote: val.isRemote,
             description: val.description,
@@ -101,8 +100,8 @@ export default {
           },
           rating: {
             stars:
-              val.rating === 1 ? val.rating + " star" : val.rating + " stars",
-            rating: val.rating,
+              val.number === 1 ? val.number + " star" : val.number + " stars",
+            number: val.number,
           },
           vote: {
             total: 0,
