@@ -43,9 +43,12 @@ export default {
     ...mapGetters(["getInternships"]),
     filteredInternships() {
       if (this.filters.length > 0) {
+        console.log(this.filters)
         return this.getInternships.filter((obj) => {
-          return this.filters.some(x => x === obj.companyName || x === obj.disciplineName
-          || x === obj.location || x === obj.major)
+          console.log(obj, this.filters.indexOf(obj.company) >= 0, this.filters.indexOf(obj.discipline) >= 0, this.filters.indexOf(obj.major) >= 0)
+          return this.filters.indexOf(obj.company) >= 0 ||
+          this.filters.indexOf(obj.discipline) >= 0 ||
+          this.filters.indexOf(obj.major) >= 0
         }, [])
 
       }
