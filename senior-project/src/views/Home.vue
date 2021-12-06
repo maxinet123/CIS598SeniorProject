@@ -13,8 +13,8 @@
             ></v-text-field>
           </v-card-actions>
           <v-card-actions class="center-btn">
-            <v-btn text small class="add-btn" @click="addPost">
-              I'd like to create a post
+            <v-btn text small class="add-btn" @click="goExplore">
+              Just start exploring
             </v-btn>
           </v-card-actions>
         </v-card>
@@ -27,26 +27,23 @@ export default {
   name: "Home",
   data: () => ({
     searched: "",
-    filters: [],
   }),
   components: {},
   computed: {},
   methods: {
-    addPost() {
-      this.$router.push({ name: "Create" });
+    goExplore() {
+      this.$router.push({ name: "Explore" });
     },
     explore() {
-      this.filters.push(this.searched)
       EventBus.$emit("hasFilters", true);
-      EventBus.$emit('filters', this.filters)
-      this.$router.push({ name: "Explore" });
+      EventBus.$emit("searched", this.searched)
+      this.goExplore();
     },
   },
   mounted() {},
 };
 </script>
 <style lang="scss" scoped>
-@import url('https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap');
 .title {
   top: 20%;
   left: 50%;
@@ -58,6 +55,10 @@ export default {
 .background {
   position: absolute;
   width: 100%;
+  justify-content: center;
+  align-content: center;
+  top: 50%;
+  transform: translateY(-50%);
 }
 .add-btn {
   color: white;
@@ -75,7 +76,7 @@ export default {
 .intro {
   text-align:center;
   justify-content: center;
-  background:rgb(95,106,160,0.85);
+  background:rgb(95,106,160,0.80);
   padding: 50px 30px;
   position: fixed;
   top: 50%;

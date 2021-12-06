@@ -3,7 +3,7 @@
     <v-card class="icard">
       <v-row>
         <v-col cols="6" md="10" sm="8" class="text-title">
-          {{ data.position }}
+          {{ data.position }} - <p class="subtitle">{{data.company}}</p>
         </v-col>
         <v-col cols="6" md="2" sm="4">
           <div class="right-col">
@@ -18,22 +18,19 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols="6" sm="4" class="text-info">
-          {{ data.company }}
-        </v-col>
-        <v-col cols="6" sm="4" class="center-col text-info">
-          {{ formatWage(data.wage) }} / hr
-        </v-col>
-        <v-col cols="12" sm="4" class="right-col text-info">
+        <v-col cols="12" sm="6" class="text-info">
           {{ data.discipline }}
+        </v-col>
+        <v-col cols="12" sm="6" class="right-col text-info">
+          {{ data.city }}, {{ data.state }}
         </v-col>
       </v-row>
       <v-row class="row-details">
         <v-col cols="6" sm="4" class="text-info">
-          {{ data.city }}, {{ data.state }}
+          {{ data.duration }}
         </v-col>
         <v-col cols="6" sm="4" class="center-col text-info">
-          {{ data.duration }}
+          {{ formatWage(data.wage) }} / hr
         </v-col>
         <v-col
           cols="12"
@@ -104,14 +101,21 @@ export default {
   font-size: 1.25rem;
   font-weight: bold;
 }
+.subtitle {
+  display: inline-block;
+  font-size: 1.05rem;
+  font-weight: normal;
+  font-style: italic;
+}
 .text-info {
   font-size: 0.9rem;
   padding: 7px 12px !important;
 }
 .icard {
-  border: 1px solid #545454;
+  border: 1px solid #777777;
   padding: 20px;
   margin-bottom: 40px;
+  box-shadow: 0px 6px 6px -3px rgb(0 0 0 / 20%), 0px 10px 14px 1px rgb(0 0 0 / 14%), 0px 4px 18px 3px rgb(0 0 0 / 12%) !important;
 }
 .right-col {
   text-align: end;

@@ -1,6 +1,12 @@
 <template>
-  <v-container class="explore">
-    <h1 class="title">Explore!</h1>
+  <v-container>
+    <div>
+      <lottie
+        :options="defaultOptions"
+        class="explore"
+        @animCreated="handleAnimation"
+      />
+    </div>
     <v-row>
       <v-col cols="8" offset-sm="2">
         <div v-for="(filter,index) in filters" :key="index">
@@ -31,13 +37,21 @@
 import { mapGetters } from "vuex";
 import Postings from "../components/Postings.vue"
 import { EventBus } from "../event-bus";
+import animationData from "../assets/explore.json";
+import Lottie from "vue-lottie";
 export default {
   name: "Explore",
   data: () => ({
-    filters: []
+    filters: [],
+    defaultOptions: {
+      animationData: animationData,
+      loop: true,
+      autoplay: true
+    },
   }),
   components: {
-    Postings
+    Postings,
+    Lottie,
   },
   computed: {
     ...mapGetters(["getInternships"]),
@@ -65,11 +79,17 @@ export default {
         this.filters.splice(index,1)
         EventBus.$emit('removeFilter', filter)
       }
-    }
+    },
+    handleAnimation(anim) {
+      this.anim = anim;
+    },
   },
   mounted() {
     EventBus.$on("filter", (val) => {
       this.filters = [...val];
+    });
+    EventBus.$on("searched", (val) => {
+      this.filters.push(val);
     });
     EventBus.$on("clearFilter", () => {
       this.filters = [];
@@ -79,9 +99,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.title {
-  font-size: 2.5rem !important;
-  text-align: center;
-  margin-bottom: 45px;
+.explore {
+  margin: -130px auto !important;
+  width: 50% !important;
 }
 </style>
