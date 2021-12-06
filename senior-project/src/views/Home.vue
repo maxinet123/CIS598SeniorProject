@@ -12,11 +12,6 @@
               append-icon="mdi-magnify"
             ></v-text-field>
           </v-card-actions>
-          <v-card-actions class="center-btn">
-            <v-btn text small class="add-btn" @click="goExplore">
-              Just start exploring
-            </v-btn>
-          </v-card-actions>
         </v-card>
     </div>
 </template>
@@ -31,14 +26,12 @@ export default {
   components: {},
   computed: {},
   methods: {
-    goExplore() {
-      this.$router.push({ name: "Explore" });
-    },
     explore() {
       EventBus.$emit("hasFilters", true);
-      console.log('before emit', this.searched)
-      EventBus.$emit("searched", this.searched)
-      this.goExplore();
+      this.$router.push({
+        name: "Explore",
+        params: { searched: this.searched }
+      }).catch(() => {})
     },
   },
   mounted() {},

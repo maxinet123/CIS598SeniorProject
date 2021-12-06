@@ -113,6 +113,21 @@ export default {
         this.locations.splice(this.locations.indexOf((x) => x.locations === val),1)
       }
     });
+    console.log(this.$route.params)
+    if (this.$route.params.searched) {
+      if (this.majors.indexOf(x => x.majorName === this.$route.params.searched) < 0 ){
+        this.majors.push(this.$route.params.searched);
+      }
+      if (this.companies.indexOf(x => x.companyName === this.$route.params.searched) < 0 ){
+        this.companies.push(this.$route.params.searched);
+      }
+      if (this.disciplines.indexOf(x => x.disciplineName === this.$route.params.searched) < 0 ){
+        this.disciplines.push(this.$route.params.searched);
+      }
+      if (this.locations.indexOf(x => x === this.$route.params.searched) < 0 ){
+        this.locations.push(this.$route.params.searched);
+      }
+    }
   },
   computed: {
     ...mapGetters([

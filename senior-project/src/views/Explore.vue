@@ -8,12 +8,17 @@
       />
     </div>
     <v-row>
-      <v-col class="chip-wrapper" cols="8" offset-sm="2">
+      <v-col class="chip-wrapper" cols="8" offset-sm="2" v-if="filters.length > 0">
         <div v-for="(filter,index) in filters" :key="index">
         <v-chip class="ma-2" close @click:close="removeFilter(filter)">
           {{filter}}
         </v-chip>
         </div>
+      </v-col>
+      <v-col class="no-wrapper" cols="8" offset-sm="2" v-else>
+        <v-chip class="ma-2">
+          No filters applied
+        </v-chip>
       </v-col>
     </v-row>
     <div v-if="getInternships.length > 0">
@@ -72,7 +77,6 @@ export default {
       this.$router.push({ name: "Create" }).catch(() => {});
     },
     removeFilter(filter) {
-      console.log(filter)
       let index = this.filters.indexOf(filter)
       if (index !== -1) {
         this.filters.splice(index,1)
@@ -84,24 +88,26 @@ export default {
     },
   },
   mounted() {
+    var index = this.filters.indexOf(x => x === this.$route.params.searched)
+    if (index < 0 && this.$route.params.searched) {
+      this.filters.push(this.$route.params.searched);
+    }
     EventBus.$on("filter", (val) => {
       this.filters = [...val];
     });
-    EventBus.$on("searched", (val) => {
-      console.log('before push', val)
-      var index = this.filters.indexOf(x => x === val)
-      if (index < 0 ){
-        this.filters.push(val);
-      }
-      console.log('after push', this.filters)
-    });
     EventBus.$on("clearFilter", () => {
+      console.log('better not be here')
       this.filters = [];
     });
   },
   created (){    
     window.addEventListener('beforeunload', () => {
       this.filters = []
+      EventBus.$emit("clearFilters");
+      this.$router.push({
+        name: "Explore",
+        params: { searched: "" }
+      }).catch(() => {})
       return null
     })
   },
@@ -114,8 +120,8 @@ export default {
           EventBus.$emit("hasFilters", true)
         } else {
           EventBus.$emit("hasFilters", false)
+          EventBus.$emit("clearFilters");
         }
-
       }
     }
   }
@@ -128,6 +134,12 @@ export default {
   width: 50% !important;
 }
 .chip-wrapper {
+  display: flex;
+  margin: 10px auto;
+  padding: 12px 0px;
+}
+.no-wrapper {
+  justify-content: center;
   display: flex;
   margin: 10px auto;
   padding: 12px 0px;
