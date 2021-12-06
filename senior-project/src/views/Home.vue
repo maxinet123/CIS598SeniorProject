@@ -36,6 +36,7 @@ export default {
     },
     explore() {
       EventBus.$emit("hasFilters", true);
+      console.log('before emit', this.searched)
       EventBus.$emit("searched", this.searched)
       this.goExplore();
     },

@@ -8,9 +8,9 @@
       />
     </div>
     <v-row>
-      <v-col cols="8" offset-sm="2">
+      <v-col class="chip-wrapper" cols="8" offset-sm="2">
         <div v-for="(filter,index) in filters" :key="index">
-        <v-chip class="ma-2" close @click="removeFilter(filter)">
+        <v-chip class="ma-2" close @click:close="removeFilter(filter)">
           {{filter}}
         </v-chip>
         </div>
@@ -55,16 +55,14 @@ export default {
   },
   computed: {
     ...mapGetters(["getInternships"]),
-    filteredInternships() {
+    filteredInternships() { 
       if (this.filters.length > 0) {
-        console.log(this.filters)
         return this.getInternships.filter((obj) => {
           console.log(obj, this.filters.indexOf(obj.company) >= 0, this.filters.indexOf(obj.discipline) >= 0, this.filters.indexOf(obj.major) >= 0)
           return this.filters.indexOf(obj.company) >= 0 ||
           this.filters.indexOf(obj.discipline) >= 0 ||
           this.filters.indexOf(obj.major) >= 0
         }, [])
-
       }
       return this.getInternships
     },
@@ -74,6 +72,7 @@ export default {
       this.$router.push({ name: "Create" }).catch(() => {});
     },
     removeFilter(filter) {
+      console.log(filter)
       let index = this.filters.indexOf(filter)
       if (index !== -1) {
         this.filters.splice(index,1)
@@ -89,12 +88,37 @@ export default {
       this.filters = [...val];
     });
     EventBus.$on("searched", (val) => {
-      this.filters.push(val);
+      console.log('before push', val)
+      var index = this.filters.indexOf(x => x === val)
+      if (index < 0 ){
+        this.filters.push(val);
+      }
+      console.log('after push', this.filters)
     });
     EventBus.$on("clearFilter", () => {
       this.filters = [];
     });
   },
+  created (){    
+    window.addEventListener('beforeunload', () => {
+      this.filters = []
+      return null
+    })
+  },
+  watch: {
+    filters: {
+      immediate: true,
+      deep: true,
+      handler(val) {
+        if (val.length > 0) {
+          EventBus.$emit("hasFilters", true)
+        } else {
+          EventBus.$emit("hasFilters", false)
+        }
+
+      }
+    }
+  }
 };
 </script>
 
@@ -102,5 +126,10 @@ export default {
 .explore {
   margin: -130px auto !important;
   width: 50% !important;
+}
+.chip-wrapper {
+  display: flex;
+  margin: 10px auto;
+  padding: 12px 0px;
 }
 </style>

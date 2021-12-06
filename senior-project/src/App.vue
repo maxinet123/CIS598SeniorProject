@@ -112,9 +112,9 @@ export default {
       this.hasFilters = false;
     },
   },
-  // created() {
-  //   window.addEventListener("beforeunload", this.logout);
-  // },
+  created() {
+    window.addEventListener("beforeunload", this.logout);
+  },
 };
 </script>
 
