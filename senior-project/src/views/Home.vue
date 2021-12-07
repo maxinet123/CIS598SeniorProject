@@ -27,11 +27,13 @@ export default {
   computed: {},
   methods: {
     explore() {
-      EventBus.$emit("hasFilters", true);
-      this.$router.push({
-        name: "Explore",
-        params: { searched: this.searched }
-      }).catch(() => {})
+      if (this.searched) {
+        EventBus.$emit("hasFilters", true);
+        this.$router.push({
+          name: "Explore",
+          params: { searched: this.searched }
+        }).catch(() => {})
+      }
     },
   },
   mounted() {},

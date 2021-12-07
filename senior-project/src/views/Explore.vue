@@ -8,23 +8,32 @@
       />
     </div>
     <v-row>
-      <v-col class="chip-wrapper" cols="8" offset-sm="2" v-if="filters.length > 0">
+      <v-col class="chip-wrapper" cols="8" offset-sm="2" v-show="filters.length > 0">
         <div v-for="(filter,index) in filters" :key="index">
         <v-chip class="ma-2" close @click:close="removeFilter(filter)">
-          {{filter}}
+          {{titleCasing(filter)}}
         </v-chip>
         </div>
       </v-col>
-      <v-col class="no-wrapper" cols="8" offset-sm="2" v-else>
+      <v-col class="chip-wrapper" cols="8" offset-sm="2" v-show="!(filters.length > 0)">
         <v-chip class="ma-2">
           No filters applied
         </v-chip>
       </v-col>
     </v-row>
-    <div v-if="getInternships.length > 0">
+    <div v-if="filteredInternships.length > 0">
       <div v-for="item in filteredInternships" :key="item.id">
         <postings :item="item" />
       </div>
+    </div>
+    <div v-else-if="!(filteredInternships.length > 0) && hasFilters">
+      <v-row>
+        <v-col cols="12" sm="12" class="center">
+          <v-btn text x-large class="add-btn" @click="addPost">
+            No internships shared with the filter(s). Click here to be the first!
+          </v-btn>
+        </v-col>
+      </v-row>
     </div>
     <div v-else>
       <v-row>
@@ -63,10 +72,9 @@ export default {
     filteredInternships() { 
       if (this.filters.length > 0) {
         return this.getInternships.filter((obj) => {
-          console.log(obj, this.filters.indexOf(obj.company) >= 0, this.filters.indexOf(obj.discipline) >= 0, this.filters.indexOf(obj.major) >= 0)
-          return this.filters.indexOf(obj.company) >= 0 ||
-          this.filters.indexOf(obj.discipline) >= 0 ||
-          this.filters.indexOf(obj.major) >= 0
+          return this.filters.indexOf(obj.company.toLowerCase()) >= 0 ||
+          this.filters.indexOf(obj.discipline.toLowerCase()) >= 0 ||
+          this.filters.indexOf(obj.major.toLowerCase()) >= 0
         }, [])
       }
       return this.getInternships
@@ -86,17 +94,23 @@ export default {
     handleAnimation(anim) {
       this.anim = anim;
     },
+    titleCasing(str) {
+      str = str.toLowerCase().split(' ');
+      for (var i = 0; i < str.length; i++) {
+        str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1); 
+      }
+      return str.join(' ');
+    }
   },
   mounted() {
     var index = this.filters.indexOf(x => x === this.$route.params.searched)
     if (index < 0 && this.$route.params.searched) {
-      this.filters.push(this.$route.params.searched);
+      this.filters.push(this.$route.params.searched.toLowerCase());
     }
     EventBus.$on("filter", (val) => {
       this.filters = [...val];
     });
-    EventBus.$on("clearFilter", () => {
-      console.log('better not be here')
+    EventBus.$on("clearFilters", () => {
       this.filters = [];
     });
   },
@@ -104,7 +118,7 @@ export default {
     window.addEventListener('beforeunload', () => {
       this.filters = []
       EventBus.$emit("clearFilters");
-      this.$router.push({
+      this.$router.replace({
         name: "Explore",
         params: { searched: "" }
       }).catch(() => {})
@@ -132,13 +146,14 @@ export default {
 .explore {
   margin: -130px auto !important;
   width: 50% !important;
+  @media all and (min-width: 770px) {
+    margin: -160px auto !important;
+  }
+  @media all and (min-width: 1264px) {
+    margin: -220px auto !important;
+  }
 }
 .chip-wrapper {
-  display: flex;
-  margin: 10px auto;
-  padding: 12px 0px;
-}
-.no-wrapper {
   justify-content: center;
   display: flex;
   margin: 10px auto;

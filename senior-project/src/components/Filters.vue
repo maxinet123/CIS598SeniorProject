@@ -175,7 +175,10 @@ export default {
       this.$emit("close", false);
     },
     clear() {
-      EventBus.$emit("hasFilters", false);
+      this.$router.replace({
+        name: "Explore",
+        params: { searched: "" }
+      }).catch(() => {})
       this.majors = [];
       this.companies = [];
       this.disciplines = [];
