@@ -99,21 +99,24 @@ export default {
     EventBus.$on("clearFilters", () => {
       this.clear();
     });
-    EventBus.$on("removeFilter", (val) => {
-      if (this.majors.indexOf((x) => x.majorName === val) !== 0) {
+    EventBus.$on("remove", (val) => {
+      if (this.majors.indexOf((x) => x.majorName === val) >= 0) {
         this.majors.splice(this.majors.indexOf((x) => x.majorName === val),1)
+        console.log("1", this.majors)
       }
-      else if (this.companies.indexOf((x) => x.companyName === val) !== 0) {
+      else if (this.companies.indexOf((x) => x.companyName === val) >= 0) {
         this.companies.splice(this.companies.indexOf((x) => x.companyName === val),1)
+        console.log("2", this.companies)
       }
-      else if (this.disciplines.indexOf((x) => x.disciplineName === val) !== 0) {
+      else if (this.disciplines.indexOf((x) => x.disciplineName === val) >= 0) {
         this.disciplines.splice(this.disciplines.indexOf((x) => x.disciplineName === val),1)
+        console.log("3", this.disciplines)
       }
-      else if (this.locations.indexOf((x) => x.locations === val) !== 0) {
+      else if (this.locations.indexOf((x) => x.locations === val) >= 0) {
         this.locations.splice(this.locations.indexOf((x) => x.locations === val),1)
+        console.log("4", this.locations)
       }
     });
-    console.log(this.$route.params)
     if (this.$route.params.searched) {
       if (this.majors.indexOf(x => x.majorName === this.$route.params.searched) < 0 ){
         this.majors.push(this.$route.params.searched);
@@ -175,14 +178,11 @@ export default {
       this.$emit("close", false);
     },
     clear() {
-      this.$router.replace({
-        name: "Explore",
-        params: { searched: "" }
-      }).catch(() => {})
-      this.majors = [];
-      this.companies = [];
-      this.disciplines = [];
-      this.locations = [];
+      this.majors.splice(0);
+      this.companies.splice(0);
+      this.disciplines.splice(0);
+      this.locations.splice(0);
+      EventBus.$emit("filter", []);
     },
   },
 };

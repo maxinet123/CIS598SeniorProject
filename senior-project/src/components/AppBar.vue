@@ -7,42 +7,14 @@
         Create
       </v-btn>
       <v-spacer></v-spacer>
-      <v-menu left bottom class="menu">
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn
-            v-bind="attrs"
-            v-on="on"
-            small
-            fab
-            outlined
-            v-show="!$auth.loading"
-          >
-            <v-icon>mdi-account</v-icon>
-          </v-btn>
-        </template>
-        <v-list>
-          <v-list-item
-            link
-            @click="login"
-            v-show="!$auth.loading && !$auth.isAuthenticated"
-          >
-            <v-list-item-title>Login</v-list-item-title>
-          </v-list-item>
-          <v-list-item
-            link
-            @click="profile"
-            v-show="!$auth.loading && $auth.isAuthenticated"
-          >
-            <v-list-item-title>Profile</v-list-item-title>
-          </v-list-item>
-          <v-list-item
-            @click="logout"
-            v-show="!$auth.loading && $auth.isAuthenticated"
-          >
-            <v-list-item-title>Logout</v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-menu>
+      <v-btn v-show="!$auth.loading && !$auth.isAuthenticated"
+        text @click="login">
+        Login
+      </v-btn>
+      <v-btn v-show="!$auth.loading && $auth.isAuthenticated"
+        text @click="logout">
+        Logout
+      </v-btn>
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" absolute temporary>
       <v-list nav dense>

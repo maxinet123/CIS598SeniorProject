@@ -10,7 +10,7 @@
     <v-row>
       <v-col class="chip-wrapper" cols="8" offset-sm="2" v-show="filters.length > 0">
         <div v-for="(filter,index) in filters" :key="index">
-        <v-chip class="ma-2" close @click:close="removeFilter(filter)">
+        <v-chip class="ma-2">
           {{titleCasing(filter)}}
         </v-chip>
         </div>
@@ -84,13 +84,6 @@ export default {
     addPost() {
       this.$router.push({ name: "Create" }).catch(() => {});
     },
-    removeFilter(filter) {
-      let index = this.filters.indexOf(filter)
-      if (index !== -1) {
-        this.filters.splice(index,1)
-        EventBus.$emit('removeFilter', filter)
-      }
-    },
     handleAnimation(anim) {
       this.anim = anim;
     },
@@ -110,18 +103,12 @@ export default {
     EventBus.$on("filter", (val) => {
       this.filters = [...val];
     });
-    EventBus.$on("clearFilters", () => {
-      this.filters = [];
+    EventBus.$on("clearFilterChips", () => {
+      this.filters.splice(0);
     });
   },
   created (){    
     window.addEventListener('beforeunload', () => {
-      this.filters = []
-      EventBus.$emit("clearFilters");
-      this.$router.replace({
-        name: "Explore",
-        params: { searched: "" }
-      }).catch(() => {})
       return null
     })
   },
@@ -134,7 +121,6 @@ export default {
           EventBus.$emit("hasFilters", true)
         } else {
           EventBus.$emit("hasFilters", false)
-          EventBus.$emit("clearFilters");
         }
       }
     }

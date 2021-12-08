@@ -23,7 +23,7 @@
             fixed
             class="clear-btn"
             fab dark
-            @click="clearFilters"
+            @click="clear"
           >
             <v-icon>mdi-close</v-icon>
           </v-btn>
@@ -107,8 +107,9 @@ export default {
     close(val) {
       this.showFilters = val;
     },
-    clearFilters() {
+    clear() {
       EventBus.$emit("clearFilters");
+      EventBus.$emit("clearFilterChips");
       this.hasFilters = false;
     },
   },
