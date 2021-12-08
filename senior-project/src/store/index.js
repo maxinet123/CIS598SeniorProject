@@ -17,16 +17,7 @@ export default new Vuex.Store({
   },
   getters: {
     getUser: (state) => state.user,
-    getInternships: (state) =>
-      state.internships.sort((a, b) => {
-        if (a.votes < b.votes) {
-          return -1;
-        }
-        if (a.votes > b.votes) {
-          return 1;
-        }
-        return 0;
-      }),
+    getInternships: (state) => state.internships,
     getCompanies: (state) => state.companies,
     getDisciplines: (state) => state.disciplines,
     getLocations: (state) =>
@@ -168,46 +159,46 @@ export default new Vuex.Store({
           });
       });
     },
-    upVote: ({ dispatch }, { id, total }) => {
-      return new Promise((resolve, reject) => {
-        axios
-          .post(`${APP_URL}/Internship/UpVote`, {
-            id,
-            total,
-          })
-          .then(() => {
-            dispatch("fetchInternships");
-            resolve();
-          })
-          .catch((error) => {
-            console.log(error);
-            reject();
-          });
-      });
-    },
-    downVote: ({ dispatch }, { id, total }) => {
-      return new Promise((resolve, reject) => {
-        axios
-          .post(
-            `${APP_URL}/Internship/DownVote`,
-            {},
-            {
-              headers: {
-                id,
-                total,
-              },
-            }
-          )
-          .then(() => {
-            dispatch("fetchInternships");
-            resolve();
-          })
-          .catch((error) => {
-            console.log(error);
-            reject();
-          });
-      });
-    },
+    // upVote: ({ dispatch }, { id, total }) => {
+    //   return new Promise((resolve, reject) => {
+    //     axios
+    //       .post(`${APP_URL}/Internship/UpVote`, {
+    //         id,
+    //         total,
+    //       })
+    //       .then(() => {
+    //         dispatch("fetchInternships");
+    //         resolve();
+    //       })
+    //       .catch((error) => {
+    //         console.log(error);
+    //         reject();
+    //       });
+    //   });
+    // },
+    // downVote: ({ dispatch }, { id, total }) => {
+    //   return new Promise((resolve, reject) => {
+    //     axios
+    //       .post(
+    //         `${APP_URL}/Internship/DownVote`,
+    //         {},
+    //         {
+    //           headers: {
+    //             id,
+    //             total,
+    //           },
+    //         }
+    //       )
+    //       .then(() => {
+    //         dispatch("fetchInternships");
+    //         resolve();
+    //       })
+    //       .catch((error) => {
+    //         console.log(error);
+    //         reject();
+    //       });
+    //   });
+    // },
     addUser: ({ commit }, { user }) => {
       return new Promise((resolve, reject) => {
         axios

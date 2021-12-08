@@ -73,7 +73,7 @@ export default {
   text-align:center;
   justify-content: center;
   background:rgb(95,106,160,0.80);
-  padding: 50px 30px;
+  padding: 68px 30px;
   position: fixed;
   top: 50%;
   left: 50%;

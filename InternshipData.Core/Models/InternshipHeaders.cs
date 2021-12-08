@@ -13,7 +13,7 @@ namespace InternshipData.Core.Models
         public Location Location { get; set; }
         public Major Major { get; set; }
         public Rating Rating { get; set; }
-        public Vote Vote { get; set; }
+        //public Vote Vote { get; set; }
         public User User { get; set; }
     }
 }

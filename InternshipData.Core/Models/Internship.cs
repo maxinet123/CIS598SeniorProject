@@ -23,8 +23,8 @@ namespace InternshipData.Core.Models
         public bool HasHousing { get; set; }
         [BsonElement("wage")]
         public double Wage { get; set; }
-        [BsonElement("votes")]
-        public int Votes { get; set; }
+        //[BsonElement("votes")]
+        //public int Votes { get; set; }
         [BsonElement("duration")]
         public string Duration { get; set; }
         [BsonElement("ratingId")]
@@ -35,8 +35,8 @@ namespace InternshipData.Core.Models
         public string DisciplineId { get; set; }
         [BsonElement("companyId")]
         public string CompanyId { get; set; }
-        [BsonElement("voteId")]
-        public string VoteId { get; set; }
+        //[BsonElement("voteId")]
+        //public string VoteId { get; set; }
         [BsonElement("majorId")]
         public string MajorId { get; set; }
         [BsonElement("userId")]

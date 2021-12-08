@@ -17,7 +17,7 @@ namespace InternshipData.Core
         private readonly IMongoCollection<Location> _locations;
         private readonly IMongoCollection<Major> _majors;
         private readonly IMongoCollection<Rating> _ratings;
-        private readonly IMongoCollection<Vote> _votes;
+        //private readonly IMongoCollection<Vote> _votes;
         private readonly IMongoCollection<User> _users;
 
         public InternshipServices(IDbClient dbClient)
@@ -28,7 +28,7 @@ namespace InternshipData.Core
             _locations = dbClient.GetLocationCollection();
             _majors = dbClient.GetMajorCollection();
             _ratings = dbClient.GetRatingCollection();
-            _votes = dbClient.GetVoteCollection();
+            //_votes = dbClient.GetVoteCollection();
             _users = dbClient.GetUserCollection();
         }
 
@@ -48,7 +48,7 @@ namespace InternshipData.Core
                 var loc = await GetLocationById(item.LocationId);
                 var rate = await GetRatingById(item.RatingId);
                 var maj = await GetMajorById(item.MajorId);
-                var vo = await GetVoteById(item.VoteId);
+                //var vo = await GetVoteById(item.VoteId);
 
                 data.Add(new Data
                     {
@@ -58,7 +58,7 @@ namespace InternshipData.Core
                         IsRemote = item.IsRemote,
                         HasHousing = item.HasHousing,
                         Wage = item.Wage,
-                        Votes = vo.Total,
+                        //Votes = vo.Total,
                         Duration = item.Duration,
                         Stars = rate.Stars,
                         Number = rate.Number,
@@ -200,26 +200,26 @@ namespace InternshipData.Core
         /// </summary>
         /// <param name="id">id to lookup</param>
         /// <returns> containing the object</returns>
-        public async Task<Vote> GetVoteById(string id)
-        {
-            var filter = Builders<Vote>.Filter.Eq("_id", ObjectId.Parse(id));
-            var vote = await _votes.Find(filter).FirstAsync();
-            return vote;
-        }
+        //public async Task<Vote> GetVoteById(string id)
+        //{
+        //    var filter = Builders<Vote>.Filter.Eq("_id", ObjectId.Parse(id));
+        //    var vote = await _votes.Find(filter).FirstAsync();
+        //    return vote;
+        //}
 
         /// <summary>
         /// Adds internship and all corresponding data
         /// </summary>
         /// <param name="data">Data object containing internship info</param>
         /// <returns> containing the object</returns>
-        public async Task AddInternship(Internship internship, Company company, Location location, Major major, Discipline discipline, Rating rating, Vote vote, User user)
+        public async Task AddInternship(Internship internship, Company company, Location location, Major major, Discipline discipline, Rating rating, User user)//, Vote vote)
         {
             var result = await AddUser(user);
             internship.CompanyId = await AddCompany(company);
             internship.DisciplineId = await AddDiscipline(discipline);
             internship.LocationId = await AddLocation(location);
             internship.RatingId = await AddRating(rating);
-            internship.VoteId = await AddVote(vote);
+            //internship.VoteId = await AddVote(vote);
             internship.MajorId = await AddMajor(major);
             internship.UserId = result.Id;
 
@@ -290,12 +290,12 @@ namespace InternshipData.Core
         /// </summary>
         /// <param name="vote">Vote object</param>
         /// <returns> containing the object</returns>
-        public async Task<string> AddVote(Vote vote)
-        {
-            await _votes.InsertOneAsync(vote);
+        //public async Task<string> AddVote(Vote vote)
+        //{
+        //    await _votes.InsertOneAsync(vote);
 
-            return vote.Id;
-        }
+        //    return vote.Id;
+        //}
 
         /// <summary>
         /// Retrieves Major from database, if it doesn't exist it is inserted
@@ -354,12 +354,12 @@ namespace InternshipData.Core
         /// <param name="id">id of vote object</param>
         /// <param name="total">current total</param>
         /// <returns></returns>
-        public async Task UpdateVote(string id, int newTotal)
-        {
-            var filter = Builders<Vote>.Filter.Eq(v => v.Id, id);
-            var update = Builders<Vote>.Update.Set(v => v.Total, newTotal);
-            await _votes.UpdateOneAsync(filter, update);
-        }
+        //public async Task UpdateVote(string id, int newTotal)
+        //{
+        //    var filter = Builders<Vote>.Filter.Eq(v => v.Id, id);
+        //    var update = Builders<Vote>.Update.Set(v => v.Total, newTotal);
+        //    await _votes.UpdateOneAsync(filter, update);
+        //}
 
         /// <summary>
         /// Retrieves Internship Object by Id from database

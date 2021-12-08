@@ -20,17 +20,17 @@ namespace InternshipData.Core
         Task<Rating> GetRatingById(string id);
         Task<List<Major>> GetMajors();
         Task<Major> GetMajorById(string id);
-        Task<Vote> GetVoteById(string id);
+        //Task<Vote> GetVoteById(string id);
         Task<User> GetUserById(string id);
-        Task AddInternship(Internship internship, Company company, Location location, Major major, Discipline discipline, Rating rating, Vote vote, User user);
+        Task AddInternship(Internship internship, Company company, Location location, Major major, Discipline discipline, Rating rating, User user); //, Vote vote);
         Task<string> AddCompany(Company company);
         Task<string> AddDiscipline(Discipline discipline);
         Task<string> AddLocation(Location location);
         Task<string> AddMajor(Major major);
-        Task<string> AddVote(Vote vote);
+        //Task<string> AddVote(Vote vote);
         Task<string> AddRating(Rating rating);
         Task<User> AddUser(User user);
-        Task UpdateVote(string id, int newTotal);
+        //Task UpdateVote(string id, int newTotal);
         Task<Internship> GetInternshipById(string id);
 
 

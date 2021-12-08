@@ -16,7 +16,7 @@ namespace InternshipData.Core
         private readonly IMongoCollection<Location> _locations;
         private readonly IMongoCollection<Major> _majors;
         private readonly IMongoCollection<Rating> _ratings;
-        private readonly IMongoCollection<Vote> _votes;
+        //private readonly IMongoCollection<Vote> _votes;
         private readonly IMongoCollection<User> _users;
 
         public DbClient(IOptions<InternshipDbConfig> internshipDbConfig)
@@ -29,7 +29,7 @@ namespace InternshipData.Core
             _locations = database.GetCollection<Location>(internshipDbConfig.Value.Location_Collection_Name);
             _majors = database.GetCollection<Major>(internshipDbConfig.Value.Major_Collection_Name);
             _ratings = database.GetCollection<Rating>(internshipDbConfig.Value.Rating_Collection_Name);
-            _votes = database.GetCollection<Vote>(internshipDbConfig.Value.Vote_Collection_Name);
+            //_votes = database.GetCollection<Vote>(internshipDbConfig.Value.Vote_Collection_Name);
             _users = database.GetCollection<User>(internshipDbConfig.Value.User_Collection_Name);
         }
 
@@ -39,7 +39,7 @@ namespace InternshipData.Core
         public IMongoCollection<Location> GetLocationCollection() => _locations;
         public IMongoCollection<Major> GetMajorCollection() => _majors;
         public IMongoCollection<Rating> GetRatingCollection() => _ratings;
-        public IMongoCollection<Vote> GetVoteCollection() => _votes;
+        //public IMongoCollection<Vote> GetVoteCollection() => _votes;
         public IMongoCollection<User> GetUserCollection() => _users;
     }
 }

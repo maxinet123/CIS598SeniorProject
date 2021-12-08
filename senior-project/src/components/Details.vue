@@ -210,7 +210,7 @@ export default {
       hasHousing: false,
       isRemote: false,
       description: "",
-      vote: "",
+      //vote: "",
       number: 0,
     },
     currentRating: "No Rating",

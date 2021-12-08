@@ -51,9 +51,9 @@ export default {
         stars: "0 stars",
         number: 0,
       },
-      vote: {
-        total: 0,
-      },
+      // vote: {
+      //   total: 0,
+      // },
       user: {
         userName: "",
         email: "",
@@ -103,9 +103,9 @@ export default {
               val.number === 1 ? val.number + " star" : val.number + " stars",
             number: val.number,
           },
-          vote: {
-            total: 0,
-          },
+          // vote: {
+          //   total: 0,
+          // },
         };
       }
     },

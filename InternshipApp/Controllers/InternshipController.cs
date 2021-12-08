@@ -59,26 +59,26 @@ namespace InternshipApp.Controllers
         [HttpPost("AddInternship")]
         public IActionResult AddInternship([FromBody] InternshipHeaders internshipHeaders)
         {
-            _internshipService.AddInternship(internshipHeaders.Internship, internshipHeaders.Company, 
-                internshipHeaders.Location, internshipHeaders.Major, internshipHeaders.Discipline, 
-                internshipHeaders.Rating, internshipHeaders.Vote, internshipHeaders.User);
+            _internshipService.AddInternship(internshipHeaders.Internship, internshipHeaders.Company,
+                internshipHeaders.Location, internshipHeaders.Major, internshipHeaders.Discipline,
+                internshipHeaders.Rating, internshipHeaders.User); //, internshipHeaders.Vote);
             return Ok();
         }
 
 
-        [HttpPost("UpVote")]
-        public IActionResult UpVote([FromBody] Vote vote)
-        {
-            _internshipService.UpdateVote(vote.Id, ++vote.Total);
-            return Ok();
-        }
+        //[HttpPost("UpVote")]
+        //public IActionResult UpVote([FromBody] Vote vote)
+        //{
+        //    _internshipService.UpdateVote(vote.Id, ++vote.Total);
+        //    return Ok();
+        //}
 
-        [HttpPost("DownVote")]
-        public IActionResult DownVote([FromBody] Vote vote)
-        {
-            _internshipService.UpdateVote(vote.Id, ++vote.Total);
-            return Ok();
-        }
+        //[HttpPost("DownVote")]
+        //public IActionResult DownVote([FromBody] Vote vote)
+        //{
+        //    _internshipService.UpdateVote(vote.Id, ++vote.Total);
+        //    return Ok();
+        //}
 
         [HttpPost("AddUser")]
         public Task<User> AddUser( [FromBody] User user)

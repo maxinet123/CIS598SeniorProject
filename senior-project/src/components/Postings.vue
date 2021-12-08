@@ -1,9 +1,9 @@
 <template>
   <v-row >
-    <v-col cols="10" sm="8" offset-sm="2" class="remove-padding">
+    <v-col cols="10" offset-sm="2" class="remove-padding">
       <internship-card :data="item" />
     </v-col>
-    <v-col cols="2" sm="2" class="vote-wrapper remove-padding">
+    <!-- <v-col cols="2" sm="2" class="vote-wrapper remove-padding">
       <div class="wrapper">
         <v-tooltip right>
           <template v-slot:activator="{ on, attrs }">
@@ -36,7 +36,7 @@
           <span>Unhelpful</span>
         </v-tooltip>
       </div>
-    </v-col>
+    </v-col> -->
   </v-row>
 </template>
 

@@ -16,7 +16,7 @@ namespace InternshipData.Core.Models
         public bool IsRemote { get; set; }
         public bool HasHousing { get; set; }
         public double Wage { get; set; }
-        public int Votes { get; set; }
+        //public int Votes { get; set; }
         public string Duration { get; set; }
         public string Stars { get; set; }
         public int Number { get; set; }
