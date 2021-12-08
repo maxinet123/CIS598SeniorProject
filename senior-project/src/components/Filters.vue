@@ -102,19 +102,15 @@ export default {
     EventBus.$on("remove", (val) => {
       if (this.majors.indexOf((x) => x.majorName === val) >= 0) {
         this.majors.splice(this.majors.indexOf((x) => x.majorName === val),1)
-        console.log("1", this.majors)
       }
       else if (this.companies.indexOf((x) => x.companyName === val) >= 0) {
         this.companies.splice(this.companies.indexOf((x) => x.companyName === val),1)
-        console.log("2", this.companies)
       }
       else if (this.disciplines.indexOf((x) => x.disciplineName === val) >= 0) {
         this.disciplines.splice(this.disciplines.indexOf((x) => x.disciplineName === val),1)
-        console.log("3", this.disciplines)
       }
       else if (this.locations.indexOf((x) => x.locations === val) >= 0) {
-        this.locations.splice(this.locations.indexOf((x) => x.locations === val),1)
-        console.log("4", this.locations)
+        this.locations.splice(this.locations.indexOf((x) => x.fullLocation === val),1)
       }
     });
     if (this.$route.params.searched) {
@@ -165,7 +161,7 @@ export default {
         this.disciplines.forEach((x) => arr.push(x.disciplineName))
       }
       if (this.locations.length > 0) {
-        this.locations.forEach((x) => arr.push(x))
+        this.locations.forEach((x) => arr.push(x.fullLocation))
       }
       let removeDupes = arr.filter((item, pos) => {
         return arr.indexOf(item) == pos;

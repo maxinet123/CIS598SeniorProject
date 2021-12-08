@@ -23,6 +23,7 @@ namespace InternshipData.Core.Models
         public string City { get; set; }
         public string State { get; set; }
         public string ZipCode { get; set; }
+        public string FullLocation { get; set; }
         public string Discipline { get; set; }
         public string Company { get; set; }
         public string Major { get; set; }

@@ -98,7 +98,7 @@ export default {
   mounted() {
     var index = this.filters.indexOf(x => x === this.$route.params.searched)
     if (index < 0 && this.$route.params.searched) {
-      this.filters.push(this.$route.params.searched.toLowerCase());
+      this.filters.push(this.$route.params.searched);
     }
     EventBus.$on("filter", (val) => {
       this.filters = [...val];

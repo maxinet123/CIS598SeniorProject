@@ -65,6 +65,7 @@ namespace InternshipData.Core
                         City = loc.City,
                         State = loc.State,
                         ZipCode = loc.ZipCode,
+                        FullLocation = loc.FullLocation,
                         Discipline = disc.DisciplineName,
                         Company = comp.CompanyName,
                         Major = maj.MajorName
@@ -271,8 +272,7 @@ namespace InternshipData.Core
         /// <returns> containing the object</returns>
         public async Task<string> AddLocation(Location location)
         {
-            var filter = Builders<Location>.Filter.Eq("City", location.City)
-                    & Builders<Location>.Filter.Eq("State", location.State)
+            var filter = Builders<Location>.Filter.Eq("FullLocation", location.FullLocation)
                     & Builders<Location>.Filter.Eq("ZipCode", location.ZipCode);
             bool exists = await _locations.Find(filter).AnyAsync();
             if (!exists)

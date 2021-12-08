@@ -18,5 +18,7 @@ namespace InternshipData.Core.Models
         public string State { get; set; }
         [BsonElement("zipCode")]
         public string ZipCode { get; set; }
+        [BsonElement("fullLocation")]
+        public string FullLocation { get; set; }
     }
 }

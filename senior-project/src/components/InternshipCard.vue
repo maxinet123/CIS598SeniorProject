@@ -103,7 +103,7 @@ export default {
 }
 .subtitle {
   display: inline-block;
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: normal;
   font-style: italic;
 }

@@ -94,6 +94,7 @@ export default {
             city: val.city,
             state: val.state,
             zipCode: val.zipCode,
+            fullLocation: `${val.city}, ${val.state}`,
           },
           major: {
             majorName: val.major,
