@@ -26,10 +26,10 @@
         <postings :item="item" />
       </div>
     </div>
-    <div v-else-if="!(filteredInternships.length > 0) && hasFilters">
+    <div v-else-if="!(filteredInternships.length > 0) && filters.length > 0">
       <v-row>
         <v-col cols="12" sm="12" class="center">
-          <v-btn text x-large class="add-btn" @click="addPost">
+          <v-btn text large class="add-btn" @click="addPost">
             No internships shared with the filter(s). Click here to be the first!
           </v-btn>
         </v-col>
@@ -158,5 +158,9 @@ export default {
   display: flex;
   margin: 10px auto;
   padding: 12px 0px;
+}
+.center {
+  display: flex;
+  justify-content: center;
 }
 </style>
