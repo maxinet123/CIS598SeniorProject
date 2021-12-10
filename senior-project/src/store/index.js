@@ -9,6 +9,7 @@ export default new Vuex.Store({
   state: {
     user: {},
     internships: [],
+    internshipsByUserId: [],
     companies: [],
     disciplines: [],
     locations: [],
@@ -18,6 +19,7 @@ export default new Vuex.Store({
   getters: {
     getUser: (state) => state.user,
     getInternships: (state) => state.internships,
+    getInternshipsByUserId: (state) => state.internshipsByUserId,
     getCompanies: (state) => state.companies,
     getDisciplines: (state) => state.disciplines,
     getLocations: (state) =>
@@ -59,6 +61,9 @@ export default new Vuex.Store({
     setMajors: (state, data) => {
       state.majors = data;
     },
+    setInternshipsByUserId: (state, data) => {
+      state.internshipsByUserId = data;
+    },
   },
   actions: {
     fetchInternships: ({ commit }) => {
@@ -70,8 +75,20 @@ export default new Vuex.Store({
             resolve();
           })
           .catch((error) => {
-            console.log(error);
-            reject();
+            reject(error);
+          });
+      });
+    },
+    fetchInternshipsByUser: ({ commit }, {id}) => {
+      return new Promise((resolve, reject) => {
+        axios
+          .get(`${APP_URL}/Internship/GetInternshipsByUserId`, {id})
+          .then((response) => {
+            commit("setInternshipsByUserId", response.data.$values);
+            resolve();
+          })
+          .catch((error) => {
+            reject(error);
           });
       });
     },
@@ -84,8 +101,7 @@ export default new Vuex.Store({
             resolve();
           })
           .catch((error) => {
-            console.log(error);
-            reject();
+            reject(error);
           });
       });
     },
@@ -98,8 +114,7 @@ export default new Vuex.Store({
             resolve();
           })
           .catch((error) => {
-            console.log(error);
-            reject();
+            reject(error);
           });
       });
     },
@@ -112,8 +127,7 @@ export default new Vuex.Store({
             resolve();
           })
           .catch((error) => {
-            console.log(error);
-            reject();
+            reject(error);
           });
       });
     },
@@ -126,8 +140,7 @@ export default new Vuex.Store({
             resolve();
           })
           .catch((error) => {
-            console.log(error);
-            reject();
+            reject(error);
           });
       });
     },
@@ -140,8 +153,7 @@ export default new Vuex.Store({
             resolve();
           })
           .catch((error) => {
-            console.log(error);
-            reject();
+            reject(error);
           });
       });
     },
@@ -154,7 +166,21 @@ export default new Vuex.Store({
             resolve();
           })
           .catch((error) => {
-            console.log(error);
+            reject(error);
+          });
+      });
+    },
+    addUser: ({ commit }, { user }) => {
+      return new Promise((resolve, reject) => {
+        axios
+          .post(`${APP_URL}/Internship/AddUser`, user)
+          .then((response) => {
+            console.log('getuser', response)
+            commit("setUser", response.data);
+            //commit("setUser", response.data.$values);
+            resolve();
+          })
+          .catch(() => {
             reject();
           });
       });
@@ -199,19 +225,6 @@ export default new Vuex.Store({
     //       });
     //   });
     // },
-    addUser: ({ commit }, { user }) => {
-      return new Promise((resolve, reject) => {
-        axios
-          .post(`${APP_URL}/Internship/AddUser`, user)
-          .then((response) => {
-            commit("setUser", response.data);
-            resolve();
-          })
-          .catch(() => {
-            reject();
-          });
-      });
-    },
   },
   modules: {},
 });

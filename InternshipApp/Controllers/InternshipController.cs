@@ -26,6 +26,12 @@ namespace InternshipApp.Controllers
             return _internshipService.GetInternships();
         }
 
+        [HttpGet("GetInternshipsByUserId")]
+        public Task<List<Data>> GetInternshipsByUserId([FromBody] string id)
+        {
+            return _internshipService.GetInternshipsByUserId(id);
+        }
+
         [HttpGet("GetCompanies")]
         public Task<List<Company>> GetCompanies()
         {

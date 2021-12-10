@@ -74,6 +74,49 @@ namespace InternshipData.Core
             }
             return data;
         }
+        /// <summary>
+        /// Retrieves List of Data corresponding to the internships from the database
+        /// </summary>
+        /// <returns> containing the list of object</returns>
+        public async Task<List<Data>> GetInternshipsByUserId(string id)
+        {
+            List<Data> data = new List<Data>();
+
+            var filter = Builders<Internship>.Filter.Eq("_id", ObjectId.Parse(id));
+            var list = await _internships.Find(filter).ToListAsync();
+            foreach (var item in list)
+            {
+                var comp = await GetCompanyById(item.CompanyId);
+                var disc = await GetDisciplineById(item.DisciplineId);
+                var loc = await GetLocationById(item.LocationId);
+                var rate = await GetRatingById(item.RatingId);
+                var maj = await GetMajorById(item.MajorId);
+                //var vo = await GetVoteById(item.VoteId);
+
+                data.Add(new Data
+                {
+                    InternshipId = item.Id,
+                    Position = item.Position,
+                    Description = item.Description,
+                    IsRemote = item.IsRemote,
+                    HasHousing = item.HasHousing,
+                    Wage = item.Wage,
+                    //Votes = vo.Total,
+                    Duration = item.Duration,
+                    Stars = rate.Stars,
+                    Number = rate.Number,
+                    City = loc.City,
+                    State = loc.State,
+                    ZipCode = loc.ZipCode,
+                    FullLocation = loc.FullLocation,
+                    Discipline = disc.DisciplineName,
+                    Company = comp.CompanyName,
+                    Major = maj.MajorName
+                }
+                );
+            }
+            return data;
+        }
 
         /// <summary>
         /// Retrieves List of Companies from the database
