@@ -86,6 +86,12 @@ export default {
     },
     handleAnimation(anim) {
       this.anim = anim;
+      this.anim.addEventListener('complete', () => {
+        setTimeout(() => {
+          this.anim.goToAndPlay(0);
+        }, 5000
+      );
+      })
     },
     titleCasing(str) {
       str = str.toLowerCase().split(' ');
