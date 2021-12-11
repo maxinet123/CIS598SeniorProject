@@ -69,7 +69,7 @@ export default {
     ...mapGetters(["getUser"]),
   },
   methods: {
-    ...mapActions(["addInternship", "addUser"]),
+    ...mapActions(["addInternship"]),
     setV(val) {
       this.v = val;
     },
@@ -114,17 +114,12 @@ export default {
       this.loading = true;
       this.v.$touch();
       if (!this.v.$invalid) {
-        this.addUser({ user: this.$auth.user })
-          .then(() => {
-            this.data.user = { ...this.getUser };
-          })
-          .finally(() => {
-            this.addInternship({ internshipHeaders: this.data }).finally(() => {
-              //add modal?
-              this.loading = false;
-              this.$router.push({ name: "Explore" });
-            });
-          });
+        this.data.user = { ...this.getUser }
+        this.addInternship({ internshipHeaders: this.data }).finally(() => {
+          //add modal?
+          this.loading = false;
+          this.$router.push({ name: "Explore" });
+        });
       }
     },
   },

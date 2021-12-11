@@ -17,7 +17,6 @@
         chips
         multiple
         outlined
-        item-text="companyName"
         hide-details
         filled
       >
@@ -34,7 +33,6 @@
         chips
         multiple
         outlined
-        item-text="disciplineName"
         hide-details
         filled
       >
@@ -51,7 +49,6 @@
         chips
         multiple
         outlined
-        item-text="majorName"
         hide-details
         filled
       >
@@ -68,7 +65,6 @@
         chips
         multiple
         outlined
-        item-text="fullLocation"
         hide-details
         filled
       >
@@ -99,32 +95,6 @@ export default {
     EventBus.$on("clearFilters", () => {
       this.clear();
     });
-    EventBus.$on("remove", (val) => {
-      if (this.majors.indexOf((x) => x.majorName === val) >= 0) {
-        this.majors.splice(this.majors.indexOf((x) => x.majorName === val),1)
-      }
-      else if (this.companies.indexOf((x) => x.companyName === val) >= 0) {
-        this.companies.splice(this.companies.indexOf((x) => x.companyName === val),1)
-      }
-      else if (this.disciplines.indexOf((x) => x.disciplineName === val) >= 0) {
-        this.disciplines.splice(this.disciplines.indexOf((x) => x.disciplineName === val),1)
-      }
-      else if (this.locations.indexOf((x) => x.locations === val) >= 0) {
-        this.locations.splice(this.locations.indexOf((x) => x.fullLocation === val),1)
-      }
-    });
-    if (this.majors.indexOf(x => x.majorName === this.$route.params.searched) <= 0 ){
-      this.majors.push(this.$route.params.searched);
-    }
-    if (this.companies.indexOf(x => x.companyName === this.$route.params.searched) <= 0 ){
-      this.companies.push(this.$route.params.searched);
-    }
-    if (this.disciplines.indexOf(x => x.disciplineName === this.$route.params.searched) <= 0 ){
-      this.disciplines.push(this.$route.params.searched);
-    }
-    if (this.locations.indexOf(x => x === this.$route.params.searched) <= 0 ){
-      this.locations.push(this.$route.params.searched);
-    }
   },
   computed: {
     ...mapGetters([
@@ -150,16 +120,16 @@ export default {
     filterPosts() {
       const arr = [];
       if (this.majors.length > 0) {
-        this.majors.forEach((x) => arr.push(x.majorName))
+        this.majors.forEach((x) => arr.push(x))
       }
       if (this.companies.length > 0) {
-        this.companies.forEach((x) => arr.push(x.companyName))
+        this.companies.forEach((x) => arr.push(x))
       }
       if (this.disciplines.length > 0) {
-        this.disciplines.forEach((x) => arr.push(x.disciplineName))
+        this.disciplines.forEach((x) => arr.push(x))
       }
       if (this.locations.length > 0) {
-        this.locations.forEach((x) => arr.push(x.fullLocation))
+        this.locations.forEach((x) => arr.push(x))
       }
       let removeDupes = arr.filter((item, pos) => {
         return arr.indexOf(item) == pos;
@@ -179,6 +149,32 @@ export default {
       EventBus.$emit("filter", []);
     },
   },
+  watch: {
+    '$route.params.searched': {
+      immediate: true,
+      deep: true,
+      handler(val) {
+        if (val) {
+          var index = this.getCompanies.findIndex((x) => x.toLowerCase() === val.toLowerCase())
+          if (index !== -1){
+            this.companies.push(this.getCompanies[index]);
+          }
+          index = this.getMajors.findIndex((x) => x.toLowerCase() === val.toLowerCase())
+          if (index !== -1){
+            this.majors.push(this.getMajors[index]);
+          }
+          index = this.getDisciplines.findIndex((x) => x.toLowerCase() === val.toLowerCase())
+          if (index !== -1){
+            this.disciplines.push(this.getDisciplines[index]);
+          }
+          index = this.getLocations.findIndex((x) => x.toLowerCase() === val.toLowerCase())
+          if (index !== -1){
+            this.locations.push(this.getLocations[index]);
+          }
+        }
+      }
+    }
+  }
 };
 </script>
 

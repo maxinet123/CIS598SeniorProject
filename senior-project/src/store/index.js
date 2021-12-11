@@ -20,20 +20,47 @@ export default new Vuex.Store({
     getUser: (state) => state.user,
     getInternships: (state) => state.internships,
     getInternshipsByUserId: (state) => state.internshipsByUserId,
-    getCompanies: (state) => state.companies,
-    getDisciplines: (state) => state.disciplines,
-    getLocations: (state) =>
-      state.locations.map((x) => ({
-        ...x,
-        fullLocation: `${x.city}, ${x.state}`,
-      })),
-    getRatings: (state) => state.ratings,
-    getMajors: (state) =>
-      state.majors.sort((a, b) => {
-        if (a.majorName < b.majorName) {
+    getCompanies: (state) => state.companies
+      .map((x) => x.companyName)
+      .sort((a, b) => {
+        if (a < b) {
           return -1;
         }
-        if (a.majorName > b.majorName) {
+        if (a > b) {
+          return 1;
+        }
+        return 0;
+      }),
+    getDisciplines: (state) => state.disciplines
+      .map((x) => x.disciplineName)
+      .sort((a, b) => {
+        if (a < b) {
+          return -1;
+        }
+        if (a > b) {
+          return 1;
+        }
+        return 0;
+      }),
+    getLocations: (state) => state.locations
+      .map((x) => x.fullLocation)
+      .sort((a, b) => {
+        if (a < b) {
+          return -1;
+        }
+        if (a > b) {
+          return 1;
+        }
+        return 0;
+      }),
+    getRatings: (state) => state.ratings,
+    getMajors: (state) => state.majors
+      .map((x) => x.majorName)
+      .sort((a, b) => {
+        if (a < b) {
+          return -1;
+        }
+        if (a > b) {
           return 1;
         }
         return 0;
@@ -79,10 +106,11 @@ export default new Vuex.Store({
           });
       });
     },
-    fetchInternshipsByUser: ({ commit }, {id}) => {
+    fetchInternshipsByUserId: ({ commit }, {id}) => {
+      console.log(id)
       return new Promise((resolve, reject) => {
         axios
-          .get(`${APP_URL}/Internship/GetInternshipsByUserId`, {id})
+          .get(`${APP_URL}/Internship/GetInternshipsByUserId`, id)
           .then((response) => {
             commit("setInternshipsByUserId", response.data.$values);
             resolve();
@@ -175,9 +203,7 @@ export default new Vuex.Store({
         axios
           .post(`${APP_URL}/Internship/AddUser`, user)
           .then((response) => {
-            console.log('getuser', response)
             commit("setUser", response.data);
-            //commit("setUser", response.data.$values);
             resolve();
           })
           .catch(() => {

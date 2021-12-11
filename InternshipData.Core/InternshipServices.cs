@@ -404,18 +404,18 @@ namespace InternshipData.Core
         //    await _votes.UpdateOneAsync(filter, update);
         //}
 
-        /// <summary>
-        /// Retrieves Internship Object by Id from database
-        /// </summary>
-        /// <param name="id">id to lookup</param>
-        /// <returns>Updated internship object</returns>
-        public async Task<Internship> GetInternshipById(string id)
-        {
-            var filter = Builders<Internship>.Filter.Eq("_id", ObjectId.Parse(id));
-            var intern = await _internships.Find(filter).FirstAsync();
+        ///// <summary>
+        ///// Retrieves Internship Object by Id from database
+        ///// </summary>
+        ///// <param name="id">id to lookup</param>
+        ///// <returns>Updated internship object</returns>
+        //public async Task<Internship> GetInternshipById(string id)
+        //{
+        //    var filter = Builders<Internship>.Filter.Eq("_id", ObjectId.Parse(id));
+        //    var intern = await _internships.Find(filter).FirstAsync();
 
-            return intern;
-        }
+        //    return intern;
+        //}
 
     }
 }

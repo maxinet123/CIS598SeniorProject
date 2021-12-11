@@ -32,7 +32,7 @@ namespace InternshipData.Core
         Task<string> AddRating(Rating rating);
         Task<User> AddUser(User user);
         //Task UpdateVote(string id, int newTotal);
-        Task<Internship> GetInternshipById(string id);
+        //Task<Internship> GetInternshipById(string id);
 
 
     }

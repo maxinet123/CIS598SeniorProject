@@ -99,6 +99,7 @@ export default {
       "fetchDisciplines",
       "fetchLocations",
       "fetchRatings",
+      "addUser"
     ]),
     logout() {
       this.$auth.logout();
@@ -112,6 +113,16 @@ export default {
       EventBus.$emit("clearFilterChips");
       this.hasFilters = false;
     },
+  },
+  watch: {
+    '$auth.user': {
+      deep: true,
+      handler() {
+        if (this.$auth.user) {
+          this.addUser({ user: {...this.$auth.user}})
+        }
+      }
+    }
   },
   created() {
     window.addEventListener("beforeunload", this.logout);

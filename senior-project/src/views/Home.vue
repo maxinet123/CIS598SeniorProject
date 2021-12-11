@@ -9,6 +9,7 @@
               single-line
               solo hide-details
               @click:append="explore"
+              @keyup.enter.native="explore"
               append-icon="mdi-magnify"
             ></v-text-field>
           </v-card-actions>

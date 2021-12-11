@@ -33,6 +33,13 @@
             <v-list-item-title>Explore</v-list-item-title>
           </v-list-item>
 
+          <v-list-item link @click="profile" v-show="!$auth.loading && $auth.isAuthenticated">
+            <v-list-item-icon>
+              <v-icon>mdi-account</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Profile</v-list-item-title>
+          </v-list-item>
+
           <v-list-item
             link
             href="https://docs.google.com/forms/d/e/1FAIpQLSc9ksFU16noxq8qh3cCZ-gZM4VkJWx6eDtlf2RyuFN0SGtlPw/viewform?embedded=true"
@@ -75,9 +82,6 @@ export default {
     logout() {
       this.$auth.logout();
       this.$router.push({ path: "/" }).catch(() => {});
-    },
-    profile() {
-      this.$router.push({ name: "Profile" }).catch(() => {});
     },
   },
 };
