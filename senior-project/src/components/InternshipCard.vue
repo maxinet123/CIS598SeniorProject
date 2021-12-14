@@ -29,8 +29,10 @@
         <v-col cols="6" sm="4" class="text-info">
           {{ data.duration }}
         </v-col>
-        <v-col cols="6" sm="4" class="center-col text-info">
+        <v-col v-if="data.wage" cols="6" sm="4" class="center-col text-info">
           {{ formatWage(data.wage) }} / hr
+        </v-col>
+        <v-col v-else cols="6" sm="4" class="center-col text-info">
         </v-col>
         <v-col
           cols="12"

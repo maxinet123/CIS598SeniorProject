@@ -15,6 +15,7 @@ export default new Vuex.Store({
     locations: [],
     ratings: [],
     majors: [],
+    majorsObjs: []
   },
   getters: {
     getUser: (state) => state.user,
@@ -65,6 +66,16 @@ export default new Vuex.Store({
         }
         return 0;
       }),
+    getMajorsObjs: (state) => state.majorsObjs
+      .sort((a, b) => {
+        if (a.majorName < b.majorName) {
+          return -1;
+        }
+        if (a.majorName > b.majorName) {
+          return 1;
+        }
+        return 0;
+      }),
   },
   mutations: {
     setUser: (state, data) => {
@@ -87,6 +98,9 @@ export default new Vuex.Store({
     },
     setMajors: (state, data) => {
       state.majors = data;
+    },
+    setMajorsObjs: (state, data) => {
+      state.majorsObjs = data;
     },
     setInternshipsByUserId: (state, data) => {
       state.internshipsByUserId = data;
@@ -111,7 +125,6 @@ export default new Vuex.Store({
       });
     },
     fetchInternshipsByUserId: ({ commit }, {id}) => {
-      console.log(id)
       return new Promise((resolve, reject) => {
         axios
           .get(`${APP_URL}/Internship/GetInternshipsByUserId`, id)
@@ -182,6 +195,7 @@ export default new Vuex.Store({
           .get(`${APP_URL}/Internship/GetMajors`)
           .then((response) => {
             commit("setMajors", response.data.$values);
+            commit("setMajorsObjs", response.data.$values);
             resolve();
           })
           .catch((error) => {

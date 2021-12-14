@@ -67,13 +67,6 @@ export default {
   mounted() {
     setTimeout(() => {
       this.fetchInternships()
-        .then(() => {
-          this.fetchCompanies();
-          this.fetchDisciplines();
-          this.fetchLocations();
-          this.fetchRatings();
-          this.fetchMajors();
-        })
         .finally(() => {
           this.loading = false;
         });
@@ -88,11 +81,6 @@ export default {
   methods: {
     ...mapActions([
       "fetchInternships",
-      "fetchMajors",
-      "fetchCompanies",
-      "fetchDisciplines",
-      "fetchLocations",
-      "fetchRatings",
       "addUser"
     ]),
     logout() {

@@ -21,7 +21,7 @@
           outlined
           label="Major"
           :filter="customMajorFilter"
-          :items="getMajors"
+          :items="getMajorsObjs"
           item-text="majorName"
           v-model="details.major"
           @input="$v.details.major.$touch()"
@@ -142,7 +142,7 @@
           :hide-details="wageErrors.length <= 0"
           dense
           outlined
-          label="Wage / hr"
+          label="Wage / hr (Optional)"
           v-model="details.wage"
           @input="$v.details.wage.$touch()"
           @blur="formatWage(details.wage)"
@@ -259,7 +259,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(["getMajors"]),
+    ...mapGetters(["getMajorsObjs"]),
     positionErrors() {
       const errors = [];
       if (!this.$v.details.position.$dirty) {

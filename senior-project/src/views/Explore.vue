@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import Postings from "../components/Postings.vue"
 import { EventBus } from "../event-bus";
 import animationData from "../assets/explore.json";
@@ -88,6 +88,7 @@ export default {
     },
   },
   methods: {
+    ...mapActions(["fetchInternships"]),
     addPost() {
       this.$router.push({ name: "Create" }).catch(() => {});
     },
@@ -112,10 +113,9 @@ export default {
     }
   },
   mounted() {
+    this.fetchInternships()
     var index = this.filters.indexOf(x => {
-      console.log(x, this.$route.params.searched)
       return x === this.$route.params.searched})
-      console.log(index)
     if (index < 0 && this.$route.params.searched) {
       this.filters.push(this.$route.params.searched);
     }

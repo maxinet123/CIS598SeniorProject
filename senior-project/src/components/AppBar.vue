@@ -7,6 +7,10 @@
         Create
       </v-btn>
       <v-spacer></v-spacer>
+      <!-- <v-btn v-show="!$auth.loading && $auth.isAuthenticated"
+        icon @click="profile">
+        <v-icon>mdi-account</v-icon>
+      </v-btn> -->
       <v-btn v-show="!$auth.loading && !$auth.isAuthenticated"
         text @click="login">
         Login
@@ -76,6 +80,9 @@ export default {
     explore() {
       this.$router.push({ name: "Explore" }).catch(() => {});
     },
+    // profile() {
+    //   this.$router.push({ name: "Profile" }).catch(() => {});
+    // },
     login() {
       this.$auth.loginWithRedirect();
     },
