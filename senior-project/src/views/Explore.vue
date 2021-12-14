@@ -1,5 +1,8 @@
 <template>
   <v-container>
+    <v-overlay :dark="false" class="overlay" :opacity="0.75" v-show="showFilters">
+      <filters @close="close"/>
+    </v-overlay>
     <div>
       <lottie
         :options="defaultOptions"
@@ -53,6 +56,7 @@ import Postings from "../components/Postings.vue"
 import { EventBus } from "../event-bus";
 import animationData from "../assets/explore.json";
 import Lottie from "vue-lottie";
+import Filters from "../components/Filters.vue";
 export default {
   name: "Explore",
   data: () => ({
@@ -62,20 +66,23 @@ export default {
       loop: true,
       autoplay: true
     },
+    showFilters: false,
   }),
   components: {
     Postings,
     Lottie,
+    Filters
   },
   computed: {
     ...mapGetters(["getInternships"]),
     filteredInternships() { 
       if (this.filters.length > 0) {
-        return this.getInternships.filter((obj) => {
-          return this.filters.indexOf(obj.company.toLowerCase()) >= 0 ||
-          this.filters.indexOf(obj.discipline.toLowerCase()) >= 0 ||
-          this.filters.indexOf(obj.major.toLowerCase()) >= 0
-        }, [])
+        return this.getInternships.filter((obj) => this.filters.every((x) => {
+            return obj.company.toLowerCase().includes(x.toLowerCase())
+            || obj.discipline.toLowerCase().includes(x.toLowerCase())
+            || obj.major.toLowerCase().includes(x.toLowerCase())
+            || obj.fullLocation.toLowerCase().includes(x.toLowerCase())
+        }), [])
       }
       return this.getInternships
     },
@@ -93,6 +100,9 @@ export default {
       );
       })
     },
+    close(val) {
+      this.showFilters = val;
+    },
     titleCasing(str) {
       str = str.toLowerCase().split(' ');
       for (var i = 0; i < str.length; i++) {
@@ -102,7 +112,10 @@ export default {
     }
   },
   mounted() {
-    var index = this.filters.indexOf(x => x === this.$route.params.searched)
+    var index = this.filters.indexOf(x => {
+      console.log(x, this.$route.params.searched)
+      return x === this.$route.params.searched})
+      console.log(index)
     if (index < 0 && this.$route.params.searched) {
       this.filters.push(this.$route.params.searched);
     }
@@ -112,9 +125,13 @@ export default {
     EventBus.$on("clearFilterChips", () => {
       this.filters.splice(0);
     });
+    EventBus.$on("show", (val) => {
+      this.showFilters = val
+    });
   },
   created (){    
     window.addEventListener('beforeunload', () => {
+      EventBus.$emit('clearFilters')
       return null
     })
   },

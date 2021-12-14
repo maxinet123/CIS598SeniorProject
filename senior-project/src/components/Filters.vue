@@ -155,19 +155,19 @@ export default {
       deep: true,
       handler(val) {
         if (val) {
-          var index = this.getCompanies.findIndex((x) => x.toLowerCase() === val.toLowerCase())
+          var index = this.getCompanies.findIndex((x) => x.toLowerCase().includes(val.toLowerCase()))
           if (index !== -1){
             this.companies.push(this.getCompanies[index]);
           }
-          index = this.getMajors.findIndex((x) => x.toLowerCase() === val.toLowerCase())
+          index = this.getMajors.findIndex((x) => x.toLowerCase().includes(val.toLowerCase()))
           if (index !== -1){
             this.majors.push(this.getMajors[index]);
           }
-          index = this.getDisciplines.findIndex((x) => x.toLowerCase() === val.toLowerCase())
+          index = this.getDisciplines.findIndex((x) => x.toLowerCase().includes(val.toLowerCase()))
           if (index !== -1){
             this.disciplines.push(this.getDisciplines[index]);
           }
-          index = this.getLocations.findIndex((x) => x.toLowerCase() === val.toLowerCase())
+          index = this.getLocations.findIndex((x) => x.toLowerCase().includes(val.toLowerCase()))
           if (index !== -1){
             this.locations.push(this.getLocations[index]);
           }

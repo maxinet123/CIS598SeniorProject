@@ -5,7 +5,7 @@
         <v-card class="intro">
           <v-card-actions>
             <v-text-field v-model="searched"
-              label="Search to start exploring! (ex. Company Name)"
+              label="Search to start exploring! (ex. Company Name, Location, etc)"
               single-line
               solo hide-details
               @click:append="explore"
@@ -73,12 +73,12 @@ export default {
 .intro {
   text-align:center;
   justify-content: center;
-  background:rgb(95,106,160,0.80);
+  background:#5f6aa0cc !important;
   padding: 68px 30px;
   position: fixed;
   top: 50%;
   left: 50%;
-  min-width: 500px;
+  min-width: 650px;
   min-height: 200px;
   transform: translate(-50%, -50%);
   box-shadow: 0px 6px 6px -3px rgb(0 0 0 / 20%), 0px 10px 14px 1px rgb(0 0 0 / 14%), 0px 4px 18px 3px rgb(0 0 0 / 12%) !important;

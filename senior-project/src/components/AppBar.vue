@@ -2,8 +2,8 @@
   <div>
     <v-app-bar app color="#5f6aa0" fixed dark elevation="10">
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
-      <v-btn v-show="$route.name !== 'Create' || $route.name !== 'Home'"
-        text @click="create">
+      <v-btn text v-show="$route.name !== 'Create' || $route.name !== 'Home'"
+         @click="create">
         Create
       </v-btn>
       <v-spacer></v-spacer>
@@ -95,5 +95,4 @@ export default {
   z-index: 5;
   text-align: center;
 }
-
 </style>

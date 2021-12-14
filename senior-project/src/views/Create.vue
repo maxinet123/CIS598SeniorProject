@@ -2,7 +2,7 @@
   <v-container class="create">
     <div>
       <h1 class="title">Share your experience!</h1>
-      <v-card>
+      <v-card class="card-shadow">
         <v-card-subtitle class="sub-title"
           >***All information will be kept anonymous.***</v-card-subtitle
         >
@@ -147,5 +147,8 @@ export default {
 .sub-title {
   text-align: center;
   margin: -20px -10px 5px;
+}
+.card-shadow {
+  box-shadow: 0px 6px 6px -3px rgb(0 0 0 / 20%), 0px 10px 14px 1px rgb(0 0 0 / 14%), 0px 4px 18px 3px rgb(0 0 0 / 12%) !important;
 }
 </style>

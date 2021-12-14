@@ -1,9 +1,6 @@
 <template>
   <v-app class="inspire">
     <load-overlay v-show="loading || $auth.isLoading" />
-    <v-overlay :dark="false" :opacity="0.75" v-show="showFilters">
-      <filters @close="close"/>
-    </v-overlay>
     <app-bar />
     <v-main class="page">
       <router-view />
@@ -40,7 +37,7 @@
             fixed dark
             class="filter-btn"
             fab 
-            @click="showFilters = true"
+            @click="showOverlay"
           >
             <v-icon>mdi-filter-outline</v-icon>
           </v-btn>
@@ -55,20 +52,17 @@
 import { mapActions, mapGetters } from "vuex";
 import LoadOverlay from "./components/LoadOverlay.vue";
 import AppBar from "./components/AppBar.vue";
-import Filters from "./components/Filters.vue";
 import { EventBus } from "./event-bus";
 
 export default {
   name: "App",
   data: () => ({
     loading: true,
-    showFilters: false,
     hasFilters: false,
   }),
   components: {
     LoadOverlay,
     AppBar,
-    Filters,
   },
   mounted() {
     setTimeout(() => {
@@ -105,14 +99,14 @@ export default {
       this.$auth.logout();
       this.$router.push({ path: "/" }).catch(() => {});
     },
-    close(val) {
-      this.showFilters = val;
-    },
     clear() {
       EventBus.$emit("clearFilters");
       EventBus.$emit("clearFilterChips");
       this.hasFilters = false;
     },
+    showOverlay() {
+      EventBus.$emit('show', true)
+    }
   },
   watch: {
     '$auth.user': {
@@ -147,5 +141,8 @@ export default {
 .clear-btn {
   bottom: 95px;
   right: 25px;
+}
+.overlay {
+  z-index: 6 !important;
 }
 </style>

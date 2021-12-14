@@ -93,12 +93,16 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    fetchInternships: ({ commit }) => {
+    fetchInternships: ({ commit, dispatch }) => {
       return new Promise((resolve, reject) => {
         axios
           .get(`${APP_URL}/Internship/GetInternships`)
           .then((response) => {
             commit("setInternships", response.data.$values);
+            dispatch("fetchMajors");
+            dispatch("fetchCompanies");
+            dispatch("fetchDisciplines");
+            dispatch("fetchLocations")
             resolve();
           })
           .catch((error) => {
