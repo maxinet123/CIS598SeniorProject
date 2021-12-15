@@ -11,6 +11,6 @@
 <p>Open the solution for InternshipApp and press the start button. This will begin building the application and should open a browser window. The browser window will display Swagger with all API endpoints to view and test.</p>
 
 <p>Swagger (OpenAPI) is a language-agnostic specification for describing REST APIs. It allows both computers and humans to understand the capabilities of a REST API without direct access to the source code. Its main goals are to:</p>
-	- Minimize the amount of work needed to connect decoupled services.
-	- Reduce the amount of time needed to accurately document a service.
+> Minimize the amount of work needed to connect decoupled services.
+> Reduce the amount of time needed to accurately document a service.
 <p>https://docs.microsoft.com/en-us/aspnet/core/tutorials/web-api-help-pages-using-swagger?view=aspnetcore-6.0</p>
