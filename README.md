@@ -14,3 +14,7 @@
 <p>1. Minimize the amount of work needed to connect decoupled services.</p>
 <p>2. Reduce the amount of time needed to accurately document a service.</p>
 <p>https://docs.microsoft.com/en-us/aspnet/core/tutorials/web-api-help-pages-using-swagger?view=aspnetcore-6.0</p>
+
+
+## Notes:
+<p>Database connection string is stored in dotnet user-secrets list</p>
